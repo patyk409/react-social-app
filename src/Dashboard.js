@@ -53,7 +53,7 @@ const Dashboard = props => {
 
                           <div className="Like-container">
                             <span>{post.likes.length}</span>
-                            <i className={post.likes.filter(like => like.username === localStorage.getItem("name")).length > 0 ? "far fa-grin-wink Post-liked" : "far fa-grin-wink"} onClick={(event) => {
+                            <i className={post.likes.filter(like => like.username === localStorage.getItem("name")).length > 0 ? "far fa-heart Post-liked" : "far fa-heart"} onClick={(event) => {
                               if (!event.target.classList.contains("Post-liked")) {
                                 event.target.classList.add("Post-liked");
                                 props.postLike(post.id);
@@ -122,8 +122,8 @@ const Dashboard = props => {
         </ul>
 
         <header className="Dashboard-header">
-          <h3>Space Club</h3>
-          <i className="fas fa-user-astronaut"></i>
+          <h3>Social Club</h3>
+          <i className="fas fa-icons"></i>
         </header>
 
         <div className="Dashboard-input-container">

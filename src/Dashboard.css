@@ -225,15 +225,17 @@
 .Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container {
   position: absolute;
   right: -10px;
+  display: flex;
+  align-items: center;
 }
 
-.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container .fa-grin-wink {
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container .fa-heart {
   padding: 10px;
   font-size: 18px;
   cursor: pointer;
 }
 
-.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container .fa-grin-wink.Post-liked {
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container .fa-heart.Post-liked {
   color: var(--teal-color);
 }
 

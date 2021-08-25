@@ -72,14 +72,14 @@
   color: var(--pink-color);
 }
 
-.Wall-container .Wall .Post-container .Post-info .Like-container .fa-grin-wink {
+.Wall-container .Wall .Post-container .Post-info .Like-container .fa-heart {
   padding: 10px;
   font-size: 20px;
   color: var(--white-color);
   cursor: pointer;
 }
 
-.Wall-container .Wall .Post-container .Post-info .Like-container .fa-grin-wink.Post-liked {
+.Wall-container .Wall .Post-container .Post-info .Like-container .fa-heart.Post-liked {
   color: var(--teal-color);
 }
 

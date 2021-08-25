@@ -34,7 +34,7 @@ const Wall = props => {
                 <div className="Like-container">
                   <span>{post.likes.length}</span>
 
-                  <i className={post.likes.filter(like => like.username === localStorage.getItem("name")).length > 0 ? "far fa-grin-wink Post-liked" : "far fa-grin-wink"} onClick={(event) => {
+                  <i className={post.likes.filter(like => like.username === localStorage.getItem("name")).length > 0 ? "far fa-heart Post-liked" : "far fa-heart"} onClick={(event) => {
                     if (!props.userToken) {
                       return null;
                     } else if (!event.target.classList.contains("Post-liked")) {
@@ -56,6 +56,8 @@ const Wall = props => {
           )
         })}
 
+        {props.isVisible && props.userToken ? props.getMorePosts(props.latestPosts[(props.latestPosts.length - 1)].created_at) : null}
+
         {(props.confirmationPopup) ?
           <aside className="App-popup">
             <Popup
@@ -65,10 +67,9 @@ const Wall = props => {
           </aside> : null}
       </ul>
 
-      {props.isVisible ?
-        <div className="Preloader-container">
-          <div className="Preloader"></div>
-        </div> : null}
+      <div className={props.isVisible ? "Preloader-container Show-preloader" : "Preloader-container"}>
+        <div className="Preloader"></div>
+      </div>
     </main>
   );
 };

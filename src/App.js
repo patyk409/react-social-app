@@ -74,8 +74,6 @@ const App = () => {
 
   const [setRef, isVisible] = useOnScreen({ threshold: 1.0 });
 
-  console.log(isVisible ? "is on screen" : "is not on screen");
-
   /*
    * axios header configuraton
    */
@@ -169,6 +167,27 @@ const App = () => {
         })
     };
   }, [followTrigger, userToken]);
+
+  /*
+   *
+   * get more posts
+   *
+   */
+  const getMorePosts = date => {
+    axios.post(
+      "https://akademia108.pl/api/social-app/post/older-then",
+      JSON.stringify({
+        "date": date
+      }),
+      headerConfigAuth)
+      .then(res => {
+        setLatestPosts(latestPosts.concat(res.data));
+        // console.log("get more posts response: ", res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
 
   /*
    *
@@ -403,8 +422,8 @@ const App = () => {
     setSearchedPostResult([]);
 
     if (postBrowserByDate === "") {
-      setSearchedPostInfo("Date field cannot be empty, enter date and find post that you looking for");
       setSearchedPostTrigger(true);
+      setSearchedPostInfo("Date field cannot be empty, enter date and find post that you looking for");
     } else {
       axios.post(
         "https://akademia108.pl/api/social-app/post/newer-then",
@@ -466,8 +485,8 @@ const App = () => {
         <h1>
           <Link
             to="/">
-            Space Club
-            <i className="fas fa-user-astronaut"></i>
+            Social Club
+            <i className="fas fa-icons"></i>
           </Link>
         </h1>
       </header>
@@ -524,6 +543,7 @@ const App = () => {
             postId={postId}
             unfollowUser={unfollowUser}
             isVisible={isVisible}
+            getMorePosts={getMorePosts}
             userToken={userToken} />
         </Route>
 
@@ -572,7 +592,7 @@ const App = () => {
         </aside> : null}
 
       <footer className="App-footer" ref={setRef}>
-        <p>Space Club<i className="far fa-copyright"></i>2021</p>
+        <p>Social Club<i className="far fa-copyright"></i>2021</p>
       </footer>
     </div>
   );

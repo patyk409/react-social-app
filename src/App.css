@@ -38,7 +38,7 @@
   cursor: pointer;
 }
 
-.App-social .App-header a .fa-user-astronaut {
+.App-social .App-header a .fa-icons {
   margin: 0 0 0 15px;
   font-size: 36px;
   color: var(--teal-color);
@@ -169,7 +169,7 @@
   bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 140px;
@@ -186,7 +186,11 @@
   border-bottom: 10px solid var(--teal-color);
   border-left: 10px solid var(--purple-color);
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin .5s linear infinite;
+}
+
+.Show-preloader {
+  display: flex;
 }
 
 @keyframes spin {
