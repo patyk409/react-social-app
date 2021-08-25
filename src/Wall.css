@@ -1,0 +1,93 @@
+/*
+ * wall
+ */
+.Wall-container {
+  position: relative;
+}
+
+.Wall-container .Wall {
+  margin: 200px auto 0;
+  position: relative;
+  width: 100%;
+  max-width: 768px;
+}
+
+.Wall-container .Wall .Post-container {
+  padding: 20px 20px 0;
+  margin: 0 0 50px;
+  position: relative;
+  list-style: none;
+  background-color: var(--background-color);
+  border-top: 2px solid var(--teal-color);
+  border-bottom: 2px solid var(--teal-color);
+}
+
+.Wall-container .Wall .Post-container:last-child {
+  margin: 0 0 200px;
+}
+
+.Wall-container .Wall .Post-container .Post-author {
+  margin: 0 0 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.Wall-container .Wall .Post-container .Post-author img {
+  margin: 0 15px 0 0;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.Wall-container .Wall .Post-container .Post-author p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Wall-container .Wall .Post-container .Post-content {
+  padding: 8px 10px;
+  font-size: 15px;
+  color: var(--white-color);
+  background-color: var(--purple-color);
+}
+
+.Wall-container .Wall .Post-container .Post-info {
+  padding: 0 0 0 10px;
+  margin: 0 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.Wall-container .Wall .Post-container .Post-info .Like-container {
+  display: flex;
+  align-items: center;
+}
+
+.Wall-container .Wall .Post-container .Post-info .Like-container span {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--pink-color);
+}
+
+.Wall-container .Wall .Post-container .Post-info .Like-container .fa-grin-wink {
+  padding: 10px;
+  font-size: 20px;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.Wall-container .Wall .Post-container .Post-info .Like-container .fa-grin-wink.Post-liked {
+  color: var(--teal-color);
+}
+
+/*
+ * media
+ */
+@media screen and (min-width: 768px) {
+  .Wall-container .Wall .Post-container {
+    border: 2px solid var(--teal-color);
+  }
+}

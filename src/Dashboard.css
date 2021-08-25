@@ -1,0 +1,331 @@
+/*
+ * dashboard
+ */
+.Dashboard {
+  padding: 30px 0;
+  margin: 50px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 768px;
+  background-color: var(--background-color);
+  border-top: 2px solid var(--teal-color);
+  border-bottom: 2px solid var(--teal-color);
+}
+
+/*
+ * dashboard -> headers
+ */
+.Dashboard .Dashboard-header {
+  padding: 0 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Dashboard .Dashboard-header:nth-child(3) {
+  padding: 22px 0 0;
+}
+
+.Dashboard .Dashboard-header h3 {
+  font-size: 26px;
+}
+
+.Dashboard .Dashboard-header .far,
+.Dashboard .Dashboard-header .fas {
+  margin: 0 0 0 15px;
+  font-size: 30px;
+  color: var(--pink-color);
+}
+
+/*
+ * dashboard -> profile / users
+ */
+.Dashboard .Dashboard-profile {
+  padding: 0 0 30px;
+  width: 80%;
+  border-bottom: 2px solid var(--teal-color);
+}
+
+.Dashboard .Dashboard-profile .Profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 237px;
+}
+
+.Dashboard .Dashboard-profile .Profile .Profile-avatar {
+  margin: 15px 0;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  border-radius: 50%;
+}
+
+.Dashboard .Dashboard-profile .Profile .Profile-name {
+  margin: 0 0 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.Dashboard .Dashboard-profile .Profile .Profile-email {
+  font-size: 18px;
+}
+
+.Dashboard .Dashboard-users {
+  margin: 30px auto 0;
+  width: 80%;
+}
+
+.Dashboard .Dashboard-users .Users-recommended {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 300px;
+  min-height: 183px;
+}
+
+.Dashboard .Dashboard-users .Users-recommended .Users {
+  padding: 10px 0;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.Dashboard .Dashboard-users .Users-recommended .Users:not(:last-child) {
+  border-bottom: 2px solid var(--teal-color);
+}
+
+.Dashboard .Dashboard-users .Users-recommended .Users .User-avatar,
+.Dashboard .Dashboard-input-container .Searched-user-result .User-avatar {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  width: 40px;
+  border-radius: 50%;
+}
+
+.Dashboard .Dashboard-users .Users-recommended .Users .User-data,
+.Dashboard .Dashboard-input-container .Searched-user-result .User-data {
+  margin: 0 15px 0 0;
+  text-align: right;
+}
+
+.Dashboard .Dashboard-input-container .Searched-user-result .User-data {
+  margin-right: 0;
+}
+
+.Dashboard .Dashboard-users .Users-recommended .Users .User-data .User-name,
+.Dashboard .Dashboard-input-container .Searched-user-result .User-name {
+  font-weight: bold;
+}
+
+/*
+ * dashboard -> profile / users -> input container
+ */
+.Dashboard .Dashboard-input-container {
+  margin: 20px auto 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  max-width: 300px;
+}
+
+.Dashboard .Dashboard-input-container input {
+  padding: 5px;
+  margin: 0 10px 0 0;
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+  color: var(--background-color);
+  background-color: var(--white-color);
+  border: 2px solid var(--white-color);
+  outline: 0;
+}
+
+.Dashboard .Dashboard-input-container .Dashboard-button {
+  padding: 0 10px;
+  font-size: 16px;
+  color: var(--white-color);
+  background-color: var(--teal-color);
+  border: 2px solid var(--teal-color);
+  cursor: pointer;
+}
+
+.Dashboard .Dashboard-input-container .Dashboard-button:hover {
+  border: 2px solid var(--purple-color);
+  background-color: var(--purple-color);
+}
+
+/*
+ * dashboard -> profile / users -> input container -> search result
+ */
+.Dashboard .Dashboard-input-container .Searched-post-result,
+.Dashboard .Dashboard-input-container .Searched-user-result {
+  padding: 0 20px;
+  position: absolute;
+  bottom: 45px;
+  left: 0;
+  right: 0;
+  height: 292px;
+  background-image: linear-gradient(rgba(23, 24, 26, .5) 0%, rgba(23, 24, 26, .5) 100%), url('./bg.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  border: 2px solid var(--purple-color);
+  overflow: auto;
+}
+
+/*
+ * dashboard -> profile / users -> input container -> search result -> post
+ */
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item {
+  padding: 10px;
+  margin: 30px 0;
+  list-style: none;
+  background-color: var(--background-color);
+  border: 2px solid var(--teal-color);
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Searched-post-data {
+  margin: 0 0 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Searched-post-data img {
+  margin: 0 10px 0 0;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Searched-post-data p {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Searched-post-data span {
+  font-size: 12px;
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Post-content {
+  padding: 5px;
+  font-size: 14px;
+  background-color: var(--purple-color);
+  border: 2px solid var(--purple-color);
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container {
+  position: absolute;
+  right: -10px;
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container .fa-grin-wink {
+  padding: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container .fa-grin-wink.Post-liked {
+  color: var(--teal-color);
+}
+
+.Dashboard .Dashboard-input-container .Searched-post-result .Result-list .Result-list-item .Like-container span {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--pink-color);
+}
+
+/*
+ * dashboard -> profile / users -> input container -> search result -> user
+ */
+.Dashboard .Dashboard-input-container .Searched-user-result {
+  display: flex;
+  height: 174px;
+}
+
+.Dashboard .Dashboard-input-container .Searched-user-result .User-result {
+  padding: 15px;
+  position: relative;
+  width: 100%;
+  align-self: center;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--background-color);
+  border: 2px solid var(--teal-color);
+}
+
+.Dashboard .Dashboard-input-container .Searched-user-result .User-result .User-email {
+  font-size: 14px;
+}
+
+.Dashboard .Dashboard-input-container .Searched-user-result .Searched-user-info,
+.Dashboard .Dashboard-input-container .Searched-post-result .Searched-post-info {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/*
+ * dashboard -> profile / users -> input container -> search result -> closer
+ */
+.Dashboard .Dashboard-input-container .User-result-closer .fa-times,
+.Dashboard .Dashboard-input-container .Post-result-closer .fa-times {
+  position: absolute;
+  font-size: 22px;
+  color: var(--pink-color);
+  padding: 10px 10px 10px 5px;
+  cursor: pointer;
+}
+
+.Dashboard .Dashboard-input-container .User-result-closer .fa-times {
+  bottom: 190px;
+}
+
+.Dashboard .Dashboard-input-container .Post-result-closer .fa-times {
+  bottom: 308px;
+}
+
+.Dashboard .Dashboard-input-container .fa-times:hover {
+  color: var(--purple-color);
+}
+
+/*
+ * media
+ */
+@media screen and (min-width: 768px) {
+  .Dashboard {
+    flex-direction: row;
+    border: 2px solid var(--teal-color);
+  }
+
+  .Dashboard .Dashboard-profile {
+    padding: 0;
+    width: 50%;
+    border-bottom: none;
+    border-right: 2px solid var(--teal-color);
+  }
+
+  .Dashboard .Dashboard-users {
+    margin: 0;
+    width: 50%;
+  }
+
+  .Dashboard .Dashboard-input-container {
+    width: 80%;
+  }
+}

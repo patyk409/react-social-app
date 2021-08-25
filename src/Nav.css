@@ -1,0 +1,48 @@
+/*
+ * nav
+ */
+.Nav {
+  background-color: var(--background-color);
+  border-top: 2px solid var(--pink-color);
+  border-bottom: 2px solid var(--pink-color);
+  z-index: 10;
+}
+
+.Nav-sticky {
+  position: sticky;
+  top: -2px;
+}
+
+.Nav .Nav-list {
+  padding: 15px 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 768px;
+}
+
+.Nav .Nav-list li {
+  list-style: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.Nav .Nav-list li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+.Nav .Nav-list li a .fas {
+  padding: 0 0 5px 0;
+  font-size: 24px;
+  color: var(--teal-color);
+}
+
+.Nav .Nav-list li a:hover .fas {
+  color: var(--purple-color);
+}
