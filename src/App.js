@@ -71,6 +71,7 @@ const App = () => {
   const [followTrigger, setFollowTrigger] = useState(false);
   const [searchedUserTrigger, setSearchedUserTrigger] = useState(false);
   const [searchedPostTrigger, setSearchedPostTrigger] = useState(false);
+  const [searchPostButtonTrigger, setSearchPostButtonTrigger] = useState(false);
 
   const [setRef, isVisible] = useOnScreen({ threshold: 1.0 });
 
@@ -168,31 +169,32 @@ const App = () => {
     };
   }, [followTrigger, userToken]);
 
-  /*
-   *
-   * get more posts
-   *
-   */
-  const getMorePosts = date => {
-    axios.post(
-      "https://akademia108.pl/api/social-app/post/older-then",
-      JSON.stringify({
-        "date": date
-      }),
-      headerConfigAuth)
-      .then(res => {
-        setLatestPosts(latestPosts.concat(res.data));
-        // console.log("get more posts response: ", res);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  }
+  useEffect(() => {
+    // searched post result
+    if (postBrowserByDate === "") {
+      return null;
+    } else {
+      axios.post(
+        "https://akademia108.pl/api/social-app/post/newer-then",
+        JSON.stringify({
+          "date": postBrowserByDate
+        }),
+        headerConfigAuth)
+        .then(res => {
+          setSearchedPostResult(res.data);
+          if (res.data.length === 0) {
+            setSearchedPostInfo(`There are no newer posts for the date you entered, check date again and keep looking`);
+          };
+          console.log("check post response: ", res);
+        })
+        .catch(err => {
+          console.error(err);
+        })
+    };
+  }, [searchedPostTrigger, likeTrigger, allFollowed, searchedPostInfo, searchPostButtonTrigger]);
 
   /*
-   *
    * log out
-   * 
    */
   const logUserDataOut = () => {
     axios.post(
@@ -205,6 +207,8 @@ const App = () => {
         setUserToken(localStorage.getItem("jwt_token"));
         setSearchedUserTrigger(false);
         setSearchedPostTrigger(false);
+        setSearchedPostResult([]);
+        setPostBrowserByDate("");
         console.log("log out response: ", res);
       })
       .catch(err => {
@@ -213,95 +217,7 @@ const App = () => {
   };
 
   /*
-   *
-   * follow user
-   * 
-   */
-  const followUser = id => {
-    axios.post(
-      "https://akademia108.pl/api/social-app/follows/follow",
-      JSON.stringify({
-        "leader_id": id
-      }),
-      headerConfigAuth)
-      .then(res => {
-        setFollowTrigger(!followTrigger);
-        setSearchedUserTrigger(false);
-        console.log("follow response: ", res);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  };
-
-  /*
-   *
-   * unfollow user
-   * 
-   */
-  const unfollowUser = id => {
-    axios.post(
-      "https://akademia108.pl/api/social-app/follows/disfollow",
-      JSON.stringify({
-        "leader_id": id
-      }),
-      headerConfigAuth)
-      .then(res => {
-        setFollowTrigger(!followTrigger);
-        searchedPostCloser();
-        console.log("unfollow response: ", res);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  };
-
-  /*
-   *
-   * post like
-   * 
-   */
-  const postLike = id => {
-    axios.post(
-      "https://akademia108.pl/api/social-app/post/like",
-      JSON.stringify({
-        "post_id": id
-      }),
-      headerConfigAuth)
-      .then(res => {
-        setLikeTrigger(!likeTrigger);
-        console.log("like response: ", res);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  };
-
-  /*
-   *
-   * post dislike
-   * 
-   */
-  const postDislike = id => {
-    axios.post(
-      "https://akademia108.pl/api/social-app/post/dislike",
-      JSON.stringify({
-        "post_id": id
-      }),
-      headerConfigAuth)
-      .then(res => {
-        setLikeTrigger(!likeTrigger);
-        console.log("dislike response: ", res);
-      })
-      .catch(err => {
-        console.error(err);
-      })
-  };
-
-  /*
-   *
    * add post
-   * 
    */
   const addPost = () => {
     setSearchedPostResult([]);
@@ -330,9 +246,7 @@ const App = () => {
   };
 
   /*
-   *
    * delete post
-   *
    */
   const deletePost = id => {
     axios.post(
@@ -353,9 +267,104 @@ const App = () => {
   };
 
   /*
-   *
+   * get more posts
+   */
+  const getMorePosts = date => {
+    axios.post(
+      "https://akademia108.pl/api/social-app/post/older-then",
+      JSON.stringify({
+        "date": date
+      }),
+      headerConfigAuth)
+      .then(res => {
+        setLatestPosts(latestPosts.concat(res.data));
+        // console.log("get more posts response: ", res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
+
+  /*
+   * post like
+   */
+  const postLike = id => {
+    axios.post(
+      "https://akademia108.pl/api/social-app/post/like",
+      JSON.stringify({
+        "post_id": id
+      }),
+      headerConfigAuth)
+      .then(res => {
+        setLikeTrigger(!likeTrigger);
+        console.log("like response: ", res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  };
+
+  /*
+   * post dislike
+   */
+  const postDislike = id => {
+    axios.post(
+      "https://akademia108.pl/api/social-app/post/dislike",
+      JSON.stringify({
+        "post_id": id
+      }),
+      headerConfigAuth)
+      .then(res => {
+        setLikeTrigger(!likeTrigger);
+        console.log("dislike response: ", res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  };
+
+  /*
+   * follow user
+   */
+  const followUser = id => {
+    axios.post(
+      "https://akademia108.pl/api/social-app/follows/follow",
+      JSON.stringify({
+        "leader_id": id
+      }),
+      headerConfigAuth)
+      .then(res => {
+        setFollowTrigger(!followTrigger);
+        setSearchedUserTrigger(false);
+        console.log("follow response: ", res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  };
+
+  /*
+   * unfollow user
+   */
+  const unfollowUser = id => {
+    axios.post(
+      "https://akademia108.pl/api/social-app/follows/disfollow",
+      JSON.stringify({
+        "leader_id": id
+      }),
+      headerConfigAuth)
+      .then(res => {
+        setFollowTrigger(!followTrigger);
+        // searchedPostCloser();
+        console.log("unfollow response: ", res);
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  };
+
+  /*
    * friend browser
-   * 
    */
   const searchFriendByName = () => {
     // search friend by name
@@ -381,8 +390,8 @@ const App = () => {
         .catch(err => {
           console.error(err);
         })
+      setFriendBrowserByName("");
     };
-    setFriendBrowserByName("");
   };
 
   const searchFriendByEmail = () => {
@@ -409,71 +418,46 @@ const App = () => {
         .catch(err => {
           console.error(err);
         })
+      setFriendBrowserByEmail("");
     };
-    setFriendBrowserByEmail("");
   };
 
   /*
-   *
-   * post browser
-   * 
+   * searched post handler
    */
-  const searchPost = () => {
-    setSearchedPostResult([]);
-
+  const searchedPostResultHandler = () => {
+    setSearchedPostTrigger(true);
+    setSearchPostButtonTrigger(!searchPostButtonTrigger);
     if (postBrowserByDate === "") {
-      setSearchedPostTrigger(true);
       setSearchedPostInfo("Date field cannot be empty, enter date and find post that you looking for");
-    } else {
-      axios.post(
-        "https://akademia108.pl/api/social-app/post/newer-then",
-        JSON.stringify({
-          "date": postBrowserByDate
-        }),
-        headerConfigAuth)
-        .then(res => {
-          setSearchedPostTrigger(true);
-          setSearchedPostResult(res.data);
-          if (res.data.length === 0) {
-            setSearchedPostInfo(`There are no newer posts for the date you entered, check date again and keep looking`);
-          };
-          console.log("check post response: ", res);
-        })
-        .catch(err => {
-          console.error(err);
-        })
     };
-    setPostBrowserByDate("");
   };
 
   /*
-   *
-   * show confirmation popup
-   * 
-   */
-  const showConfirmationPopup = id => {
-    setConfirmationPopup(true);
-    setPostId(id);
-  };
-
-  /*
-   *
    * searched post closer
-   * 
    */
   const searchedPostCloser = () => {
     setSearchedPostTrigger(false);
     setSearchedPostResult([]);
+    setPostBrowserByDate("");
   };
 
   /*
-   *
    * search window closer
-   *
    */
   const searchWindowCloser = () => {
     setSearchedUserTrigger(false);
     setSearchedPostTrigger(false);
+    setSearchedPostResult([]);
+    setPostBrowserByDate("");
+  };
+
+  /*
+   * show confirmation popup
+   */
+  const showConfirmationPopup = id => {
+    setConfirmationPopup(true);
+    setPostId(id);
   };
 
   /*
@@ -482,11 +466,12 @@ const App = () => {
   return (
     <div className="App-social">
       <header className="App-header">
-        <h1>
+        <h1 className="App-header-text">
           <Link
+            className="App-header-link"
             to="/">
             Social Club
-            <i className="fas fa-icons"></i>
+            <i className="fas fa-icons App-header-linkIcon"></i>
           </Link>
         </h1>
       </header>
@@ -505,6 +490,7 @@ const App = () => {
               profileEmail={profileEmail}
               recommendedUsers={recommendedUsers}
               followUser={followUser}
+              unfollowUser={unfollowUser}
               addPost={addPost}
               postContent={postContent}
               setPostContent={setPostContent}
@@ -516,7 +502,6 @@ const App = () => {
               setFriendBrowserByEmail={setFriendBrowserByEmail}
               postBrowserByDate={postBrowserByDate}
               setPostBrowserByDate={setPostBrowserByDate}
-              searchPost={searchPost}
               searchedUserInfo={searchedUserInfo}
               searchedPostInfo={searchedPostInfo}
               searchedAvatar={searchedAvatar}
@@ -527,10 +512,11 @@ const App = () => {
               searchedPostTrigger={searchedPostTrigger}
               searchedPostResult={searchedPostResult}
               searchedUserId={searchedUserId}
+              userToken={userToken}
               postLike={postLike}
               postDislike={postDislike}
               searchedPostCloser={searchedPostCloser}
-              unfollowUser={unfollowUser} /> : null}
+              searchedPostResultHandler={searchedPostResultHandler} /> : null}
 
           <Wall
             latestPosts={latestPosts}
@@ -538,8 +524,8 @@ const App = () => {
             postDislike={postDislike}
             deletePost={deletePost}
             confirmationPopup={confirmationPopup}
-            showConfirmationPopup={showConfirmationPopup}
             setConfirmationPopup={setConfirmationPopup}
+            showConfirmationPopup={showConfirmationPopup}
             postId={postId}
             unfollowUser={unfollowUser}
             isVisible={isVisible}
@@ -592,7 +578,7 @@ const App = () => {
         </aside> : null}
 
       <footer className="App-footer" ref={setRef}>
-        <p>Social Club<i className="far fa-copyright"></i>2021</p>
+        <p className="App-footer-text">Social Club<i className="far fa-copyright App-footer-icon"></i>2021</p>
       </footer>
     </div>
   );

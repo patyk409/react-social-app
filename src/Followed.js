@@ -7,27 +7,27 @@ const Followed = props => {
    * jsx
    */
   return (
-    <div className="Followed">
+    <div className="AllFollowed">
 
-      <h3>Followed
-        <i className="fas fa-user-friends"></i>
+      <h3 className="AllFollowed-header">Followed
+        <i className="fas fa-user-friends AllFollowed-headerIcon"></i>
       </h3>
 
-      <ul className="Users-followed">
+      <ul className="AllFollowed-list">
         {(props.allFollowed.length === 0) ?
-          <p className="Follow-info">Seems like you don't follow anyone...</p> :
+          <p className="AllFollowed-text">Seems like you don't follow anyone...</p> :
           props.allFollowed.map(user => {
             return (
-              <li className="Users" key={user.id}>
-                <img src={user.avatar_url} alt="user_avatar" className="User-avatar" />
+              <li className="AllFollowed-listItem" key={user.id}>
+                <img src={user.avatar_url} alt="user_avatar" className="AllFollowed-listItem-avatar" />
 
-                <div className="User-data">
-                  <p className="User-name">{user.username}</p>
-                  <p className="User-email">{user.email}</p>
+                <div className="AllFollowed-listItem-data">
+                  <p className="AllFollowed-listItem-data-name">{user.username}</p>
+                  <p className="AllFollowed-listItem-data-email">{user.email}</p>
                 </div>
 
-                <div className="Follow-icon" onClick={() => { props.unfollowUser(user.id) }} tabIndex="0">
-                  <i className="fas fa-minus"></i>
+                <div className="FollowIcon" onClick={() => { props.unfollowUser(user.id) }} tabIndex="0">
+                  <i className="fas fa-minus AllFollowed-listItem-unfollowIcon"></i>
                 </div>
               </li>
             )
@@ -36,9 +36,10 @@ const Followed = props => {
 
       <div className="Closer">
         <Link
+          className="Closer-link"
           to="/"
           onClick={props.closePopup}>
-          <i className="fas fa-times"></i>
+          <i className="fas fa-times Closer-linkIcon"></i>
         </Link>
       </div>
 

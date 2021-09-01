@@ -1,8 +1,7 @@
 /*
  * confirmation popup
  */
-
-.Confirmation-popup {
+.ConfirmationPopup {
   position: fixed;
   padding: 30px 0;
   display: flex;
@@ -11,12 +10,15 @@
   align-items: center;
   width: 100%;
   max-width: 768px;
-  background-color: var(--background-color);
-  border-top: 2px solid var(--purple-color);
-  border-bottom: 2px solid var(--purple-color);
+  background-color: var(--background-color-white);
+  border-top: 2px solid var(--black-color);
+  border-bottom: 2px solid var(--black-color);
 }
 
-.Confirmation-popup p {
+/*
+ * confirmation popup -> text
+ */
+.ConfimationPopup-text {
   margin: 20px 0;
   width: 80%;
   font-size: 24px;
@@ -24,14 +26,17 @@
   text-align: center;
 }
 
-.Confirmation-popup .Button-container {
+/*
+ * confirmation popup -> buttons
+ */
+.ConfirmationPopup-buttonBox {
   margin: 20px 0;
   display: flex;
   justify-content: space-evenly;
   width: 70%;
 }
 
-.Confirmation-popup .Button-container .Button {
+.ConfirmationPopup-button {
   margin: 0 10px;
   padding: 7px 0;
   width: 80px;
@@ -40,33 +45,37 @@
   cursor: pointer;
 }
 
-.Confirmation-popup .Button-container .Button.Yes {
-  background-color: var(--teal-color);
-  border: 2px solid var(--teal-color);
+.ConfirmationPopup-button.Confirm {
+  background-color: var(--green-color);
+  border: 2px solid var(--green-color);
 }
 
-.Confirmation-popup .Button-container .Button.No {
-  background-color: var(--pink-color);
-  border: 2px solid var(--pink-color);
+.ConfirmationPopup-button.Deny {
+  background-color: var(--red-color);
+  border: 2px solid var(--red-color);
 }
 
-.Confirmation-popup .Button-container .Button.Yes:hover,
-.Confirmation-popup .Button-container .Button.No:hover {
-  border: 2px solid var(--purple-color);
-  background-color: var(--purple-color);
+.ConfirmationPopup-button.Confirm:hover {
+  background-color: var(--white-color);
+  color: var(--green-color);
+}
+
+.ConfirmationPopup-button.Deny:hover {
+  background-color: var(--white-color);
+  color: var(--red-color);
 }
 
 /*
  * media
  */
 @media screen and (min-width: 576px) {
-  .Confirmation-popup .Button-container {
+  .ConfirmationPopup-buttonBox {
     width: 60%;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .Confirmation-popup {
-    border: 2px solid var(--purple-color);
+  .ConfirmationPopup {
+    border: 2px solid var(--black-color);
   }
 }

@@ -8,33 +8,38 @@ const Wall = props => {
    * jsx
    */
   return (
-    <main className="Wall-container">
-      <ul className="Wall">
+    <main className="Wall">
+
+      <ul className="Wall-postList">
         {props.latestPosts.map(post => {
           return (
-            <li className="Post-container" key={post.id}>
+            <li className="Wall-postItem" key={post.id}>
 
-              <div className="Post-author">
-                <img src={post.user.avatar_url} alt="user_avatar" />
+              <div className="Wall-postItem-author">
+
+                <img src={post.user.avatar_url} alt="user_avatar" className="Wall-postItem-author-avatar" />
                 <div>
-                  <p>{post.user.username}</p>
-                  <span>{post.user.email}</span>
+                  <p className="Wall-postItem-author-name">{post.user.username}</p>
+                  <span className="Wall-postItem-author-email">{post.user.email}</span>
                 </div>
 
-                {props.userToken &&
-                  <div className="Follow-icon" onClick={() => { props.unfollowUser(post.user.id) }} tabIndex="0">
-                    <i className="fas fa-minus"></i>
-                  </div>}
+                {props.userToken && post.user.username !== localStorage.getItem("name") ?
+                  <div className="FollowIcon" onClick={() => { props.unfollowUser(post.user.id) }} tabIndex="0">
+                    <i className="fas fa-minus Wall-postItem-unfollowIcon"></i>
+                  </div> : null}
+
               </div>
-              <p className="Post-content">{post.content}</p>
 
-              <div className="Post-info">
-                <span>{moment(post.created_at).fromNow()}</span>
+              <p className="Wall-postItem-content">{post.content}</p>
 
-                <div className="Like-container">
-                  <span>{post.likes.length}</span>
+              <div className="Wall-postItem-postInfo">
 
-                  <i className={post.likes.filter(like => like.username === localStorage.getItem("name")).length > 0 ? "far fa-heart Post-liked" : "far fa-heart"} onClick={(event) => {
+                <span className="Wall-postItem-postInfo-timeAgo">{moment(post.created_at).fromNow()}</span>
+
+                <div className="Wall-postItem-postInfo-likeBox">
+                  <span className="Wall-postItem-postInfo-likeBox-amount">{post.likes.length}</span>
+
+                  <i className={post.likes.filter(like => like.username === localStorage.getItem("name")).length > 0 ? "far fa-heart Wall-postItem-postInfo-likeBox-icon Post-liked" : "far fa-heart Wall-postItem-postInfo-likeBox-icon"} onClick={(event) => {
                     if (!props.userToken) {
                       return null;
                     } else if (!event.target.classList.contains("Post-liked")) {
@@ -46,12 +51,14 @@ const Wall = props => {
                     }
                   }} tabIndex="0"></i>
                 </div>
+
               </div>
 
               {post.user.username === localStorage.getItem("name") &&
                 <div className="Closer" onClick={() => { props.showConfirmationPopup(post.id) }} tabIndex="0">
-                  <i className="fas fa-times"></i>
+                  <i className="fas fa-times Closer-icon"></i>
                 </div>}
+
             </li>
           )
         })}
@@ -70,6 +77,7 @@ const Wall = props => {
       <div className={props.isVisible ? "Preloader-container Show-preloader" : "Preloader-container"}>
         <div className="Preloader"></div>
       </div>
+
     </main>
   );
 };

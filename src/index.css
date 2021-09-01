@@ -1,18 +1,26 @@
 :root {
-  --teal-color: rgb(7, 130, 122);
-  --pink-color: rgb(170, 78, 126);
-  --purple-color: rgb(93, 59, 124);
-  --white-color: rgb(177, 177, 177);
-  --background-color: rgb(23, 24, 26);
+  --blue-color: rgb(38, 56, 104);
+  --red-color: rgb(122, 24, 24);
+  --green-color: rgb(42, 90, 37);
+  --black-color: rgb(23, 23, 23);
+  --white-color: rgb(215, 215, 217);
+  --background-color-white: rgb(187, 187, 187);
+  --background-color-black: rgba(23, 23, 23, .9);
 }
 
 ::selection {
-  color: var(--purple-color);
+  color: var(--white-color);
+  background-color: var(--blue-color);
+}
+
+.Wall-postItem-content::selection,
+.Dashboard-searchedPostResult-listItem-postContent::selection {
+  color: var(--blue-color);
   background-color: var(--white-color);
 }
 
 ::placeholder {
-  color: var(--background-color);
+  color: var(--black-color);
   opacity: 1;
 }
 

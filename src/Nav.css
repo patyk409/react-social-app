@@ -2,9 +2,9 @@
  * nav
  */
 .Nav {
-  background-color: var(--background-color);
-  border-top: 2px solid var(--pink-color);
-  border-bottom: 2px solid var(--pink-color);
+  background-color: var(--background-color-white);
+  border-top: 2px solid var(--black-color);
+  border-bottom: 2px solid var(--black-color);
   z-index: 10;
 }
 
@@ -13,7 +13,10 @@
   top: -2px;
 }
 
-.Nav .Nav-list {
+/*
+ * nav -> list
+ */
+.Nav-list {
   padding: 15px 0;
   margin: 0 auto;
   display: flex;
@@ -22,27 +25,35 @@
   max-width: 768px;
 }
 
-.Nav .Nav-list li {
+.Nav-listItem {
   list-style: none;
   font-size: 18px;
   font-weight: bold;
 }
 
-.Nav .Nav-list li a {
+.Nav-listItem-link {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: var(--white-color);
+  color: var(--black-color);
   cursor: pointer;
 }
 
-.Nav .Nav-list li a .fas {
+/*
+ * nav -> list -> icons
+ */
+.Nav-listItem-linkIcon {
   padding: 0 0 5px 0;
   font-size: 24px;
-  color: var(--teal-color);
+  color: var(--blue-color);
 }
 
-.Nav .Nav-list li a:hover .fas {
-  color: var(--purple-color);
+.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-user-plus,
+.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-sign-in-alt {
+  color: var(--green-color);
+}
+
+.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-sign-out-alt {
+  color: var(--red-color);
 }

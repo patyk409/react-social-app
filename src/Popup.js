@@ -6,20 +6,21 @@ const Popup = props => {
    * jsx
    */
   return (
-    <div className="Confirmation-popup">
-      <p>Do you really want to delete this post?</p>
+    <div className="ConfirmationPopup">
 
-      <div className="Button-container">
+      <p className="ConfimationPopup-text">Do you really want to delete this post?</p>
+
+      <div className="ConfirmationPopup-buttonBox">
         <button
-          className="Button Yes"
+          className="ConfirmationPopup-button Confirm"
           onClick={() => props.deletePost(props.postId)}>
-          <i className="fas fa-check"></i>
+          <i className="fas fa-check ConfimationPopup-button-confirmIcon"></i>
         </button>
 
         <button
-          className="Button No"
+          className="ConfirmationPopup-button Deny"
           onClick={() => props.setConfirmationPopup(false)}>
-          <i className="fas fa-times"></i>
+          <i className="fas fa-times ConfimationPopup-button-denyIcon"></i>
         </button>
       </div>
     </div>

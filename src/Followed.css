@@ -1,36 +1,42 @@
 /*
- * followed users
+ * all followed
  */
-.Followed {
+.AllFollowed {
   padding: 30px 0;
   margin: 50px auto 200px;
   position: relative;
   width: 100%;
   max-width: 768px;
   text-align: center;
-  background-color: var(--background-color);
-  border-top: 2px solid var(--teal-color);
-  border-bottom: 2px solid var(--teal-color);
+  background-color: var(--background-color-white);
+  border-top: 2px solid var(--black-color);
+  border-bottom: 2px solid var(--black-color);
 }
 
-.Followed h3 {
+/*
+ * all followed -> header
+ */
+.AllFollowed-header {
   margin: 0 0 30px;
   font-size: 26px;
 }
 
-.Followed h3 .fa-user-friends {
+.AllFollowed-headerIcon {
   margin-left: 15px;
-  color: var(--pink-color);
+  color: var(--blue-color);
 }
 
-.Followed .Users-followed {
+/*
+ * all followed -> list
+ */
+.AllFollowed-list {
   margin: 0 auto;
   padding: 0;
   width: 80%;
   max-width: 400px;
 }
 
-.Followed .Users-followed .Users {
+.AllFollowed-listItem {
   position: relative;
   padding: 10px 0;
   display: flex;
@@ -38,11 +44,14 @@
   align-items: center;
 }
 
-.Followed .Users-followed .Users:not(:last-child) {
-  border-bottom: 2px solid var(--teal-color);
+.AllFollowed-listItem:not(:last-child) {
+  border-bottom: 2px solid var(--black-color);
 }
 
-.Followed .Users-followed .Users .User-avatar {
+/*
+ * all followed -> list -> user data
+ */
+.AllFollowed-listItem-avatar {
   position: absolute;
   top: 50%;
   left: 20px;
@@ -51,23 +60,22 @@
   transform: translateY(-50%);
 }
 
-.Followed .Users-followed .Users .User-data {
+.AllFollowed-listItem-data {
   margin-right: 20px;
   padding: 5px 0;
   font-size: 17px;
   text-align: right;
 }
 
-.Followed .Users-followed .Users .User-data .User-name {
+.AllFollowed-listItem-data-name {
   margin: 0;
   font-weight: bold;
 }
 
-.Followed .Users-followed .Users .User-data .User-email {
-  margin: 0;
-}
-
-.Followed .Users-followed .Follow-info {
+/*
+ * all followed -> list -> text
+ */
+.AllFollowed-text {
   padding: 30px 0;
   font-size: 20px;
   font-weight: bold;
@@ -78,13 +86,13 @@
  * media
  */
 @media screen and (min-width: 576px) {
-  .Followed .Users-followed {
+  .AllFollowed-list {
     width: 60%;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .Followed {
-    border: 2px solid var(--teal-color);
+  .AllFollowed {
+    border: 2px solid var(--black-color);
   }
 }
