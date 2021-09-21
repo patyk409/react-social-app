@@ -39,6 +39,8 @@ const Login = props => {
         console.error(err);
       });
     setRedirectToMain(true);
+    props.setMessageTrigger(true);
+    props.setMessage("Logged in");
   };
 
   /*

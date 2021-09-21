@@ -8,6 +8,7 @@ import Signup from "./Signup";
 import Followed from "./Followed";
 import Dashboard from "./Dashboard";
 import Wall from "./Wall";
+import ScrollToTop from "./ScrollToTop";
 
 /*
  * custom hook -> useOnScreen
@@ -37,11 +38,12 @@ const useOnScreen = options => {
 
 const App = () => {
   /*
-   * useState
-   */
+  * useState
+  */
   const [userToken, setUserToken] = useState(localStorage.getItem("jwt_token"));
   const [loginPopup, setLoginPopup] = useState(false);
   const [latestPosts, setLatestPosts] = useState([]);
+  const [message, setMessage] = useState("");
 
   const [profileAvatar, setProfileAvatar] = useState("");
   const [profileName, setProfileName] = useState("");
@@ -72,6 +74,7 @@ const App = () => {
   const [searchedUserTrigger, setSearchedUserTrigger] = useState(false);
   const [searchedPostTrigger, setSearchedPostTrigger] = useState(false);
   const [searchPostButtonTrigger, setSearchPostButtonTrigger] = useState(false);
+  const [messageTrigger, setMessageTrigger] = useState(false);
 
   const [setRef, isVisible] = useOnScreen({ threshold: 1.0 });
 
@@ -193,6 +196,25 @@ const App = () => {
     };
   }, [searchedPostTrigger, likeTrigger, allFollowed, searchedPostInfo, searchPostButtonTrigger]);
 
+  useEffect(() => {
+    // load more posts
+    if (isVisible && userToken) {
+      getMorePosts(latestPosts[(latestPosts.length - 1)].created_at);
+    };
+  }, [isVisible]);
+
+  /*
+   * message popup closer
+   */
+  useEffect(() => {
+    const messageCloser = setTimeout(() => {
+      if (messageTrigger) {
+        setMessageTrigger(false);
+      };
+    }, 3000);
+    return () => clearTimeout(messageCloser);
+  }, [messageTrigger, message]);
+
   /*
    * log out
    */
@@ -209,6 +231,8 @@ const App = () => {
         setSearchedPostTrigger(false);
         setSearchedPostResult([]);
         setPostBrowserByDate("");
+        setMessageTrigger(true);
+        setMessage("Logged out");
         console.log("log out response: ", res);
       })
       .catch(err => {
@@ -235,6 +259,8 @@ const App = () => {
         .then(res => {
           setPostTrigger(true);
           setSearchedPostTrigger(false);
+          setMessageTrigger(true);
+          setMessage("Post has been added");
           console.log("post add response: ", res);
         })
         .catch(err => {
@@ -257,6 +283,8 @@ const App = () => {
       headerConfigAuth)
       .then(res => {
         setPostTrigger(true);
+        setMessageTrigger(true);
+        setMessage("Post has been removed");
         console.log("post delete response: ", res);
       })
       .catch(err => {
@@ -297,6 +325,8 @@ const App = () => {
       headerConfigAuth)
       .then(res => {
         setLikeTrigger(!likeTrigger);
+        setMessageTrigger(true);
+        setMessage("Like has been added");
         console.log("like response: ", res);
       })
       .catch(err => {
@@ -316,6 +346,8 @@ const App = () => {
       headerConfigAuth)
       .then(res => {
         setLikeTrigger(!likeTrigger);
+        setMessageTrigger(true);
+        setMessage("Like has been removed");
         console.log("dislike response: ", res);
       })
       .catch(err => {
@@ -336,6 +368,8 @@ const App = () => {
       .then(res => {
         setFollowTrigger(!followTrigger);
         setSearchedUserTrigger(false);
+        setMessageTrigger(true);
+        setMessage("Follow has been added");
         console.log("follow response: ", res);
       })
       .catch(err => {
@@ -355,7 +389,8 @@ const App = () => {
       headerConfigAuth)
       .then(res => {
         setFollowTrigger(!followTrigger);
-        // searchedPostCloser();
+        setMessageTrigger(true);
+        setMessage("Follow has been removed");
         console.log("unfollow response: ", res);
       })
       .catch(err => {
@@ -476,6 +511,7 @@ const App = () => {
         </h1>
       </header>
 
+      <ScrollToTop />
       <Switch>
         <Route exact path="/">
           <Nav
@@ -543,7 +579,9 @@ const App = () => {
             headerConfig={headerConfig}
             setUserToken={setUserToken}
             loginPopup={loginPopup}
-            setLoginPopup={setLoginPopup} />
+            setLoginPopup={setLoginPopup}
+            setMessage={setMessage}
+            setMessageTrigger={setMessageTrigger} />
         </Route>
 
         <Route path="/signup">
@@ -553,7 +591,9 @@ const App = () => {
             searchWindowCloser={searchWindowCloser} />
 
           <Signup
-            headerConfig={headerConfig} />
+            headerConfig={headerConfig}
+            setMessage={setMessage}
+            setMessageTrigger={setMessageTrigger} />
         </Route>
 
         <Route path="/followed">
@@ -574,7 +614,14 @@ const App = () => {
             headerConfig={headerConfig}
             setUserToken={setUserToken}
             loginPopup={loginPopup}
-            setLoginPopup={setLoginPopup} />
+            setLoginPopup={setLoginPopup}
+            setMessage={setMessage}
+            setMessageTrigger={setMessageTrigger} />
+        </aside> : null}
+
+      {messageTrigger ?
+        <aside className={message.includes("removed") || message.includes("deleted") || message.includes("Logged out") ? "App-message Slide-in App-message-red" : "App-message Slide-in App-message-green"}>
+          <p className="App-message-content">{message}</p>
         </aside> : null}
 
       <footer className="App-footer" ref={setRef}>

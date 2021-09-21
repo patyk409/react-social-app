@@ -39,6 +39,8 @@ const Signup = props => {
         console.error(err);
       });
     setRedirectToLogin(true);
+    props.setMessageTrigger(true);
+    props.setMessage("Signed up successully");
   };
 
   /*

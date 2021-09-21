@@ -24,7 +24,6 @@
   justify-content: center;
   align-items: center;
   background-color: var(--background-color-white);
-  border-bottom: 2px solid var(--black-color);
 }
 
 .App-header-text {
@@ -50,7 +49,6 @@
 .App-social .App-footer {
   padding: 25px 0;
   margin-top: auto;
-  border-top: 2px solid var(--black-color);
   background-color: var(--background-color-white);
 }
 
@@ -127,11 +125,11 @@
   background-color: var(--green-color);
 }
 
-.Wall-postItem .FollowIcon {
+.Wall-postItem-author .FollowIcon {
   background-color: var(--red-color);
 }
 
-.Dashboard-searchedPostResult-listItem .FollowIcon {
+.Dashboard-searchedPostResult-listItem-author .FollowIcon {
   width: 35px;
   height: 35px;
   font-size: 16px;
@@ -148,11 +146,53 @@
 }
 
 .Dashboard-users-recommendedUsersItem:hover .FollowIcon,
-.Wall-postItem:hover .FollowIcon,
-.Dashboard-searchedPostResult-listItem:hover .FollowIcon,
+.Wall-postItem-author:hover .FollowIcon,
+.Dashboard-searchedPostResult-listItem-author:hover .FollowIcon,
 .Dashboard-searchedUserResult-user:hover .FollowIcon,
 .AllFollowed-listItem:hover .FollowIcon {
   opacity: 1;
+}
+
+/*
+ * message
+ */
+.App-message {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transform: translateY(100px);
+  animation: slide 2.5s ease-in-out .5s;
+}
+
+.App-message-green {
+  background-color: var(--green-color);
+}
+
+.App-message-red {
+  background-color: var(--red-color);
+}
+
+.App-message-content {
+  padding: 20px 0;
+  color: var(--white-color);
+}
+
+@keyframes slide {
+  0% {
+    transform: translateY(100px);
+  }
+  20% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100px);
+  }
 }
 
 /*
@@ -169,7 +209,6 @@
   width: 140px;
   height: 80px;
   background-color: var(--background-color-white);
-  border: 2px solid var(--black-color);
 }
 
 .Preloader-container .Preloader {

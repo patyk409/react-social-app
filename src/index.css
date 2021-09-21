@@ -4,7 +4,7 @@
   --green-color: rgb(42, 90, 37);
   --black-color: rgb(23, 23, 23);
   --white-color: rgb(215, 215, 217);
-  --background-color-white: rgb(187, 187, 187);
+  --background-color-white: rgb(196, 196, 196);
   --background-color-black: rgba(23, 23, 23, .9);
 }
 
@@ -28,4 +28,5 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }

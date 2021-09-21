@@ -49,6 +49,15 @@
   color: var(--blue-color);
 }
 
+.Nav-listItem-link:hover {
+  color: var(--blue-color);
+}
+
+.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-home,
+.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-user-friends {
+  color: var(--black-color);
+}
+
 .Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-user-plus,
 .Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-sign-in-alt {
   color: var(--green-color);

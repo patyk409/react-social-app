@@ -63,8 +63,6 @@ const Wall = props => {
           )
         })}
 
-        {props.isVisible && props.userToken ? props.getMorePosts(props.latestPosts[(props.latestPosts.length - 1)].created_at) : null}
-
         {(props.confirmationPopup) ?
           <aside className="App-popup">
             <Popup
