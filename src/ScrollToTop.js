@@ -13,7 +13,7 @@ const ScrollToTop = ({ history }) => {
     return () => {
       unlisten();
     }
-  }, [history]);
+  }, [history, window.location.href]);
 
   return (null);
 };

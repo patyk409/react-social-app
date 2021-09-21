@@ -77,7 +77,7 @@ const Signup = props => {
    * redirect to login page
    */
   if (redirectToLogin) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/react-social-app/login" />;
   };
 
   /*
@@ -140,7 +140,7 @@ const Signup = props => {
 
         <Link
           className="Signup-form-redirectionLink"
-          to="/login">
+          to="/react-social-app/login">
           Log in
         </Link>
 
@@ -149,7 +149,7 @@ const Signup = props => {
       <div className="Closer">
         <Link
           className="Closer-link"
-          to="/">
+          to="/react-social-app/">
           <i className="fas fa-times Closer-linkIcon"></i>
         </Link>
       </div>

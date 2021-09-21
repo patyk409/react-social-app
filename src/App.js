@@ -38,8 +38,8 @@ const useOnScreen = options => {
 
 const App = () => {
   /*
-  * useState
-  */
+   * useState
+   */
   const [userToken, setUserToken] = useState(localStorage.getItem("jwt_token"));
   const [loginPopup, setLoginPopup] = useState(false);
   const [latestPosts, setLatestPosts] = useState([]);
@@ -117,7 +117,7 @@ const App = () => {
     axios.post(
       "https://akademia108.pl/api/social-app/post/latest",
       JSON.stringify(),
-      headerConfig)
+      headerConfigAuth)
       .then(res => {
         setLatestPosts(res.data);
         // console.log("latest posts response: ", res);
@@ -125,7 +125,7 @@ const App = () => {
       .catch(err => {
         console.error(err);
       })
-  }, [postTrigger, likeTrigger, userToken]);
+  }, [postTrigger, likeTrigger, userToken, allFollowed]);
 
   useEffect(() => {
     if (userToken) {
@@ -198,7 +198,7 @@ const App = () => {
 
   useEffect(() => {
     // load more posts
-    if (isVisible && userToken) {
+    if (isVisible && latestPosts.length > 0) {
       getMorePosts(latestPosts[(latestPosts.length - 1)].created_at);
     };
   }, [isVisible]);
@@ -504,7 +504,7 @@ const App = () => {
         <h1 className="App-header-text">
           <Link
             className="App-header-link"
-            to="/">
+            to="/react-social-app/">
             Social Club
             <i className="fas fa-icons App-header-linkIcon"></i>
           </Link>
@@ -513,7 +513,7 @@ const App = () => {
 
       <ScrollToTop />
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/react-social-app/">
           <Nav
             userToken={userToken}
             logUserDataOut={logUserDataOut}
@@ -565,11 +565,10 @@ const App = () => {
             postId={postId}
             unfollowUser={unfollowUser}
             isVisible={isVisible}
-            getMorePosts={getMorePosts}
             userToken={userToken} />
         </Route>
 
-        <Route path="/login">
+        <Route path="/react-social-app/login">
           <Nav
             userToken={userToken}
             logUserDataOut={logUserDataOut}
@@ -584,7 +583,7 @@ const App = () => {
             setMessageTrigger={setMessageTrigger} />
         </Route>
 
-        <Route path="/signup">
+        <Route path="/react-social-app/signup">
           <Nav
             userToken={userToken}
             logUserDataOut={logUserDataOut}
@@ -596,7 +595,7 @@ const App = () => {
             setMessageTrigger={setMessageTrigger} />
         </Route>
 
-        <Route path="/followed">
+        <Route path="/react-social-app/followed">
           <Nav
             userToken={userToken}
             logUserDataOut={logUserDataOut}
