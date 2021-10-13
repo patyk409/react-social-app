@@ -1,0 +1,52 @@
+/*
+ * post-author
+ */
+.post-author {
+  position: relative;
+  margin: 0 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.post-author__img {
+  margin: 0 15px 0 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.post-author__name {
+  font-weight: bold;
+}
+
+.post-author__email {
+  font-size: 12px;
+}
+
+/*
+ * unfollow-icon
+ */
+.unfollow-icon {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+}
+
+.post-author:hover .unfollow-icon {
+  opacity: 1;
+  cursor: pointer;
+}

@@ -37,7 +37,7 @@ const Followed = props => {
       <div className="Closer">
         <Link
           className="Closer-link"
-          to="/react-social-app/"
+          to="/"
           onClick={props.closePopup}>
           <i className="fas fa-times Closer-linkIcon"></i>
         </Link>

@@ -2,61 +2,66 @@
  * signup
  */
 .Signup {
-  padding: 30px 0;
+  padding: 20px 0;
   margin: 50px auto 200px;
   position: relative;
   width: 100%;
   max-width: 768px;
   text-align: center;
-  background-color: var(--background-color-white);
-  border-top: 2px solid var(--black-color);
-  border-bottom: 2px solid var(--black-color);
+  background-color: var(--background-color-primary);
+  border-top: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  backdrop-filter: blur(5px);
 }
 
 /*
  * signup -> header
  */
 .Signup-header {
-  margin: 0 0 30px;
-  font-size: 26px;
+  margin: 0 0 15px;
+  font-size: 22px;
 }
 
 .Signup-headerIcon {
-  margin-left: 15px;
-  color: var(--blue-color);
+  margin: 0 0 0 15px;
+  color: var(--primary-color);
 }
 
 /*
  * signup -> form
  */
 .Signup-form {
+  padding: 10px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .Signup-form-label {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .Signup-form-textInput {
-  padding: 5px;
+  padding: 0 5px;
   margin: 10px 0;
   width: 250px;
+  height: 30px;
   font-family: 'Quicksand', sans-serif;
+  font-size: 12px;
   color: var(--black-color);
   background-color: var(--white-color);
-  border: 2px solid var(--black-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 3px;
   outline: 0;
 }
 
 .Signup-form-textInput:focus {
-  border: 2px solid var(--blue-color);
+  border: 2px solid var(--secondary-color);
 }
 
 .Signup-form-textInput.Warning {
-  border: 2px solid var(--red-color);
+  border: 2px solid var(--secondary-color);
 }
 
 /*
@@ -65,34 +70,36 @@
 .Signup-form-submitInput,
 .Signup-form-redirectionLink {
   padding: 10px 0;
-  margin: 20px 0 0;
-  width: 120px;
-  font-size: 16px;
+  margin: 15px 0 0;
+  width: 100px;
+  font-size: 14px;
   font-weight: bold;
   color: var(--white-color);
+  border-radius: 3px;
+  transition: border .1s, background-color .1s, color .1s;
   cursor: pointer;
 }
 
 .Signup-form-submitInput {
   font-family: 'Quicksand', sans-serif;
-  background-color: var(--green-color);
-  border: 2px solid var(--green-color);
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
 }
 
 .Signup-form-redirectionLink {
   margin: 0;
   text-decoration: none;
-  background-color: var(--blue-color);
-  border: 2px solid var(--blue-color);
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
 }
 
 .Signup-form-submitInput:hover {
-  color: var(--green-color);
+  color: var(--primary-color);
   background-color: var(--white-color);
 }
 
 .Signup-form-redirectionLink:hover {
-  color: var(--blue-color);
+  color: var(--secondary-color);
   background-color: var(--white-color);
 }
 
@@ -104,23 +111,19 @@
 }
 
 .Signup-form-warningItem {
-  margin: 20px auto;
+  margin: 15px auto;
   list-style: none;
   font-size: 14px;
   font-weight: bold;
-  color: var(--red-color);
+  color: var(--secondary-color);
 }
 
 .Signup-form-warningItem:first-child {
-  font-size: 16px;
   color: var(--black-color);
 }
 
-/*
- * media
- */
 @media screen and (min-width: 768px) {
   .Signup {
-    border: 2px solid var(--black-color);
+    border: 2px solid var(--primary-color);
   }
 }

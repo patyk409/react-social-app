@@ -2,10 +2,12 @@
  * nav
  */
 .Nav {
-  background-color: var(--background-color-white);
-  border-top: 2px solid var(--black-color);
-  border-bottom: 2px solid var(--black-color);
-  z-index: 10;
+  height: auto;
+  background-color: var(--background-color-primary);
+  border-top: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  backdrop-filter: blur(5px);
+  z-index: 100;
 }
 
 .Nav-sticky {
@@ -13,11 +15,14 @@
   top: -2px;
 }
 
+.Nav-onScroll {
+  box-shadow: 0 10px 30px 5px var(--black-color);
+}
+
 /*
- * nav -> list
- */
+* nav -> list
+*/
 .Nav-list {
-  padding: 15px 0;
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
@@ -26,8 +31,9 @@
 }
 
 .Nav-listItem {
+  padding: 10px;
   list-style: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -40,29 +46,20 @@
   cursor: pointer;
 }
 
+/* .Nav-link-onScroll {
+  transform: scaleX(.8);
+} */
+
 /*
  * nav -> list -> icons
  */
 .Nav-listItem-linkIcon {
   padding: 0 0 5px 0;
-  font-size: 24px;
-  color: var(--blue-color);
+  font-size: 20px;
+  color: var(--secondary-color);
+  transition: color .1s;
 }
 
-.Nav-listItem-link:hover {
-  color: var(--blue-color);
-}
-
-.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-home,
-.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-user-friends {
-  color: var(--black-color);
-}
-
-.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-user-plus,
-.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-sign-in-alt {
-  color: var(--green-color);
-}
-
-.Nav-listItem-link:hover .Nav-listItem-linkIcon.fa-sign-out-alt {
-  color: var(--red-color);
+.Nav-listItem-link:hover .Nav-listItem-linkIcon {
+  color: var(--primary-color);
 }

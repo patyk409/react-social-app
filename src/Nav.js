@@ -13,7 +13,7 @@ const Nav = props => {
         <li className="Nav-listItem">
           <Link
             className="Nav-listItem-link"
-            to="/react-social-app/"
+            to="/"
             onClick={props.searchWindowCloser}>
             <i className="fas fa-home Nav-listItem-linkIcon"></i>
             Home
@@ -24,7 +24,7 @@ const Nav = props => {
           <li className="Nav-listItem">
             <Link
               className="Nav-listItem-link"
-              to="/react-social-app/signup">
+              to="/signup">
               <i className="fas fa-user-plus Nav-listItem-linkIcon"></i>
               Sign up
             </Link>
@@ -34,7 +34,7 @@ const Nav = props => {
           <li className="Nav-listItem">
             <Link
               className="Nav-listItem-link"
-              to="/react-social-app/login">
+              to="/login">
               <i className="fas fa-sign-in-alt Nav-listItem-linkIcon"></i>
               Log in
             </Link>
@@ -44,7 +44,7 @@ const Nav = props => {
           <li className="Nav-listItem">
             <Link
               className="Nav-listItem-link"
-              to="/react-social-app/followed"
+              to="/followed"
               onClick={props.searchWindowCloser}>
               <i className="fas fa-user-friends Nav-listItem-linkIcon"></i>
               Followed
@@ -55,7 +55,7 @@ const Nav = props => {
           <li className="Nav-listItem">
             <Link
               className="Nav-listItem-link"
-              to="/react-social-app/"
+              to="/"
               onClick={props.logUserDataOut}>
               <i className="fas fa-sign-out-alt Nav-listItem-linkIcon"></i>
               Log out
