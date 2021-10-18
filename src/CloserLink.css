@@ -1,7 +1,7 @@
 /*
- * closer-icon
+ * closer-link
  */
-.closer-box__closer-icon {
+.closer-box__closer-link {
   position: absolute;
   top: 0;
   right: 0;
@@ -15,7 +15,7 @@
   -o-transition: color 0.2s;
 }
 
-.closer-box__closer-icon:hover {
+.closer-box__closer-link:hover {
   color: var(--primary-color);
   cursor: pointer;
 }

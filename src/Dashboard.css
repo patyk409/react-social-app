@@ -146,7 +146,7 @@
       var(--background-color-secondary) 0%,
       var(--background-color-secondary) 100%
     ),
-    url('./bg.jpg');
+    url('./img/bg.jpg');
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

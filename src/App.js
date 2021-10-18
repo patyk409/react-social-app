@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
-import axios from 'axios'
 import './App.css'
+
+import axios from 'axios'
+
 import Nav from './Nav'
 import Login from './Login'
 import Signup from './Signup'
-import Followed from './Followed'
+import AllFollowed from './allFollowed/AllFollowed'
 import Dashboard from './Dashboard'
-import PostWall from './PostWall'
+import PostList from './postList/PostList'
 import ScrollToTop from './ScrollToTop'
 
 /*
@@ -42,7 +44,7 @@ const App = () => {
    */
   const [userToken, setUserToken] = useState(localStorage.getItem('jwt_token'))
   const [loginPopup, setLoginPopup] = useState(false)
-  const [latestPosts, setLatestPosts] = useState([])
+  // const [latestPosts, setLatestPosts] = useState([])
   const [message, setMessage] = useState('')
 
   const [profileAvatar, setProfileAvatar] = useState('')
@@ -112,22 +114,22 @@ const App = () => {
     return () => clearTimeout(loginPopupTimeout)
   }, [userToken])
 
-  useEffect(() => {
-    // latest posts
-    axios
-      .post(
-        'https://akademia108.pl/api/social-app/post/latest',
-        JSON.stringify(),
-        headerConfigAuth,
-      )
-      .then((res) => {
-        setLatestPosts(res.data)
-        // console.log('latest posts response: ', res)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }, [postTrigger, likeTrigger, userToken, allFollowed])
+  // useEffect(() => {
+  //   // latest posts
+  //   axios
+  //     .post(
+  //       'https://akademia108.pl/api/social-app/post/latest',
+  //       JSON.stringify(),
+  //       headerConfigAuth,
+  //     )
+  //     .then((res) => {
+  //       setLatestPosts(res.data)
+  //       // console.log('latest posts response: ', res)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  // }, [postTrigger, likeTrigger, userToken, allFollowed])
 
   useEffect(() => {
     if (userToken) {
@@ -214,12 +216,6 @@ const App = () => {
     searchPostButtonTrigger,
   ])
 
-  useEffect(() => {
-    // load more posts
-    if (isVisible && latestPosts.length > 0) {
-      getMorePosts(latestPosts[latestPosts.length - 1].created_at)
-    }
-  }, [isVisible])
 
   const navOnScroll = () => {
     const position = window.pageYOffset
@@ -337,26 +333,26 @@ const App = () => {
     setConfirmationPopup(false)
   }
 
-  /*
-   * get more posts
-   */
-  const getMorePosts = (date) => {
-    axios
-      .post(
-        'https://akademia108.pl/api/social-app/post/older-then',
-        JSON.stringify({
-          date: date,
-        }),
-        headerConfigAuth,
-      )
-      .then((res) => {
-        setLatestPosts(latestPosts.concat(res.data))
-        console.log('get more posts response: ', res)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
+  // /*
+  //  * get more posts
+  //  */
+  // const getMorePosts = (date) => {
+  //   axios
+  //     .post(
+  //       'https://akademia108.pl/api/social-app/post/older-then',
+  //       JSON.stringify({
+  //         date: date,
+  //       }),
+  //       headerConfigAuth,
+  //     )
+  //     .then((res) => {
+  //       setLatestPosts(latestPosts.concat(res.data))
+  //       console.log('get more posts response: ', res)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  // }
 
   // /*
   //  * post like
@@ -619,11 +615,13 @@ const App = () => {
             />
           ) : null}
 
-          <PostWall
+          <PostList
             userToken={userToken}
             headerConfigAuth={headerConfigAuth}
-            latestPosts={latestPosts}
-            setLatestPosts={setLatestPosts}
+            // latestPosts={latestPosts}
+            // setLatestPosts={setLatestPosts}
+            postTrigger={postTrigger}
+            allFollowed={allFollowed}
             // postLike={postLike}
             likeTrigger={likeTrigger}
             setLikeTrigger={setLikeTrigger}
@@ -671,14 +669,14 @@ const App = () => {
           />
         </Route>
 
-        <Route path="/followed" component={Followed}>
+        <Route path="/followed" component={AllFollowed}>
           <Nav
             userToken={userToken}
             logUserDataOut={logUserDataOut}
             searchWindowCloser={searchWindowCloser}
           />
 
-          <Followed allFollowed={allFollowed} unfollowUser={unfollowUser} />
+          <AllFollowed allFollowed={allFollowed} unfollowUser={unfollowUser} />
         </Route>
       </Switch>
 

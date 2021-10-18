@@ -1,0 +1,111 @@
+/*
+ * post-list
+ */
+.post-box {
+  position: relative;
+}
+
+.post-box__post-list {
+  margin: 200px 0 0;
+  width: 100%;
+}
+
+/*
+ * post-list -> post-item
+ */
+.post-list__post-item {
+  position: relative;
+  padding: 15px 15px 5px;
+  margin: 0 auto 30px;
+  max-width: 768px;
+  list-style: none;
+  background-color: var(--background-color-primary);
+  border-top: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.post-list__post-item:last-child {
+  margin: 0 auto 200px;
+}
+/*
+ * post-list -> post-item -> post-author
+ */
+.post-author {
+  position: relative;
+  margin: 0 0 15px;
+  display: flex;
+  align-items: center;
+}
+
+.post-author__img {
+  margin: 0 15px 0 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.post-author__name {
+  font-weight: bold;
+}
+
+.post-author__email {
+  font-size: 12px;
+}
+
+/*
+ * post-list -> post-item -> post-author -> unfollow-icon
+ */
+.unfollow-icon {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: var(--white-color);
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+  -webkit-transition: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+}
+
+.post-author:hover .unfollow-icon {
+  opacity: 1;
+  cursor: pointer;
+}
+
+/*
+ * post-list -> post-item -> post-content / post-info
+ */
+.post-item__content {
+  padding: 8px;
+  font-size: 14px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-radius: 3px;
+}
+
+.post-item__post-info {
+  padding: 0 0 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+/*
+ * post-list -> media
+ */
+@media screen and (min-width: 768px) {
+  .post-list__post-item {
+    border: 2px solid var(--primary-color);
+  }
+}

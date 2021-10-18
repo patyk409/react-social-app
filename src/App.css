@@ -8,7 +8,7 @@
       var(--background-color-secondary) 0%,
       var(--background-color-secondary) 100%
     ),
-    url('./bg.jpg');
+    url('./img/bg.jpg');
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -117,7 +117,8 @@
 /*
  * follow / unfollow icon
  */
-.FollowIcon {
+.FollowIcon,
+.unfollow-icon {
   position: absolute;
   width: 40px;
   height: 40px;
@@ -159,7 +160,7 @@
   background-color: var(--secondary-color);
 }
 
-.AllFollowed-listItem .FollowIcon {
+.all-followed__list-item .unfollow-icon {
   top: 50%;
   left: 15px;
   width: 40px;
@@ -176,7 +177,7 @@
 .Wall-postItem-author:hover .FollowIcon,
 .Dashboard-searchedPostResult-listItem-author:hover .FollowIcon,
 .Dashboard-searchedUserResult-user:hover .FollowIcon,
-.AllFollowed-listItem:hover .FollowIcon {
+.all-followed__list-item:hover .unfollow-icon {
   opacity: 1;
 }
 
