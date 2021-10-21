@@ -4,22 +4,21 @@ import axios from 'axios'
 
 import Post from './Post'
 import ConfirmationPopup from './ConfirmationPopup'
-import CloserIcon from '../CloserIcon'
 import Preloader from '../Preloader'
+import DeleteIcon from '../DeleteIcon'
 
 const PostList = (props) => {
+  // an array of latest posts handler
   const [latestPosts, setLatestPosts] = useState([])
-  // const [likeCounter, setLikeCounter] = useState([])
+  // id of post to delete
+  const [postId, setPostId] = useState(null)
+  // confirmation popup handler
+  const [confirmationPopup, setConfirmationPopup] = useState(false)
 
+  /*
+   * gets latest posts data from api and maintains latest posts in the state of array
+   */
   useEffect(() => {
-    // load more posts
-    if (props.isVisible && latestPosts.length > 0) {
-      getMorePosts(latestPosts[latestPosts.length - 1].created_at)
-    }
-  }, [props.isVisible])
-
-  useEffect(() => {
-    // latest posts
     axios
       .post(
         'https://akademia108.pl/api/social-app/post/latest',
@@ -28,15 +27,14 @@ const PostList = (props) => {
       )
       .then((res) => {
         setLatestPosts(res.data)
-        // console.log('latest posts response: ', res.data)
       })
       .catch((err) => {
         console.error(err)
       })
-  }, [props.postTrigger, props.likeTrigger, props.userToken, props.allFollowed])
+  }, [props.postTrigger, props.userToken])
 
   /*
-   * get more posts
+   * gets posts older than latest posts and adds it to the state of posts array
    */
   const getMorePosts = (date) => {
     axios
@@ -56,7 +54,37 @@ const PostList = (props) => {
       })
   }
 
-  // console.log(likeCounter)
+  /*
+   * checks if element with reference is in the viewport and calls function to load more posts
+   */
+  useEffect(() => {
+    if (props.isVisible && latestPosts.length > 0) {
+      getMorePosts(latestPosts[latestPosts.length - 1].created_at)
+    }
+  }, [props.isVisible])
+
+  /*
+   * removes user from the array of followed users and puts it back into recommendation list
+   */
+  const unfollowUser = (id) => {
+    axios
+      .post(
+        'https://akademia108.pl/api/social-app/follows/disfollow',
+        JSON.stringify({
+          leader_id: id,
+        }),
+        props.headerConfigAuth,
+      )
+      .then((res) => {
+        props.setFollowToggler(!props.followToggler)
+        props.setMessageTrigger(true)
+        props.setMessage('Follow has been removed')
+        console.log('unfollow response: ', res)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
 
   /*
    * jsx
@@ -77,13 +105,12 @@ const PostList = (props) => {
                   <p className="post-author__name">{post.user.username}</p>
                   <span className="post-author__email">{post.user.email}</span>
                 </div>
-                {/* {console.log(post.likes)} */}
                 {props.userToken &&
                 post.user.username !== localStorage.getItem('name') ? (
                   <div
                     className="unfollow-icon"
                     onClick={() => {
-                      props.unfollowUser(post.user.id)
+                      unfollowUser(post.user.id)
                     }}
                     tabIndex="0"
                   >
@@ -93,31 +120,31 @@ const PostList = (props) => {
               </div>
               <Post
                 userToken={props.userToken}
-                // likes={post.likes}
                 post={post}
-                // postLike={props.postLike}
-                // postDislike={props.postDislike}
-                setMessageTrigger={props.setMessageTrigger}
-                setMessage={props.setMessage}
-                likeTrigger={props.likeTrigger}
-                setLikeTrigger={props.setLikeTrigger}
                 headerConfigAuth={props.headerConfigAuth}
-                // likeCounter={likeCounter}
-                // setLikeCounter={setLikeCounter}
+                postId={postId}
               />
-              <CloserIcon
+              <DeleteIcon
                 post={post}
                 showConfirmationPopup={props.showConfirmationPopup}
+                setConfirmationPopup={setConfirmationPopup}
+                setPostId={setPostId}
+                postId={postId}
               />
             </li>
           )
         })}
-        {props.confirmationPopup ? (
+        {confirmationPopup ? (
           <aside className="app-popup-bg">
             <ConfirmationPopup
-              setConfirmationPopup={props.setConfirmationPopup}
-              postId={props.postId}
+              setConfirmationPopup={setConfirmationPopup}
+              postId={postId}
               deletePost={props.deletePost}
+              setMessageTrigger={props.setMessageTrigger}
+              setMessage={props.setMessage}
+              headerConfigAuth={props.headerConfigAuth}
+              postTrigger={props.postTrigger}
+              setPostTrigger={props.setPostTrigger}
             />
           </aside>
         ) : null}

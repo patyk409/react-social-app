@@ -4,13 +4,14 @@ import './App.css'
 
 import axios from 'axios'
 
-import Nav from './Nav'
+import Nav from './nav/Nav'
 import Login from './Login'
 import Signup from './Signup'
-import AllFollowed from './allFollowed/AllFollowed'
+import AllFollowed from './all-followed/AllFollowed'
 import Dashboard from './Dashboard'
-import PostList from './postList/PostList'
+import PostList from './post-list/PostList'
 import ScrollToTop from './ScrollToTop'
+import DownbarInfo from './DownbarInfo'
 
 /*
  * custom hook -> useOnScreen
@@ -52,7 +53,9 @@ const App = () => {
   const [profileEmail, setProfileEmail] = useState('')
 
   const [recommendedUsers, setRecommendedUsers] = useState([])
-  const [allFollowed, setAllFollowed] = useState([])
+  // const [allFollowed, setAllFollowed] = useState([])
+  const [followTrigger, setFollowTrigger] = useState(false)
+  const [followToggler, setFollowToggler] = useState(false)
 
   const [friendBrowserByName, setFriendBrowserByName] = useState('')
   const [friendBrowserByEmail, setFriendBrowserByEmail] = useState('')
@@ -67,19 +70,34 @@ const App = () => {
   const [searchedPostInfo, setSearchedPostInfo] = useState('')
 
   const [postContent, setPostContent] = useState('')
-  const [postId, setPostId] = useState('')
-  const [confirmationPopup, setConfirmationPopup] = useState(false)
+  // const [postId, setPostId] = useState('')
+  // const [confirmationPopup, setConfirmationPopup] = useState(false)
 
   const [postTrigger, setPostTrigger] = useState(false)
   const [likeTrigger, setLikeTrigger] = useState(false)
-  const [followTrigger, setFollowTrigger] = useState(false)
   const [searchedUserTrigger, setSearchedUserTrigger] = useState(false)
   const [searchedPostTrigger, setSearchedPostTrigger] = useState(false)
   const [searchPostButtonTrigger, setSearchPostButtonTrigger] = useState(false)
   const [messageTrigger, setMessageTrigger] = useState(false)
 
+  // ZOSTAJE !!! - NIE USUWAĆ
   const [scrollPosition, setScrollPosition] = useState(0)
   const [setRef, isVisible] = useOnScreen({ threshold: 0.9 })
+
+  // const [messageContent, setMessageContent] = useState('')
+  // const [messageDisplay, setMessageDisplay] = useState(false)
+
+  // /*
+  //  * closes modal with action info
+  //  */
+  // useEffect(() => {
+  //   const messageCloser = setTimeout(() => {
+  //     if (messageDisplay) {
+  //       setMessageDisplay(false)
+  //     }
+  //   }, 1500)
+  //   return () => clearTimeout(messageCloser)
+  // }, [messageDisplay])
 
   /*
    * axios header configuraton
@@ -165,20 +183,20 @@ const App = () => {
           console.error(err)
         })
 
-      // all followed users
-      axios
-        .post(
-          'https://akademia108.pl/api/social-app/follows/allfollows',
-          JSON.stringify(),
-          headerConfigAuth,
-        )
-        .then((res) => {
-          setAllFollowed(res.data)
-          // console.log("all follows response: ", res);
-        })
-        .catch((err) => {
-          console.error(err)
-        })
+      // // all followed users
+      // axios
+      //   .post(
+      //     'https://akademia108.pl/api/social-app/follows/allfollows',
+      //     JSON.stringify(),
+      //     headerConfigAuth,
+      //   )
+      //   .then((res) => {
+      //     setAllFollowed(res.data)
+      //     // console.log("all follows response: ", res);
+      //   })
+      //   .catch((err) => {
+      //     console.error(err)
+      //   })
     }
   }, [followTrigger, userToken, postTrigger])
 
@@ -211,30 +229,30 @@ const App = () => {
   }, [
     searchedPostTrigger,
     likeTrigger,
-    allFollowed,
+    // allFollowed,
     searchedPostInfo,
     searchPostButtonTrigger,
   ])
 
+  // ZOSTAJE !!! - NIE USUWAĆ
+  // const navOnScroll = () => {
+  //   const position = window.pageYOffset
+  //   setScrollPosition(position)
 
-  const navOnScroll = () => {
-    const position = window.pageYOffset
-    setScrollPosition(position)
+  //   if (position > 122 && window.location.href.endsWith('/')) {
+  //     document.querySelector('.nav').classList.add('nav-on-scroll')
+  //   } else {
+  //     document.querySelector('.nav').classList.remove('nav-on-scroll')
+  //   }
+  // }
 
-    if (position > 122 && window.location.href.endsWith('/')) {
-      document.querySelector('.Nav').classList.add('Nav-onScroll')
-    } else {
-      document.querySelector('.Nav').classList.remove('Nav-onScroll')
-    }
-  }
+  // useEffect(() => {
+  //   window.addEventListener('scroll', navOnScroll)
 
-  useEffect(() => {
-    window.addEventListener('scroll', navOnScroll)
-
-    return () => {
-      window.removeEventListener('scroll', navOnScroll)
-    }
-  }, [scrollPosition])
+  //   return () => {
+  //     window.removeEventListener('scroll', navOnScroll)
+  //   }
+  // }, [scrollPosition])
 
   /*
    * message popup closer
@@ -248,32 +266,32 @@ const App = () => {
     return () => clearTimeout(messageCloser)
   }, [messageTrigger, message])
 
-  /*
-   * log out
-   */
-  const logUserDataOut = () => {
-    axios
-      .post(
-        'https://akademia108.pl/api/social-app/user/logout',
-        JSON.stringify(),
-        headerConfigAuth,
-      )
-      .then((res) => {
-        localStorage.removeItem('name')
-        localStorage.removeItem('jwt_token')
-        setUserToken(localStorage.getItem('jwt_token'))
-        setSearchedUserTrigger(false)
-        setSearchedPostTrigger(false)
-        setSearchedPostResult([])
-        setPostBrowserByDate('')
-        setMessageTrigger(true)
-        setMessage('Logged out')
-        console.log('log out response: ', res)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
+  // /*
+  //  * log out
+  //  */
+  // const logUserDataOut = () => {
+  //   axios
+  //     .post(
+  //       'https://akademia108.pl/api/social-app/user/logout',
+  //       JSON.stringify(),
+  //       headerConfigAuth,
+  //     )
+  //     .then((res) => {
+  //       localStorage.removeItem('name')
+  //       localStorage.removeItem('jwt_token')
+  //       setUserToken(localStorage.getItem('jwt_token'))
+  //       setSearchedUserTrigger(false)
+  //       setSearchedPostTrigger(false)
+  //       setSearchedPostResult([])
+  //       setPostBrowserByDate('')
+  //       setMessageTrigger(true)
+  //       setMessage('Logged out')
+  //       console.log('log out response: ', res)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  // }
 
   /*
    * add post
@@ -309,29 +327,29 @@ const App = () => {
     setPostContent('')
   }
 
-  /*
-   * delete post
-   */
-  const deletePost = (id) => {
-    axios
-      .post(
-        'https://akademia108.pl/api/social-app/post/delete',
-        JSON.stringify({
-          post_id: id,
-        }),
-        headerConfigAuth,
-      )
-      .then((res) => {
-        setPostTrigger(!postTrigger)
-        setMessageTrigger(true)
-        setMessage('Post has been removed')
-        console.log('post delete response: ', res)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-    setConfirmationPopup(false)
-  }
+  // /*
+  //  * delete post
+  //  */
+  // const deletePost = (id) => {
+  //   axios
+  //     .post(
+  //       'https://akademia108.pl/api/social-app/post/delete',
+  //       JSON.stringify({
+  //         post_id: id,
+  //       }),
+  //       headerConfigAuth,
+  //     )
+  //     .then((res) => {
+  //       setPostTrigger(!postTrigger)
+  //       setMessageTrigger(true)
+  //       setMessage('Post has been removed')
+  //       console.log('post delete response: ', res)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  //   setConfirmationPopup(false)
+  // }
 
   // /*
   //  * get more posts
@@ -415,7 +433,7 @@ const App = () => {
       .then((res) => {
         setFollowTrigger(!followTrigger)
         setSearchedUserTrigger(false)
-        setMessageTrigger(true)
+        // setMessageTrigger(true)
         setMessage('Follow has been added')
         console.log('follow response: ', res)
       })
@@ -424,28 +442,28 @@ const App = () => {
       })
   }
 
-  /*
-   * unfollow user
-   */
-  const unfollowUser = (id) => {
-    axios
-      .post(
-        'https://akademia108.pl/api/social-app/follows/disfollow',
-        JSON.stringify({
-          leader_id: id,
-        }),
-        headerConfigAuth,
-      )
-      .then((res) => {
-        setFollowTrigger(!followTrigger)
-        setMessageTrigger(true)
-        setMessage('Follow has been removed')
-        console.log('unfollow response: ', res)
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-  }
+  // /*
+  //  * unfollow user
+  //  */
+  // const unfollowUser = (id) => {
+  //   axios
+  //     .post(
+  //       'https://akademia108.pl/api/social-app/follows/disfollow',
+  //       JSON.stringify({
+  //         leader_id: id,
+  //       }),
+  //       headerConfigAuth,
+  //     )
+  //     .then((res) => {
+  //       setFollowTrigger(!followTrigger)
+  //       setMessageTrigger(true)
+  //       setMessage('Follow has been removed')
+  //       console.log('unfollow response: ', res)
+  //     })
+  //     .catch((err) => {
+  //       console.error(err)
+  //     })
+  // }
 
   /*
    * friend browser
@@ -536,24 +554,24 @@ const App = () => {
     setPostBrowserByDate('')
   }
 
-  /*
-   * search window closer
-   */
-  const searchWindowCloser = () => {
-    setSearchedUserTrigger(false)
-    setSearchedPostTrigger(false)
-    setSearchedPostResult([])
-    setPostBrowserByDate('')
-    setPostTrigger(!postTrigger)
-  }
+  // /*
+  //  * search window closer
+  //  */
+  // const searchWindowCloser = () => {
+  //   setSearchedUserTrigger(false)
+  //   setSearchedPostTrigger(false)
+  //   setSearchedPostResult([])
+  //   setPostBrowserByDate('')
+  //   setPostTrigger(!postTrigger)
+  // }
 
-  /*
-   * show confirmation popup
-   */
-  const showConfirmationPopup = (id) => {
-    setConfirmationPopup(true)
-    setPostId(id)
-  }
+  // /*
+  //  * show confirmation popup
+  //  */
+  // const showConfirmationPopup = (id) => {
+  //   setConfirmationPopup(true)
+  //   setPostId(id)
+  // }
 
   /*
    * jsx
@@ -574,8 +592,20 @@ const App = () => {
         <Route exact path="/">
           <Nav
             userToken={userToken}
-            logUserDataOut={logUserDataOut}
-            searchWindowCloser={searchWindowCloser}
+            headerConfigAuth={headerConfigAuth}
+            setUserToken={setUserToken}
+            setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedPostTrigger={setSearchedPostTrigger}
+            setSearchedUserTrigger={setSearchedUserTrigger}
+            searchedPostResult={searchedPostResult}
+            setMessageTrigger={setMessageTrigger}
+            setMessage={setMessage}
+            // logUserDataOut={logUserDataOut}
+            // setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedPostResult={setSearchedPostResult}
+            postTrigger={postTrigger}
+            setPostTrigger={setPostTrigger}
+            // searchWindowCloser={searchWindowCloser}
           />
 
           {userToken ? (
@@ -585,7 +615,7 @@ const App = () => {
               profileEmail={profileEmail}
               recommendedUsers={recommendedUsers}
               followUser={followUser}
-              unfollowUser={unfollowUser}
+              // unfollowUser={unfollowUser}
               addPost={addPost}
               postContent={postContent}
               setPostContent={setPostContent}
@@ -621,17 +651,25 @@ const App = () => {
             // latestPosts={latestPosts}
             // setLatestPosts={setLatestPosts}
             postTrigger={postTrigger}
-            allFollowed={allFollowed}
+            setPostTrigger={setPostTrigger}
+            // allFollowed={allFollowed}
             // postLike={postLike}
             likeTrigger={likeTrigger}
             setLikeTrigger={setLikeTrigger}
             // postDislike={postDislike}
-            deletePost={deletePost}
-            postId={postId}
-            unfollowUser={unfollowUser}
-            confirmationPopup={confirmationPopup}
-            setConfirmationPopup={setConfirmationPopup}
-            showConfirmationPopup={showConfirmationPopup}
+            // deletePost={deletePost}
+            // postId={postId}
+            // setPostId={setPostId}
+            setFollowToggler={setFollowToggler}
+            followToggler={followToggler}
+            // messageContent={messageContent}
+            // setMessageContent={setMessageContent}
+            // messageDisplay={messageDisplay}
+            // setMessageDisplay={setMessageDisplay}
+            // unfollowUser={unfollowUser}
+            // setConfirmationPopup={setConfirmationPopup}
+            // confirmationPopup={confirmationPopup}
+            // showConfirmationPopup={showConfirmationPopup}
             setMessageTrigger={setMessageTrigger}
             setMessage={setMessage}
             isVisible={isVisible}
@@ -641,8 +679,20 @@ const App = () => {
         <Route path="/login" component={Login}>
           <Nav
             userToken={userToken}
-            logUserDataOut={logUserDataOut}
-            searchWindowCloser={searchWindowCloser}
+            headerConfigAuth={headerConfigAuth}
+            setUserToken={setUserToken}
+            setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedPostTrigger={setSearchedPostTrigger}
+            setSearchedUserTrigger={setSearchedUserTrigger}
+            searchedPostResult={searchedPostResult}
+            setMessageTrigger={setMessageTrigger}
+            setMessage={setMessage}
+            // logUserDataOut={logUserDataOut}
+            // setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedPostResult={setSearchedPostResult}
+            postTrigger={postTrigger}
+            setPostTrigger={setPostTrigger}
+            // searchWindowCloser={searchWindowCloser}
           />
 
           <Login
@@ -658,8 +708,20 @@ const App = () => {
         <Route path="/signup" component={Signup}>
           <Nav
             userToken={userToken}
-            logUserDataOut={logUserDataOut}
-            searchWindowCloser={searchWindowCloser}
+            headerConfigAuth={headerConfigAuth}
+            setUserToken={setUserToken}
+            setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedUserTrigger={setSearchedUserTrigger}
+            setSearchedPostTrigger={setSearchedPostTrigger}
+            searchedPostResult={searchedPostResult}
+            setMessageTrigger={setMessageTrigger}
+            setMessage={setMessage}
+            // logUserDataOut={logUserDataOut}
+            // setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedPostResult={setSearchedPostResult}
+            postTrigger={postTrigger}
+            setPostTrigger={setPostTrigger}
+            // searchWindowCloser={searchWindowCloser}
           />
 
           <Signup
@@ -672,15 +734,36 @@ const App = () => {
         <Route path="/followed" component={AllFollowed}>
           <Nav
             userToken={userToken}
-            logUserDataOut={logUserDataOut}
-            searchWindowCloser={searchWindowCloser}
+            headerConfigAuth={headerConfigAuth}
+            setUserToken={setUserToken}
+            setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedUserTrigger={setSearchedUserTrigger}
+            searchedPostResult={searchedPostResult}
+            setSearchedPostTrigger={setSearchedPostTrigger}
+            setMessageTrigger={setMessageTrigger}
+            setMessage={setMessage}
+            // logUserDataOut={logUserDataOut}
+            // setPostBrowserByDate={setPostBrowserByDate}
+            setSearchedPostResult={setSearchedPostResult}
+            postTrigger={postTrigger}
+            setPostTrigger={setPostTrigger}
+            // searchWindowCloser={searchWindowCloser}
           />
 
-          <AllFollowed allFollowed={allFollowed} unfollowUser={unfollowUser} />
+          <AllFollowed
+            userToken={userToken}
+            setMessageTrigger={setMessageTrigger}
+            setMessage={setMessage}
+            setFollowToggler={setFollowToggler}
+            followToggler={followToggler}
+            // allFollowed={allFollowed}
+            // unfollowUser={unfollowUser}
+            headerConfigAuth={headerConfigAuth}
+          />
         </Route>
       </Switch>
 
-      {loginPopup ? (
+      {loginPopup && (
         <aside className="app-popup-bg">
           <Login
             headerConfig={headerConfig}
@@ -691,21 +774,7 @@ const App = () => {
             setMessageTrigger={setMessageTrigger}
           />
         </aside>
-      ) : null}
-
-      {messageTrigger ? (
-        <aside
-          className={
-            message.includes('removed') ||
-            message.includes('deleted') ||
-            message.includes('Logged out')
-              ? 'App-message Slide-in App-message-red'
-              : 'App-message Slide-in App-message-green'
-          }
-        >
-          <p className="App-message-content">{message}</p>
-        </aside>
-      ) : null}
+      )}
 
       <footer className="App-footer" ref={setRef}>
         <p className="App-footer-text">

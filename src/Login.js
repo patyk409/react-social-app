@@ -35,14 +35,14 @@ const Login = (props) => {
         localStorage.setItem('jwt_token', res.data.jwt_token)
         props.setUserToken(res.data.jwt_token)
         props.setLoginPopup(false)
+        // props.setMessageTrigger(true)
+        // props.setMessage('Logged in')
         console.log('log in response: ', res)
       })
       .catch((err) => {
         console.error(err)
       })
     setRedirectToMain(true)
-    props.setMessageTrigger(true)
-    props.setMessage('Logged in')
   }
 
   /*

@@ -1,13 +1,37 @@
 import React from 'react'
 import './FollowedList.css'
+import axios from 'axios'
 
-const FollowedListItem = (props) => {
+const FollowedList = (props) => {
+  /*
+   * removes user from the array of followed users and puts it back into recommendation list
+   */
+  const unfollowUser = (id) => {
+    axios
+      .post(
+        'https://akademia108.pl/api/social-app/follows/disfollow',
+        JSON.stringify({
+          leader_id: id,
+        }),
+        props.headerConfigAuth,
+      )
+      .then((res) => {
+        props.setFollowToggler(!props.followToggler)
+        // props.setMessageTrigger(true)
+        // props.setMessage('Follow has been removed')
+        console.log('unfollow response: ', res)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
   /*
    * jsx
    */
   return (
     <ul className="all-followed__list">
-      {props.allFollowed.map((user) => {
+      {props.allFollowedState.map((user) => {
         return (
           <li className="all-followed__list-item" key={user.id}>
             <img
@@ -22,7 +46,7 @@ const FollowedListItem = (props) => {
             <div
               className="unfollow-icon"
               onClick={() => {
-                props.unfollowUser(user.id)
+                unfollowUser(user.id)
               }}
               tabIndex="0"
             >
@@ -35,4 +59,4 @@ const FollowedListItem = (props) => {
   )
 }
 
-export default FollowedListItem
+export default FollowedList

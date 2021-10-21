@@ -34,3 +34,9 @@
 .like-box__icon--active {
   color: var(--secondary-color);
 }
+
+.like-box__icon--disabled {
+  padding: 8px;
+  font-size: 20px;
+  cursor: auto;
+}

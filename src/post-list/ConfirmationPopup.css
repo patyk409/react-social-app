@@ -76,13 +76,13 @@
  * confirmation-popup -> media
  */
 @media screen and (min-width: 576px) {
-  .ConfirmationPopup-buttonBox {
+  .confirmation-popup__button-box {
     width: 60%;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .ConfirmationPopup {
+  .confirmation-popup {
     border: 2px solid var(--primary-color);
   }
 }

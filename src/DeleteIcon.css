@@ -1,7 +1,7 @@
 /*
- * closer-icon
+ * delete-icon
  */
-.closer-box__closer-icon {
+.delete-box__delete-icon {
   position: absolute;
   top: 0;
   right: 0;
@@ -15,7 +15,7 @@
   -o-transition: color 0.2s;
 }
 
-.closer-box__closer-icon:hover {
+.delete-box__delete-icon:hover {
   color: var(--primary-color);
   cursor: pointer;
 }
