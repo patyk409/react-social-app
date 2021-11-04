@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { GlobalContext } from './CreateContext'
 import './DownbarInfo.css'
 
-const DownbarInfo = (props) => {
+const DownbarInfo = () => {
+  const [downbarContent] = useContext(GlobalContext)
+
+  console.log(downbarContent)
   return (
     <aside
       className={
-        props.messageContent.includes('removed') ||
-        props.messageContent.includes('deleted') ||
-        props.messageContent.includes('out')
-          ? 'app-message app-message--red'
-          : 'app-message app-message--green'
+        downbarContent.includes('added') ||
+        downbarContent.includes('in') ||
+        downbarContent.includes('up')
+          ? 'app-message app-message--green'
+          : 'app-message app-message--red'
       }
     >
-      <p className='app-message__content'>{props.messageContent}</p>
+      <p className="app-message__content">{downbarContent}</p>
     </aside>
   )
 }

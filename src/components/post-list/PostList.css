@@ -22,8 +22,6 @@
   background-color: var(--background-color-primary);
   border-top: 2px solid var(--primary-color);
   border-bottom: 2px solid var(--primary-color);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
 }
 
 .post-list__post-item:last-child {
@@ -57,7 +55,7 @@
 /*
  * post-list -> post-item -> post-author -> unfollow-icon
  */
-.unfollow-icon {
+.post-author .unfollow-icon {
   position: absolute;
   left: 0;
   width: 40px;
@@ -94,7 +92,6 @@
 }
 
 .post-item__post-info {
-  padding: 0 0 0 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;

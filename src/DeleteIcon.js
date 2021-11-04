@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './DeleteIcon.css'
+import { GlobalContext } from './CreateContext'
 
 const DeleteIcon = (props) => {
+  // use context
+  const { setConfirmationPopup, setPostId } = useContext(GlobalContext)
+
   /*
    * shows confirmation popup and puts post id to variable
    */
   const showConfirmationPopup = (id) => {
-    props.setConfirmationPopup(true)
-    props.setPostId(id)
+    setConfirmationPopup(true)
+    setPostId(id)
   }
-
-  // console.log(props.postId === props.post.id)
 
   /*
    * jsx

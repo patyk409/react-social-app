@@ -1,0 +1,36 @@
+/*
+ * signup
+ */
+.signup {
+  padding: 20px 0;
+  margin: 50px auto 200px;
+  position: relative;
+  width: 100%;
+  max-width: 768px;
+  text-align: center;
+  background-color: var(--background-color-primary);
+  border-top: 2px solid var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+}
+
+/*
+ * signup -> header
+ */
+.signup__header {
+  margin: 0 0 15px;
+  font-size: 22px;
+}
+
+.signup__header-icon {
+  margin: 0 0 0 15px;
+  color: var(--primary-color);
+}
+
+/*
+ * signup -> media
+ */
+@media screen and (min-width: 768px) {
+  .signup {
+    border: 2px solid var(--primary-color);
+  }
+}

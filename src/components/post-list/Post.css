@@ -8,8 +8,10 @@
 
 .like-box__counter {
   font-size: 14px;
-  font-weight: bold;
-  color: var(--primary-color);
+}
+
+.post-info__post-date {
+  padding: 10px 0 10px 8px;
 }
 
 /*
@@ -17,7 +19,7 @@
  */
 .like-box__icon,
 .like-box__icon--active {
-  padding: 8px;
+  padding: 6px;
   font-size: 20px;
   cursor: pointer;
   transition: color 0.2s;
@@ -38,5 +40,10 @@
 .like-box__icon--disabled {
   padding: 8px;
   font-size: 20px;
-  cursor: auto;
+  cursor: default;
+  transition: color 0.2s;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
 }

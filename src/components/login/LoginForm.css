@@ -1,53 +1,20 @@
-/*
- * login
- */
-.Login {
-  padding: 20px 0;
-  margin: 50px auto 200px;
-  position: relative;
-  width: 100%;
-  max-width: 768px;
-  text-align: center;
-  background-color: var(--background-color-primary);
-  border-top: 2px solid var(--primary-color);
-  border-bottom: 2px solid var(--primary-color);
-  backdrop-filter: blur(5px);
-}
-
-.Login-popup {
-  margin: 0 auto;
-  z-index: 1000;
-}
-
-/*
- * login -> header
- */
-.Login-header {
-  margin: 0 0 15px;
-  font-size: 22px;
-}
-
-.Login-headerIcon {
-  margin: 0 0 0 15px;
-  color: var(--primary-color);
-}
 
 /*
  * login -> form
  */
-.Login-form {
+.login-form {
   padding: 10px 0 0 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Login-form-label {
+.login-form__label {
   font-size: 16px;
   font-weight: bold;
 }
 
-.Login-form-textInput {
+.login-form__text-input {
   padding: 0 5px;
   margin: 10px 0;
   width: 250px;
@@ -59,21 +26,26 @@
   border: 2px solid var(--primary-color);
   border-radius: 3px;
   outline: 0;
+  transition: border 0.2s;
+  -webkit-transition: border 0.2s;
+  -moz-transition: border 0.2s;
+  -ms-transition: border 0.2s;
+  -o-transition: border 0.2s;
 }
 
-.Login-form-textInput:focus {
+.login-form__text-input:focus {
   border: 2px solid var(--secondary-color);
 }
 
-.Login-form-textInput.Warning {
+.login-form__text-input.warning {
   border: 2px solid var(--secondary-color);
 }
 
 /*
  * login -> form -> buttons
  */
-.Login-form-submitInput,
-.Login-form-redirectionLink {
+.login-form__submit-input,
+.login-form__redirection-link {
   padding: 10px 0;
   margin: 15px 0 0;
   width: 100px;
@@ -85,25 +57,25 @@
   cursor: pointer;
 }
 
-.Login-form-submitInput {
+.login-form__submit-input {
   font-family: 'Quicksand', sans-serif;
   background-color: var(--primary-color);
   border: 2px solid var(--primary-color);
 }
 
-.Login-form-redirectionLink {
+.login-form__redirection-link {
   margin: 0;
   text-decoration: none;
   border: 2px solid var(--secondary-color);
   background-color: var(--secondary-color);
 }
 
-.Login-form-submitInput:hover {
+.login-form__submit-input:hover {
   background-color: var(--white-color);
   color: var(--primary-color);
 }
 
-.Login-form-redirectionLink:hover {
+.login-form__redirection-link:hover {
   background-color: var(--white-color);
   color: var(--secondary-color);
 }
@@ -111,11 +83,11 @@
 /*
  * login -> form -> warning list
  */
-.Login-form-warningList {
+.login-form__warning-list {
   width: 80%;
 }
 
-.Login-form-warningItem {
+.warning-list__warning-item {
   margin: 15px auto;
   list-style: none;
   font-size: 14px;
@@ -123,12 +95,6 @@
   color: var(--secondary-color);
 }
 
-.Login-form-warningItem:first-child {
+.warning-list__warning-item:first-child {
   color: var(--black-color);
-}
-
-@media screen and (min-width: 768px) {
-  .Login {
-    border: 2px solid var(--primary-color);
-  }
 }

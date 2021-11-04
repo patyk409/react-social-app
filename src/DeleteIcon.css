@@ -3,9 +3,9 @@
  */
 .delete-box__delete-icon {
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px 15px;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
   font-size: 20px;
   color: var(--secondary-color);
   transition: color 0.2s;

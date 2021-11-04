@@ -1,11 +1,11 @@
 :root {
-  --black-color: rgb(23, 23, 23);
+  --black-color: rgb(11, 11, 11);
   --white-color: rgb(215, 215, 215);
   --primary-color: rgb(27, 78, 47);
   --secondary-color: rgb(190, 70, 24);
-  --background-color-primary: rgba(230, 207, 193, 0.55);
+  --background-color-primary: rgba(187, 170, 156, 0.85);
   --background-color-secondary: rgba(23, 23, 23, 0.35);
-  --background-popup-color: rgba(23, 23, 23, .75);
+  --background-popup-color: rgba(11, 11, 11, 0.85);
 }
 
 ::selection {
@@ -27,5 +27,4 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* scroll-behavior: smooth; */
 }

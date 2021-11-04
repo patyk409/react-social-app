@@ -1,14 +1,14 @@
 /*
  * app
  */
-.App-social {
+.app-social {
   display: flex;
   flex-direction: column;
   background-image: linear-gradient(
       var(--background-color-secondary) 0%,
       var(--background-color-secondary) 100%
     ),
-    url('./img/bg.jpg');
+    url('./images/bg.jpg');
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -21,7 +21,7 @@
 /*
  * app -> header
  */
-.App-header {
+.app-social__app-header {
   padding: 15px 0;
   margin: 0 0 50px;
   display: flex;
@@ -29,22 +29,20 @@
   align-items: center;
   background-color: var(--background-color-primary);
   border-bottom: 2px solid var(--primary-color);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
 }
 
-.App-header-text {
+.app-header__content {
   margin: 0;
   font-size: 32px;
 }
 
-.App-header-link {
+.app-header__link {
   text-decoration: none;
   color: var(--black-color);
   cursor: pointer;
 }
 
-.App-header-linkIcon {
+.app-header__link-icon {
   margin: 0 0 0 15px;
   font-size: 30px;
   color: var(--secondary-color);
@@ -53,22 +51,20 @@
 /*
  * app -> footer
  */
-.App-social .App-footer {
+.app-social__app-footer {
   padding: 20px 0;
   margin-top: auto;
   background-color: var(--background-color-primary);
   border-top: 2px solid var(--primary-color);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
 }
 
-.App-footer-text {
+.app-footer__content {
   margin: 0;
   text-align: center;
   font-weight: bold;
 }
 
-.App-footer-icon {
+.app-footer__icon {
   margin: 0 5px;
   font-size: 20px;
   color: var(--secondary-color);
@@ -117,7 +113,7 @@
 /*
  * follow / unfollow icon
  */
-.FollowIcon,
+/* .followIcon,
 .unfollow-icon {
   position: absolute;
   width: 40px;
@@ -135,9 +131,9 @@
   -moz-transition: opacity 0.1s;
   -ms-transition: opacity 0.1s;
   -o-transition: opacity 0.1s;
-}
+} */
 
-.Dashboard-users-recommendedUsersItem .FollowIcon,
+/* .recommendations-list__recommendations-item .followIcon,
 .Dashboard-searchedUserResult .FollowIcon {
   top: 50%;
   left: 10px;
@@ -147,13 +143,13 @@
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -o-transform: translateY(-50%);
-}
+} */
 
-.Wall-postItem-author .FollowIcon {
+/* .Wall-postItem-author .FollowIcon {
   background-color: var(--secondary-color);
-}
+} */
 
-.Dashboard-searchedPostResult-listItem-author .FollowIcon {
+/* .Dashboard-searchedPostResult-listItem-author .FollowIcon {
   width: 35px;
   height: 35px;
   font-size: 16px;
@@ -173,10 +169,10 @@
   -o-transform: translateY(-50%);
 }
 
-.Dashboard-users-recommendedUsersItem:hover .FollowIcon,
+.recommendations-list__recommendations-item:hover .followIcon,
 .Wall-postItem-author:hover .FollowIcon,
 .Dashboard-searchedPostResult-listItem-author:hover .FollowIcon,
 .Dashboard-searchedUserResult-user:hover .FollowIcon,
 .all-followed__list-item:hover .unfollow-icon {
   opacity: 1;
-}
+} */

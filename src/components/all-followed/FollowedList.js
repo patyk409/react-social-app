@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './FollowedList.css'
 import axios from 'axios'
+import { GlobalContext } from '../../CreateContext'
 
 const FollowedList = (props) => {
+  const { headerConfigAuth, setDownbarContent, setDownbarDisplay, followToggler, setFollowToggler } = useContext(
+    GlobalContext,
+  )
   /*
    * removes user from the array of followed users and puts it back into recommendation list
    */
@@ -13,12 +17,12 @@ const FollowedList = (props) => {
         JSON.stringify({
           leader_id: id,
         }),
-        props.headerConfigAuth,
+        headerConfigAuth,
       )
       .then((res) => {
-        props.setFollowToggler(!props.followToggler)
-        // props.setMessageTrigger(true)
-        // props.setMessage('Follow has been removed')
+        setFollowToggler(!followToggler)
+        setDownbarDisplay(true)
+        setDownbarContent('Follow has been removed')
         console.log('unfollow response: ', res)
       })
       .catch((err) => {

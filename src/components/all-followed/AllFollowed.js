@@ -3,7 +3,7 @@ import './AllFollowed.css'
 import axios from 'axios'
 
 import FollowedList from './FollowedList'
-import CloserLink from '../CloserLink'
+import CloserLink from '../../CloserLink'
 
 const AllFollowed = (props) => {
   /*
@@ -43,11 +43,6 @@ const AllFollowed = (props) => {
       <FollowedList
         allFollowedState={allFollowedState}
         unfollowUser={props.unfollowUser}
-        followToggler={props.followToggler}
-        setFollowToggler={props.setFollowToggler}
-        headerConfigAuth={props.headerConfigAuth}
-        setMessageTrigger={props.setMessageTrigger}
-        setMessage={props.setMessage}
       />
       {allFollowedState.length === 0 ? (
         <p className="all-followed__info">

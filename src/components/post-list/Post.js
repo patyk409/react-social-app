@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import './Post.css'
 import axios from 'axios'
 import moment from 'moment'
-import DownbarInfo from '../DownbarInfo'
+import { GlobalContext } from '../../CreateContext'
 
 const Post = (props) => {
   // an array of post likes
   const [likeCounter, setLikeCounter] = useState(props.post.likes)
-  // modal info content
-  const [messageContent, setMessageContent] = useState('')
-  // modal display toggler
-  const [messageDisplay, setMessageDisplay] = useState(false)
-
-  /*
-   * closes modal with action info
-   */
-  useEffect(() => {
-    const messageCloser = setTimeout(() => {
-      if (messageDisplay) {
-        setMessageDisplay(false)
-      }
-    }, 1500)
-    return () => clearTimeout(messageCloser)
-  }, [messageDisplay])
+  // use context
+  const { userToken, headerConfigAuth, setDownbarContent, setDownbarDisplay } = useContext(GlobalContext)
 
   /*
    * adds user data to likes array so post is liked
@@ -34,14 +20,14 @@ const Post = (props) => {
         JSON.stringify({
           post_id: id,
         }),
-        props.headerConfigAuth,
+        headerConfigAuth,
       )
       .then((res) => {
         setLikeCounter(
           likeCounter.concat({ username: localStorage.getItem('name') }),
         )
-        setMessageContent('Like has been added')
-        setMessageDisplay(true)
+        setDownbarContent('Like has been added')
+        setDownbarDisplay(true)
         console.log('like response: ', res)
       })
       .catch((err) => {
@@ -59,7 +45,7 @@ const Post = (props) => {
         JSON.stringify({
           post_id: id,
         }),
-        props.headerConfigAuth,
+        headerConfigAuth,
       )
       .then((res) => {
         setLikeCounter(
@@ -67,8 +53,8 @@ const Post = (props) => {
             return user.username !== localStorage.getItem('name')
           }),
         )
-        setMessageContent('Like has been removed')
-        setMessageDisplay(true)
+        setDownbarContent('Like has been removed')
+        setDownbarDisplay(true)
         console.log('dislike response: ', res)
       })
       .catch((err) => {
@@ -81,14 +67,13 @@ const Post = (props) => {
    */
   return (
     <div className="post">
-      <p className="post-item__content">{props.post.content}</p>
       <div className="post-item__post-info">
         <span className="post-info__post-date">
           {moment(props.post.created_at).fromNow()}
         </span>
         <div className="like-box">
           <span className="like-box__counter">{likeCounter.length}</span>
-          {props.userToken && (
+          {userToken && (
             <i
               className={
                 likeCounter.filter((like) => {
@@ -107,12 +92,14 @@ const Post = (props) => {
               tabIndex="0"
             ></i>
           )}
-          {!props.userToken && (
-            <i className="far fa-heart like-box__icon" tabIndex="0"></i>
+          {!userToken && (
+            <i
+              className="far fa-heart like-box__icon--disabled"
+              tabIndex="0"
+            ></i>
           )}
         </div>
       </div>
-      {messageDisplay && <DownbarInfo messageContent={messageContent} />}
     </div>
   )
 }

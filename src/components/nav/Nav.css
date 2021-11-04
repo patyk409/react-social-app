@@ -6,7 +6,6 @@
   background-color: var(--background-color-primary);
   border-top: 2px solid var(--primary-color);
   border-bottom: 2px solid var(--primary-color);
-  backdrop-filter: blur(5px);
   z-index: 100;
 }
 
@@ -16,7 +15,9 @@
 }
 
 .nav-on-scroll {
-  box-shadow: 0 10px 30px 5px var(--black-color);
+  box-shadow: 0 5px 30px 5px var(--black-color);
+  background-color: rgb(187, 170, 156);
+  border-bottom: 2px solid var(--black-color);
 }
 
 /*
@@ -53,7 +54,11 @@
   padding: 0 0 5px 0;
   font-size: 20px;
   color: var(--secondary-color);
-  transition: color .1s;
+  transition: color .2s;
+  -webkit-transition: color .2s;
+  -moz-transition: color .2s;
+  -ms-transition: color .2s;
+  -o-transition: color .2s;
 }
 
 .list-item__link:hover .list-item__link-icon {
