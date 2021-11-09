@@ -14,6 +14,7 @@ const DashboardProfile = () => {
       </h3>
       {/* PROFILE DATA */}
       <ProfileData />
+
       {/* PROFILE INPUTS */}
       <ProfileInput />
     </div>

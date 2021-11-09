@@ -2,23 +2,28 @@ import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import './SignupForm.css'
+
 import { GlobalContext } from '../../tools/CreateContext'
 
 const SignupForm = () => {
-  // states
+  // LOCAL STATE
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+
   const [nameWarning, setNameWarning] = useState('')
   const [emailWarning, setEmailWarning] = useState('')
   const [passwordWarning, setPasswordWarning] = useState('')
+
   const [redirection, setRedirection] = useState(false)
-  // context
+
+  // GLOBAL CONTEXT
   const { headerConfig, setDownbarContent, setDownbarDisplay } = useContext(
     GlobalContext,
   )
-  // sign up function
+
+  // SIGNUP - FUNCTION
   const signUserDataUp = (event) => {
     event.preventDefault()
     let userData = {
@@ -37,7 +42,6 @@ const SignupForm = () => {
         localStorage.setItem('name', res.data.user.username)
         setDownbarDisplay(true)
         setDownbarContent('Signed up')
-        console.log('sign up response: ', res)
       })
       .catch((err) => {
         console.error(err)
@@ -45,9 +49,7 @@ const SignupForm = () => {
     setRedirection(true)
   }
 
-  /*
-   * sign up -> validation
-   */
+  // SIGNUP FORM - VALIDATION
   const formValidation = (event) => {
     let nameValidation = new RegExp('^(?=.{4,})')
     let emailValidation = new RegExp('^(?=.{2,})(?=.*[@])')
@@ -63,7 +65,6 @@ const SignupForm = () => {
     } else {
       setNameWarning('')
     }
-
     if (!emailValidation.test(email) || /\s/.test(email)) {
       event.preventDefault()
       setEmailWarning(
@@ -72,7 +73,6 @@ const SignupForm = () => {
     } else {
       setEmailWarning('')
     }
-
     if (!passwordValidation.test(password) || password !== confirmPassword) {
       event.preventDefault()
       setPasswordWarning(
@@ -83,13 +83,12 @@ const SignupForm = () => {
     }
   }
 
-  /*
-   * redirect to login page
-   */
+  // REDIRECT TO LOGIN PAGE AFTER SIGNUP
   if (redirection) {
     return <Redirect to="/login" />
   }
 
+  // JSX
   return (
     <form className="signup-form" onSubmit={signUserDataUp}>
       <label className="signup-form__label" htmlFor="name">
@@ -178,6 +177,7 @@ const SignupForm = () => {
         <li className="warning-list__warning-item">{passwordWarning}</li>
       </ul>
 
+      {/* LOGIN LINK */}
       <Link className="signup-form__redirection-link" to="/login">
         Log in
       </Link>

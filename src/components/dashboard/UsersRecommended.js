@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../tools/CreateContext'
 import axios from 'axios'
+
+import { GlobalContext } from '../../tools/CreateContext'
 
 const UsersRecommended = (props) => {
   // LOCAL STATE
@@ -43,6 +44,7 @@ const UsersRecommended = (props) => {
               alt="user_avatar"
               className="recommendations__data-avatar"
             />
+
             <div className="recommendations-item__data">
               <p className="recommendations__data-name">{user.username}</p>
               <p className="recommendations__data-email">{user.email}</p>

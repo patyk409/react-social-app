@@ -1,18 +1,23 @@
 import React, { useState, useContext } from 'react'
-import './Post.css'
 import axios from 'axios'
 import moment from 'moment'
+import './Post.css'
+
 import { GlobalContext } from '../../tools/CreateContext'
 
 const Post = (props) => {
-  // an array of post likes
+  // LOCAL STATE
   const [likeCounter, setLikeCounter] = useState(props.post.likes)
-  // use context
-  const { isLogged, headerConfigAuth, setDownbarContent, setDownbarDisplay } = useContext(GlobalContext)
 
-  /*
-   * adds user data to likes array so post is liked
-   */
+  // GLOBAL CONTEXT
+  const {
+    isLogged,
+    headerConfigAuth,
+    setDownbarContent,
+    setDownbarDisplay,
+  } = useContext(GlobalContext)
+
+  // POST LIKE - FUNCTION
   const postLike = (id) => {
     axios
       .post(
@@ -35,9 +40,7 @@ const Post = (props) => {
       })
   }
 
-  /*
-   * removes user data from likes array so post is not liked any more
-   */
+  // POST DISLIKE - FUNCTION
   const postDislike = (id) => {
     axios
       .post(
@@ -62,17 +65,17 @@ const Post = (props) => {
       })
   }
 
-  /*
-   * jsx
-   */
+  // JSX
   return (
     <div className="post">
       <div className="post-item__post-info">
         <span className="post-info__post-date">
           {moment(props.post.created_at).fromNow()}
         </span>
+
         <div className="like-box">
           <span className="like-box__counter">{likeCounter.length}</span>
+
           {isLogged && (
             <i
               className={
@@ -92,6 +95,7 @@ const Post = (props) => {
               tabIndex="0"
             ></i>
           )}
+
           {!isLogged && (
             <i
               className="far fa-heart like-box__icon--disabled"

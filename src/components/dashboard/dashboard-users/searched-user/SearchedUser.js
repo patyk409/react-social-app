@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from '../../../../tools/CreateContext'
 import './SearchedUser.css'
+
+import { GlobalContext } from '../../../../tools/CreateContext'
 
 const SearchedUser = (props) => {
   // GLOBAL CONTEXT
@@ -22,10 +23,12 @@ const SearchedUser = (props) => {
               alt="user_avatar"
               className="searched-user-result__searched-user-avatar"
             />
+
             <div className="searched-user-result__searched-user-data">
               <p className="searched-user-data__name">
                 {props.searchedUserName}
               </p>
+
               <p className="searched-user-data__email">
                 {props.searchedUserEmail}
               </p>
@@ -45,12 +48,12 @@ const SearchedUser = (props) => {
       </div>
 
       <div
-        className="Dashboard-searchedUserResult-closer"
+        className="searched-user-result__closer"
         onClick={() => {
           setSearchedUserTrigger(false)
         }}
       >
-        <i className="fas fa-times Dashboard-searchedUserResult-closerIcon"></i>
+        <i className="fas fa-times searched-user-result__closer-icon"></i>
       </div>
     </>
   )

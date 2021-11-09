@@ -1,7 +1,10 @@
 import React, { useState, useContext } from 'react'
-import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
+
+// COMPONENTS
 import SearchedUser from '../dashboard-users/searched-user/SearchedUser'
+
+import { GlobalContext } from '../../../tools/CreateContext'
 
 const UsersInput = (props) => {
   // LOCAL STATE
@@ -101,17 +104,6 @@ const UsersInput = (props) => {
         <button className="input-box__button" onClick={searchFriendByName}>
           <i className="fas fa-user-alt input-box__button-icon"></i>
         </button>
-
-        {searchedUserTrigger && (
-          <SearchedUser
-            searchedUserAvatar={searchedUserAvatar}
-            searchedUserName={searchedUserName}
-            searchedUserEmail={searchedUserEmail}
-            searchedUserId={searchedUserId}
-            usersInputInfo={usersInputInfo}
-            followUser={props.followUser}
-          />
-        )}
       </div>
 
       <div className="recommendations__input-box">
@@ -128,6 +120,18 @@ const UsersInput = (props) => {
         <button className="input-box__button" onClick={searchFriendByEmail}>
           <i className="fas fa-at input-box__button-icon"></i>
         </button>
+
+        {/* SEARCHED USER RESULT */}
+        {searchedUserTrigger && (
+          <SearchedUser
+            searchedUserAvatar={searchedUserAvatar}
+            searchedUserName={searchedUserName}
+            searchedUserEmail={searchedUserEmail}
+            searchedUserId={searchedUserId}
+            usersInputInfo={usersInputInfo}
+            followUser={props.followUser}
+          />
+        )}
       </div>
     </>
   )

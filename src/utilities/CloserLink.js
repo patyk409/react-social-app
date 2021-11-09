@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { GlobalContext } from '../tools/CreateContext'
 import './CloserLink.css'
+
+import { GlobalContext } from '../tools/CreateContext'
 
 const CloserLink = () => {
   // GLOBAL CONTEXT
   const { loginDisplay, setLoginDisplay } = useContext(GlobalContext)
 
-  // LOGIN POPUP CLOSER - METHOD
+  // LOGIN POPUP CLOSER - FUNCTION
   const loginDisplayCloser = () => {
     if (loginDisplay) {
       setLoginDisplay(false)

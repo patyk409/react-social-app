@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
+
+import { GlobalContext } from '../../../tools/CreateContext'
 
 const ProfileData = () => {
   // LOCAL STATE
@@ -39,6 +40,7 @@ const ProfileData = () => {
         alt="profile_avatar"
         className="profile__data-avatar"
       />
+
       <p className="profile__data-name">{profileName}</p>
       <p className="profile__data-email">{profileEmail}</p>
     </div>

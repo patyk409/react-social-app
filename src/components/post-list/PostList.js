@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import './PostList.css'
 import axios from 'axios'
+import './PostList.css'
 
+// COMPONENTS
 import Post from './Post'
 import ConfirmationPopup from './ConfirmationPopup'
+
 import Preloader from '../../utilities/Preloader'
 import DeleteIcon from '../../utilities/DeleteIcon'
 import { GlobalContext } from '../../tools/CreateContext'
@@ -42,7 +44,7 @@ const PostList = (props) => {
       })
   }, [postToggler, followToggler, isLogged])
 
-  // MERGE POST ARRAYS IF MORE POSTS ARE LOADED - METHOD
+  // MERGE POST ARRAYS IF MORE POSTS ARE LOADED - FUNCTION
   const getMorePosts = (date) => {
     axios
       .post(
@@ -67,7 +69,7 @@ const PostList = (props) => {
     }
   }, [props.isVisible])
 
-  // UNFOLLOW USER - METHOD
+  // UNFOLLOW USER - FUNCTION
   const unfollowUser = (id) => {
     axios
       .post(
@@ -100,12 +102,14 @@ const PostList = (props) => {
                   alt="user_avatar"
                   className="post-author__img"
                 />
+
                 <div>
                   <p className="post-author__name">{post.user.username}</p>
                   <span className="post-author__email">{post.user.email}</span>
                 </div>
+
                 {isLogged &&
-                post.user.username !== localStorage.getItem('name') ? (
+                post.user.username !== localStorage.getItem('name') && (
                   <div
                     className="unfollow-icon"
                     onClick={() => {
@@ -115,24 +119,29 @@ const PostList = (props) => {
                   >
                     <i className="fas fa-minus post-author__unfollow-icon"></i>
                   </div>
-                ) : null}
-                <DeleteIcon
-                  post={post}
-                />
+                )}
+
+                {/* DELETE POST - ICON */}
+                <DeleteIcon post={post} />
               </div>
+
               <p className="post-item__content">{post.content}</p>
+
+              {/* POST - INFO AND LIKE BOX */}
               <Post post={post} />
             </li>
           )
         })}
+
+        {/* DELETE POST - CONFIRMATION POPUP */}
         {confirmationDisplay && !searchedPostTrigger && (
           <aside className="app-popup-bg">
-            <ConfirmationPopup
-              postId={postId}
-            />
+            <ConfirmationPopup postId={postId} />
           </aside>
         )}
       </ul>
+
+      {/* PRELOADER */}
       <Preloader isVisible={props.isVisible} />
     </main>
   )

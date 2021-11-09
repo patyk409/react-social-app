@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react'
-import { GlobalContext } from '../../../../tools/CreateContext'
 import axios from 'axios'
 import './SearchedPost.css'
 
@@ -7,6 +6,8 @@ import './SearchedPost.css'
 import Post from '../../../post-list/Post'
 import DeleteIcon from '../../../../utilities/DeleteIcon'
 import ConfirmationPopup from '../../../post-list/ConfirmationPopup'
+
+import { GlobalContext } from '../../../../tools/CreateContext'
 
 const SearchedPost = (props) => {
   // GLOBAL CONTEXT
@@ -49,7 +50,6 @@ const SearchedPost = (props) => {
               `There are no older posts for the date you entered, check date again and keep looking`,
             )
           }
-          console.log('check post response: ', res)
         })
         .catch((err) => {
           console.error(err)
@@ -57,13 +57,12 @@ const SearchedPost = (props) => {
     }
   }, [
     postToggler,
-    searchedPostTrigger,
     followToggler,
     props.profileInputInfo,
     props.searchedPostToggler,
   ])
 
-  // UNFOLLOW USER - METHOD
+  // UNFOLLOW USER - FUNCTION
   const unfollowUser = (id) => {
     axios
       .post(
@@ -77,7 +76,6 @@ const SearchedPost = (props) => {
         setFollowToggler(!followToggler)
         setDownbarDisplay(true)
         setDownbarContent('Follow has been removed')
-        console.log('unfollow response: ', res)
       })
       .catch((err) => {
         console.error(err)
@@ -94,7 +92,6 @@ const SearchedPost = (props) => {
   // JSX
   return (
     <>
-      {/* SEARCHED POST RESULT */}
       <div className="searched-post-result">
         <ul className="searched-post-result__result-list">
           {searchedPostResult.length === 0 ? (
@@ -114,10 +111,12 @@ const SearchedPost = (props) => {
                       alt="user_avatar"
                       className="author-box__avatar"
                     />
+
                     <div className="author-box__info-box">
                       <p className="info-box__name">{post.user.username}</p>
                       <span className="info-box__email">{post.user.email}</span>
                     </div>
+
                     {isLogged &&
                       post.user.username !== localStorage.getItem('name') && (
                         <div
@@ -137,6 +136,7 @@ const SearchedPost = (props) => {
                       setConfirmationPopup={setConfirmationPopup}
                     />
                   </div>
+
                   <p className="result-list-item__post-content">
                     {post.content}
                   </p>
@@ -160,7 +160,6 @@ const SearchedPost = (props) => {
         </ul>
       </div>
 
-      {/* SEARCHED POST RESULT - CLOSER */}
       {searchedPostTrigger && (
         <div
           className="result-list__closer"

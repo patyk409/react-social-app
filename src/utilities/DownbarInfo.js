@@ -4,7 +4,10 @@ import './DownbarInfo.css'
 import { GlobalContext } from '../tools/CreateContext'
 
 const DownbarInfo = () => {
+  // GLOBAL CONTEXT
   const { downbarContent } = useContext(GlobalContext)
+
+  // JSX
   return (
     <aside
       className={

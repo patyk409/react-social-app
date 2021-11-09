@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
 
+// COMPONENTS
 import UsersRecommended from '../UsersRecommended'
 import UsersInput from '../dashboard-users/UsersInput'
+
+import { GlobalContext } from '../../../tools/CreateContext'
 
 const DashboardUsers = () => {
   // GLOBAL CONTEXT
@@ -16,7 +18,7 @@ const DashboardUsers = () => {
     setSearchedUserTrigger,
   } = useContext(GlobalContext)
 
-  // FOLLOW USER - METHOD
+  // FOLLOW USER - FUNCTION
   const followUser = (id) => {
     axios
       .post(
@@ -45,6 +47,7 @@ const DashboardUsers = () => {
       </h3>
       {/* USERS RECOMMENDED */}
       <UsersRecommended followUser={followUser} />
+
       <h3 className="recommendations__header">
         Social Club
         <i className="fas fa-icons recommendations__header-icon"></i>

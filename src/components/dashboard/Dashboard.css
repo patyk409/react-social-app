@@ -134,7 +134,7 @@
 /*
  * dashboard -> profile / users -> search result -> closer
  */
-.Dashboard-searchedUserResult-closer,
+.searched-user-result__closer,
 .Dashboard-searchedPostResult-closer {
   position: absolute;
   right: -30px;
@@ -145,8 +145,8 @@
   transition: color 0.1s;
 }
 
-.Dashboard-searchedUserResult-closer {
-  bottom: 175px;
+.searched-user-result__closer {
+  bottom: 220px;
 }
 
 .Dashboard-searchedPostResult-closer {
@@ -154,7 +154,7 @@
 }
 
 .Dashboard-searchedPostResult-closer:hover,
-.Dashboard-searchedUserResult-closer:hover {
+.searched-user-result__closer:hover {
   color: var(--primary-color);
 }
 

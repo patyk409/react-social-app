@@ -1,22 +1,19 @@
 import React, { useContext } from 'react'
 import './DeleteIcon.css'
+
 import { GlobalContext } from '../tools/CreateContext'
 
 const DeleteIcon = (props) => {
-  // use context
+  // GLOBAL CONTEXT
   const { setConfirmationDisplay, setPostId } = useContext(GlobalContext)
 
-  /*
-   * shows confirmation popup and puts post id to variable
-   */
+  // SHOW CONFIRMATION POPUP - FUNTION
   const showConfirmationPopup = (id) => {
     setConfirmationDisplay(true)
     setPostId(id)
   }
 
-  /*
-   * jsx
-   */
+  // JSX
   return (
     <div className="delete-box">
       {props.post.user.username === localStorage.getItem('name') && (

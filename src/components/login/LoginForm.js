@@ -1,19 +1,19 @@
 import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import './LoginForm.css'
 import axios from 'axios'
+import './LoginForm.css'
+
 import { GlobalContext } from '../../tools/CreateContext'
 
 const LoginForm = (props) => {
-  /*
-   * useState
-   */
+  // LOCAL STATE
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [nameWarning, setNameWarning] = useState('')
   const [passwordWarning, setPasswordWarning] = useState('')
   const [redirection, setRedirection] = useState(false)
 
+  // GLOBAL CONTEXT
   const {
     setIsLogged,
     headerConfig,
@@ -22,9 +22,7 @@ const LoginForm = (props) => {
     setLoginDisplay,
   } = useContext(GlobalContext)
 
-  /*
-   * log in -> validation
-   */
+  // LOGIN FORM - VALIDATION
   const formValidation = (event) => {
     let nameValidation = new RegExp('^(?=.{4,})')
     let passwordValidation = new RegExp('^(?=.*[0-9])(?=.{4,})')
@@ -37,7 +35,6 @@ const LoginForm = (props) => {
     } else {
       setNameWarning('')
     }
-
     if (!passwordValidation.test(password)) {
       event.preventDefault()
       setPasswordWarning(`Invalid password, check it again`)
@@ -46,9 +43,7 @@ const LoginForm = (props) => {
     }
   }
 
-  /*
-   * log in
-   */
+  // LOGIN - FUNCTION
   const logUserDataIn = (event) => {
     event.preventDefault()
     let userData = {
@@ -69,7 +64,6 @@ const LoginForm = (props) => {
         setIsLogged(res.data.jwt_token)
         setDownbarDisplay(true)
         setDownbarContent('Logged in')
-        console.log('log in response: ', res)
       })
       .catch((err) => {
         console.error(err)
@@ -78,13 +72,12 @@ const LoginForm = (props) => {
     setRedirection(true)
   }
 
+  // REDIRECT TO MAIN PAGE AFTER LOGIN
   if (redirection) {
     return <Redirect to="/" />
   }
 
-  /*
-   * jsx
-   */
+  // JSX
   return (
     <form className="login-form" onSubmit={logUserDataIn}>
       <label className="login-form__label" htmlFor="Name">
@@ -102,6 +95,7 @@ const LoginForm = (props) => {
             : 'login-form__text-input'
         }
       />
+
       <label className="login-form__label" htmlFor="Password">
         Password:
       </label>
@@ -116,12 +110,14 @@ const LoginForm = (props) => {
             : 'login-form__text-input'
         }
       />
+
       <input
         type="submit"
         value="Log in"
         onClick={formValidation}
         className="login-form__submit-input"
       />
+
       <ul className="login-form__warning-list">
         <li className="warning-list__warning-item">
           {!(nameWarning || passwordWarning)
@@ -131,6 +127,8 @@ const LoginForm = (props) => {
         <li className="warning-list__warning-item">{nameWarning}</li>
         <li className="warning-list__warning-item">{passwordWarning}</li>
       </ul>
+
+      {/* SIGNUP LINK */}
       <Link
         className="login-form__redirection-link"
         to="/signup"

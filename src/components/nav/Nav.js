@@ -45,7 +45,7 @@ const Nav = () => {
     }
   }, [scrollPosition])
 
-  // LOG OUT - FUNCTION
+  // LOGOUT - FUNCTION
   const logUserDataOut = () => {
     axios
       .post(
@@ -60,7 +60,6 @@ const Nav = () => {
         setDownbarDisplay(true)
         setDownbarContent('Logged out')
         windowCloseAndRefresh()
-        console.log('log out response: ', res)
       })
       .catch((err) => {
         console.error(err)
@@ -92,7 +91,7 @@ const Nav = () => {
           </Link>
         </li>
 
-        {/* SIGN UP FORM */}
+        {/* SIGNUP FORM */}
         {!isLogged && (
           <li className="nav-list__list-item">
             <Link className="list-item__link" to="/signup">
@@ -102,7 +101,7 @@ const Nav = () => {
           </li>
         )}
 
-        {/* LOG IN FORM */}
+        {/* LOGIN FORM */}
         {!isLogged && (
           <li className="nav-list__list-item">
             <Link className="list-item__link" to="/login">
@@ -126,7 +125,7 @@ const Nav = () => {
           </li>
         )}
 
-        {/* LOG OUT */}
+        {/* LOGOUT */}
         {isLogged && (
           <li className="nav-list__list-item">
             <Link className="list-item__link" to="/" onClick={logUserDataOut}>

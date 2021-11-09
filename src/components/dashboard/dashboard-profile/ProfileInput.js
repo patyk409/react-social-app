@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react'
-import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
 
 // COMPONENTS
 import SearchedPost from '../dashboard-profile/searched-post/SearchedPost'
+
+import { GlobalContext } from '../../../tools/CreateContext'
 
 const ProfileInput = () => {
   // LOCAL STATE
@@ -27,7 +28,7 @@ const ProfileInput = () => {
     setSearchedPostResult,
   } = useContext(GlobalContext)
 
-  // ADD POST - METHOD
+  // ADD POST - FUNCTION
   const addPost = () => {
     setSearchedPostResult([])
     setSearchedPostTrigger(false)
@@ -59,6 +60,7 @@ const ProfileInput = () => {
         })
     }
     setPostContent('')
+    setPostBrowserValue('')
   }
 
   // SEARCHED POST RESULT HANDLER
@@ -69,15 +71,12 @@ const ProfileInput = () => {
       setProfileInputInfo(
         'Date field cannot be empty, enter date and find post that you looking for',
       )
-    } else {
-      addPost()
     }
   }
 
   // JSX
   return (
     <>
-      {/* ADD POST INPUT */}
       <div className="profile__input-box">
         <input
           type="text"
@@ -86,12 +85,12 @@ const ProfileInput = () => {
           onChange={(event) => setPostContent(event.target.value)}
           className="input-box__text-input"
         />
+
         <button className="input-box__button" onClick={addPost}>
           <i className="fas fa-pen-alt input-box__button-icon"></i>
         </button>
       </div>
 
-      {/* SEARCH POST INPUT */}
       <div className="profile__input-box">
         <input
           type="date"
@@ -99,6 +98,7 @@ const ProfileInput = () => {
           onChange={(event) => setPostBrowserValue(event.target.value)}
           className="input-box__text-input"
         />
+
         <button
           className="input-box__button"
           onClick={searchedPostResultHandler}
