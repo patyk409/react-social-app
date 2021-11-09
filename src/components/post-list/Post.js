@@ -2,13 +2,13 @@ import React, { useState, useContext } from 'react'
 import './Post.css'
 import axios from 'axios'
 import moment from 'moment'
-import { GlobalContext } from '../../CreateContext'
+import { GlobalContext } from '../../tools/CreateContext'
 
 const Post = (props) => {
   // an array of post likes
   const [likeCounter, setLikeCounter] = useState(props.post.likes)
   // use context
-  const { userToken, headerConfigAuth, setDownbarContent, setDownbarDisplay } = useContext(GlobalContext)
+  const { isLogged, headerConfigAuth, setDownbarContent, setDownbarDisplay } = useContext(GlobalContext)
 
   /*
    * adds user data to likes array so post is liked
@@ -73,7 +73,7 @@ const Post = (props) => {
         </span>
         <div className="like-box">
           <span className="like-box__counter">{likeCounter.length}</span>
-          {userToken && (
+          {isLogged && (
             <i
               className={
                 likeCounter.filter((like) => {
@@ -92,7 +92,7 @@ const Post = (props) => {
               tabIndex="0"
             ></i>
           )}
-          {!userToken && (
+          {!isLogged && (
             <i
               className="far fa-heart like-box__icon--disabled"
               tabIndex="0"

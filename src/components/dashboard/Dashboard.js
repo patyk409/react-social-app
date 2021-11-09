@@ -1,8 +1,8 @@
 import React from 'react'
 import './Dashboard.css'
 
-import DashboardProfile from './DashboardProfile'
-import DashboardUsers from './DashboardUsers'
+import DashboardProfile from './dashboard-profile/DashboardProfile'
+import DashboardUsers from './dashboard-users/DashboardUsers'
 
 const Dashboard = () => {
   // JSX

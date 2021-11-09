@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Login.css'
 import LoginForm from './LoginForm'
-import CloserLink from '../../CloserLink'
+import CloserLink from '../../utilities/CloserLink'
+import { GlobalContext } from '../../tools/CreateContext'
 
-const Login = (props) => {
+const Login = () => {
+  const { loginDisplay } = useContext(GlobalContext)
   /*
    * jsx
    */
   return (
-    <div className={props.loginPopup ? 'login login-popup' : 'login'}>
+    <div className={loginDisplay ? 'login login-popup' : 'login'}>
       <h3 className="login__header">
         Log in
         <i className="fas fa-sign-in-alt login__header-icon"></i>

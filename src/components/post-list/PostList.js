@@ -4,9 +4,9 @@ import axios from 'axios'
 
 import Post from './Post'
 import ConfirmationPopup from './ConfirmationPopup'
-import Preloader from '../../Preloader'
-import DeleteIcon from '../../DeleteIcon'
-import { GlobalContext } from '../../CreateContext'
+import Preloader from '../../utilities/Preloader'
+import DeleteIcon from '../../utilities/DeleteIcon'
+import { GlobalContext } from '../../tools/CreateContext'
 
 const PostList = (props) => {
   // LOCAL STATE
@@ -14,14 +14,13 @@ const PostList = (props) => {
 
   // GLOBAL CONTEXT
   const {
-    userToken,
+    isLogged,
     headerConfigAuth,
     setDownbarContent,
     setDownbarDisplay,
-    confirmationPopup,
-    setConfirmationPopup,
+    confirmationDisplay,
     postId,
-    postTrigger,
+    postToggler,
     searchedPostTrigger,
     followToggler,
     setFollowToggler,
@@ -41,7 +40,7 @@ const PostList = (props) => {
       .catch((err) => {
         console.error(err)
       })
-  }, [postTrigger, followToggler, userToken])
+  }, [postToggler, followToggler, isLogged])
 
   // MERGE POST ARRAYS IF MORE POSTS ARE LOADED - METHOD
   const getMorePosts = (date) => {
@@ -76,7 +75,7 @@ const PostList = (props) => {
         JSON.stringify({
           leader_id: id,
         }),
-        props.headerConfigAuth,
+        headerConfigAuth,
       )
       .then((res) => {
         setFollowToggler(!followToggler)
@@ -105,7 +104,7 @@ const PostList = (props) => {
                   <p className="post-author__name">{post.user.username}</p>
                   <span className="post-author__email">{post.user.email}</span>
                 </div>
-                {userToken &&
+                {isLogged &&
                 post.user.username !== localStorage.getItem('name') ? (
                   <div
                     className="unfollow-icon"
@@ -119,7 +118,6 @@ const PostList = (props) => {
                 ) : null}
                 <DeleteIcon
                   post={post}
-                  setConfirmationPopup={setConfirmationPopup}
                 />
               </div>
               <p className="post-item__content">{post.content}</p>
@@ -127,10 +125,9 @@ const PostList = (props) => {
             </li>
           )
         })}
-        {confirmationPopup && !searchedPostTrigger && (
+        {confirmationDisplay && !searchedPostTrigger && (
           <aside className="app-popup-bg">
             <ConfirmationPopup
-              setConfirmationPopup={setConfirmationPopup}
               postId={postId}
             />
           </aside>

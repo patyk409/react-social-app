@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
 
 const ProfileData = () => {
@@ -9,11 +9,11 @@ const ProfileData = () => {
   const [profileEmail, setProfileEmail] = useState('')
 
   // GLOBAL CONTEXT
-  const { userToken, headerConfigAuth } = useContext(GlobalContext)
+  const { isLogged, headerConfigAuth } = useContext(GlobalContext)
 
   // PROFILE DATA EFFECT
   useEffect(() => {
-    if (userToken) {
+    if (isLogged) {
       axios
         .post(
           'https://akademia108.pl/api/social-app/user/profile',
@@ -29,7 +29,7 @@ const ProfileData = () => {
           console.error(err)
         })
     }
-  }, [userToken])
+  }, [isLogged])
 
   // JSX
   return (

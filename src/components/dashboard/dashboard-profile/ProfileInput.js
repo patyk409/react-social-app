@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
 
 // COMPONENTS
-import SearchedPost from './SearchedPost'
+import SearchedPost from '../dashboard-profile/searched-post/SearchedPost'
 
 const ProfileInput = () => {
   // LOCAL STATE
@@ -15,12 +15,12 @@ const ProfileInput = () => {
   // GLOBAL CONTEXT
   const {
     headerConfigAuth,
-    postTrigger,
-    setPostTrigger,
+    postToggler,
+    setPostToggler,
     setDownbarDisplay,
     setDownbarContent,
-    postBrowserByDate,
-    setPostBrowserByDate,
+    postBrowserValue,
+    setPostBrowserValue,
     searchedPostTrigger,
     setSearchedPostTrigger,
     searchedPostResult,
@@ -50,7 +50,7 @@ const ProfileInput = () => {
           if (!searchedPostResult) {
             setSearchedPostTrigger(false)
           }
-          setPostTrigger(!postTrigger)
+          setPostToggler(!postToggler)
           setDownbarDisplay(true)
           setDownbarContent('Post has been added')
         })
@@ -65,7 +65,7 @@ const ProfileInput = () => {
   const searchedPostResultHandler = () => {
     setSearchedPostTrigger(true)
     setSearchedPostToggler(!searchedPostToggler)
-    if (postBrowserByDate === '') {
+    if (postBrowserValue === '') {
       setProfileInputInfo(
         'Date field cannot be empty, enter date and find post that you looking for',
       )
@@ -95,8 +95,8 @@ const ProfileInput = () => {
       <div className="profile__input-box">
         <input
           type="date"
-          value={postBrowserByDate}
-          onChange={(event) => setPostBrowserByDate(event.target.value)}
+          value={postBrowserValue}
+          onChange={(event) => setPostBrowserValue(event.target.value)}
           className="input-box__text-input"
         />
         <button

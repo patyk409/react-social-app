@@ -1,54 +1,53 @@
-import React, { useState, useEffect } from 'react'
-import './AllFollowed.css'
+import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
+import './AllFollowed.css'
 
+// COMPONENTS
 import FollowedList from './FollowedList'
-import CloserLink from '../../CloserLink'
 
-const AllFollowed = (props) => {
-  /*
-   * array state initialization with all followed users
-   */
-  const [allFollowedState, setAllFollowedState] = useState([])
+import CloserLink from '../../utilities/CloserLink'
+import { GlobalContext } from '../../tools/CreateContext'
 
-  /*
-   * effect that gets users data from api and maintains all followed users in the state of array
-   */
+const AllFollowed = () => {
+  // LOCAL STATE
+  const [allFollowed, setAllFollowed] = useState([])
+
+  // GLOBAL CONTEXT
+  const { isLogged, headerConfigAuth, followToggler } = useContext(
+    GlobalContext,
+  )
+
+  // ALL FOLLOWED USERS EFFECT
   useEffect(() => {
-    if (props.userToken) {
+    if (isLogged) {
       axios
         .post(
           'https://akademia108.pl/api/social-app/follows/allfollows',
           JSON.stringify(),
-          props.headerConfigAuth,
+          headerConfigAuth,
         )
         .then((res) => {
-          setAllFollowedState(res.data)
+          setAllFollowed(res.data)
         })
         .catch((err) => {
           console.error(err)
         })
     }
-  }, [props.followToggler])
+  }, [followToggler])
 
-  /*
-   * jsx
-   */
+  // JSX
   return (
     <div className="all-followed">
       <h3 className="all-followed__header">
         Followed
         <i className="fas fa-user-friends all-followed__header-icon"></i>
       </h3>
-      <FollowedList
-        allFollowedState={allFollowedState}
-        unfollowUser={props.unfollowUser}
-      />
-      {allFollowedState.length === 0 ? (
+      <FollowedList allFollowed={allFollowed} />
+      {allFollowed.length === 0 && (
         <p className="all-followed__info">
           Seems like you don't follow anyone...
         </p>
-      ) : null}
+      )}
       <CloserLink />
     </div>
   )

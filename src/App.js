@@ -7,16 +7,16 @@ import Nav from './components/nav/Nav'
 import Login from './components/login/Login'
 import Signup from './components/signup/Signup'
 import AllFollowed from './components/all-followed/AllFollowed'
-import Dashboard from './Dashboard'
+import Dashboard from './components/dashboard/Dashboard'
 import PostList from './components/post-list/PostList'
-import ScrollToTop from './ScrollToTop'
-import DownbarInfo from './DownbarInfo'
 
-// import { ContextProvider } from './CreateContext'
-import { GlobalContext } from './CreateContext'
+import DownbarInfo from './utilities/DownbarInfo'
+import ScrollToTop from './tools/ScrollToTop'
+import { GlobalContext } from './tools/CreateContext'
 
 // CUSTOM HOOK - USE ON SCREEN
 const useOnScreen = (options) => {
+  // LOCAL STATES
   const [ref, setRef] = useState(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -24,78 +24,40 @@ const useOnScreen = (options) => {
     const observer = new IntersectionObserver(([entry]) => {
       setIsVisible(entry.isIntersecting)
     }, options)
-
     if (ref) {
       observer.observe(ref)
     }
-
     return () => {
       if (ref) {
         observer.unobserve(ref)
       }
     }
   }, [ref, options])
-
   return [setRef, isVisible]
 }
 
 const App = () => {
+  // LOCAL STATES
   const [setRef, isVisible] = useOnScreen({ threshold: 0.9 })
 
-  const [
-    userToken,
-    setLoginPopup,
+  // GLOBAL CONTEXT
+  const {
+    isLogged,
+    loginDisplay,
+    setLoginDisplay,
     downbarDisplay,
     setDownbarDisplay,
-    loginPopup,
-  ] = useContext(GlobalContext)
-
-  // // LOACAL STATE
-  // const [userToken, setUserToken] = useState(localStorage.getItem('jwt_token'))
-  // const [loginPopup, setLoginPopup] = useState(false)
-
-  // const [followToggler, setFollowToggler] = useState(false)
-
-  // const [postBrowserByDate, setPostBrowserByDate] = useState('')
-
-  // const [searchedPostResult, setSearchedPostResult] = useState([])
-  // const [searchedUserTrigger, setSearchedUserTrigger] = useState(false)
-  // const [searchedPostTrigger, setSearchedPostTrigger] = useState(false)
-  // const [postTrigger, setPostTrigger] = useState(false)
-
-  // // downbar modal display and content
-  // const [downbarDisplay, setDownbarDisplay] = useState(false)
-  // const [downbarContent, setDownbarContent] = useState('')
-  // // confirmation popup handler
-  // const [confirmationPopup, setConfirmationPopup] = useState(false)
-  // // id of post to delete
-  // const [postId, setPostId] = useState(null)
-
-  // // AXIOS HEADER CONFIGURATION
-  // const headerConfig = {
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     Accept: 'application/json',
-  //   },
-  // }
-
-  // // AXIOS HEADER CONFIGURATION WITH AUTHENTICATION
-  // const headerConfigAuth = {
-  //   headers: {
-  //     headerConfig,
-  //     Authorization: 'Bearer ' + localStorage.getItem('jwt_token'),
-  //   },
-  // }
+  } = useContext(GlobalContext)
 
   // LOGIN POPUP TIMEOUT - TRIGGER
   useEffect(() => {
-    const loginPopupTimeout = setTimeout(() => {
-      if (!userToken && window.location.href.endsWith('/')) {
-        setLoginPopup(true)
+    const loginDisplayTimeout = setTimeout(() => {
+      if (!isLogged && window.location.href.endsWith('/')) {
+        setLoginDisplay(true)
       }
     }, 5000)
-    return () => clearTimeout(loginPopupTimeout)
-  }, [userToken])
+    return () => clearTimeout(loginDisplayTimeout)
+  }, [isLogged])
 
   // DOWNBAR MODAL TIMEOUT - CLOSER
   useEffect(() => {
@@ -107,11 +69,10 @@ const App = () => {
     return () => clearTimeout(messageCloser)
   }, [downbarDisplay])
 
-  /*
-   * jsx
-   */
+  // JSX
   return (
     <div className="app-social">
+      {/* HEADER */}
       <header className="app-social__app-header">
         <h1 className="app-header__content">
           <Link className="app-header__link" to="/">
@@ -122,41 +83,51 @@ const App = () => {
       </header>
 
       <ScrollToTop />
+
       <Switch>
+        {/* HOME PAGE */}
         <Route exact path="/">
           <Nav />
-          {userToken && <Dashboard />}
+          {/* DASHBOARD */}
+          {isLogged && <Dashboard />}
+          {/* POST LIST */}
           <PostList isVisible={isVisible} />
         </Route>
 
+        {/* LOGIN PAGE */}
         <Route path="/login" component={Login}>
           <Nav />
           <Login />
         </Route>
 
+        {/* SIGNUP PAGE */}
         <Route path="/signup" component={Signup}>
           <Nav />
           <Signup />
         </Route>
 
+        {/* ALL FOLLOWED PAGE */}
         <Route path="/followed" component={AllFollowed}>
           <Nav />
           <AllFollowed />
         </Route>
       </Switch>
 
-      {loginPopup && (
+      {/* LOGIN POPUP */}
+      {loginDisplay && (
         <aside className="app-popup-bg">
           <Login />
         </aside>
       )}
 
+      {/* FOOTER */}
       <footer className="app-social__app-footer" ref={setRef}>
         <p className="app-footer__content">
           Social Club<i className="far fa-copyright app-footer__icon"></i>2021
         </p>
       </footer>
 
+      {/* DOWNBAR INFO */}
       {downbarDisplay && <DownbarInfo />}
     </div>
   )

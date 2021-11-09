@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../../../../tools/CreateContext'
 import './SearchedUser.css'
 
 const SearchedUser = (props) => {

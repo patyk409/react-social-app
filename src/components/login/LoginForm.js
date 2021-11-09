@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import './LoginForm.css'
 import axios from 'axios'
-import { GlobalContext } from '../../CreateContext'
+import { GlobalContext } from '../../tools/CreateContext'
 
 const LoginForm = (props) => {
   /*
@@ -15,11 +15,11 @@ const LoginForm = (props) => {
   const [redirection, setRedirection] = useState(false)
 
   const {
-    setUserToken,
+    setIsLogged,
     headerConfig,
     setDownbarContent,
     setDownbarDisplay,
-    setLoginPopup,
+    setLoginDisplay,
   } = useContext(GlobalContext)
 
   /*
@@ -66,7 +66,7 @@ const LoginForm = (props) => {
       .then((res) => {
         localStorage.setItem('name', res.data.username)
         localStorage.setItem('jwt_token', res.data.jwt_token)
-        setUserToken(res.data.jwt_token)
+        setIsLogged(res.data.jwt_token)
         setDownbarDisplay(true)
         setDownbarContent('Logged in')
         console.log('log in response: ', res)
@@ -74,7 +74,7 @@ const LoginForm = (props) => {
       .catch((err) => {
         console.error(err)
       })
-    setLoginPopup(false)
+    setLoginDisplay(false)
     setRedirection(true)
   }
 
@@ -134,7 +134,7 @@ const LoginForm = (props) => {
       <Link
         className="login-form__redirection-link"
         to="/signup"
-        onClick={() => setLoginPopup(false)}
+        onClick={() => setLoginDisplay(false)}
       >
         Sign up
       </Link>

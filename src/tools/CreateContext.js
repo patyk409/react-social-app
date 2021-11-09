@@ -1,27 +1,28 @@
-// import { createContext } from 'react'
-
-// export const GlobalContext = createContext(null)
-
 import React, { useState, createContext } from 'react'
 
+// EXPORT CREATE CONTEXT
 export const GlobalContext = createContext(null)
 
+// EXPORT CONTEXT PROVIDER
 export const ContextProvider = (props) => {
-  const [userToken, setUserToken] = useState(localStorage.getItem('jwt_token'))
+  // LOCAL STATE
+  const [isLogged, setIsLogged] = useState(localStorage.getItem('jwt_token'))
+  
+  const [loginDisplay, setLoginDisplay] = useState(false)
 
   const [followToggler, setFollowToggler] = useState(false)
-
-  const [postBrowserByDate, setPostBrowserByDate] = useState('')
-
-  const [searchedPostResult, setSearchedPostResult] = useState([])
-  const [searchedUserTrigger, setSearchedUserTrigger] = useState(false)
-  const [searchedPostTrigger, setSearchedPostTrigger] = useState(false)
-  const [postTrigger, setPostTrigger] = useState(false)
-
+  const [postToggler, setPostToggler] = useState(false)
+  
   const [downbarDisplay, setDownbarDisplay] = useState(false)
   const [downbarContent, setDownbarContent] = useState('')
 
-  const [confirmationPopup, setConfirmationPopup] = useState(false)
+  const [postBrowserValue, setPostBrowserValue] = useState('')
+
+  const [searchedPostResult, setSearchedPostResult] = useState([])
+  const [searchedPostTrigger, setSearchedPostTrigger] = useState(false)
+  const [searchedUserTrigger, setSearchedUserTrigger] = useState(false)
+
+  const [confirmationDisplay, setConfirmationDisplay] = useState(false)
 
   const [postId, setPostId] = useState(null)
 
@@ -41,34 +42,37 @@ export const ContextProvider = (props) => {
     },
   }
 
+  // JSX
   return (
     <GlobalContext.Provider
-      value={[
-        userToken,
-        setUserToken,
+      value={{
+        isLogged,
+        setIsLogged,
         headerConfig,
         headerConfigAuth,
+        loginDisplay,
+        setLoginDisplay,
         downbarContent,
         setDownbarContent,
         downbarDisplay,
         setDownbarDisplay,
         searchedPostTrigger,
         setSearchedPostTrigger,
-        postBrowserByDate,
-        setPostBrowserByDate,
+        postBrowserValue,
+        setPostBrowserValue,
         searchedPostResult,
         setSearchedPostResult,
-        confirmationPopup,
-        setConfirmationPopup,
+        confirmationDisplay,
+        setConfirmationDisplay,
         postId,
         setPostId,
-        postTrigger,
-        setPostTrigger,
+        postToggler,
+        setPostToggler,
         followToggler,
         setFollowToggler,
         searchedUserTrigger,
         setSearchedUserTrigger,
-      ]}
+      }}
     >
       {props.children}
     </GlobalContext.Provider>

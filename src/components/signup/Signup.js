@@ -1,7 +1,7 @@
 import React from 'react'
 import './Signup.css'
 import SignupForm from './SignupForm'
-import CloserLink from '../../CloserLink'
+import CloserLink from '../../utilities/CloserLink'
 
 const Signup = () => {
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
-import SearchedUser from './SearchedUser'
+import SearchedUser from '../dashboard-users/searched-user/SearchedUser'
 
 const UsersInput = (props) => {
   // LOCAL STATE

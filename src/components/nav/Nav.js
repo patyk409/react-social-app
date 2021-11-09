@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import './Nav.css'
 import axios from 'axios'
-import { GlobalContext } from '../../CreateContext'
+import './Nav.css'
+
+import { GlobalContext } from '../../tools/CreateContext'
 
 const Nav = () => {
+  // LOCAL STATE
   const [scrollPosition, setScrollPosition] = useState(0)
+  const [navClassName, setNavClassName] = useState('nav')
 
+  // GLOBAL CONTEXT
   const {
-    userToken,
-    setUserToken,
+    isLogged,
+    setIsLogged,
     headerConfigAuth,
     setDownbarContent,
     setDownbarDisplay,
-    setPostBrowserByDate,
+    setPostBrowserValue,
     setSearchedPostResult,
     setSearchedUserTrigger,
     setSearchedPostTrigger,
@@ -21,25 +25,27 @@ const Nav = () => {
     setFollowToggler,
   } = useContext(GlobalContext)
 
+  // CHECK NAV POSITION AND ADD SPECIFIC CLASSES
   const navOnScroll = () => {
     const position = window.pageYOffset
     setScrollPosition(position)
 
     if (position > 122 && window.location.href.endsWith('/')) {
-      document.querySelector('.nav').classList.add('nav-on-scroll')
+      setNavClassName('nav nav-sticky nav-on-scroll')
     } else {
-      document.querySelector('.nav').classList.remove('nav-on-scroll')
+      setNavClassName('nav')
     }
   }
 
+  // NAV EFFECT ON SCROLL
   useEffect(() => {
     window.addEventListener('scroll', navOnScroll)
-
     return () => {
       window.removeEventListener('scroll', navOnScroll)
     }
   }, [scrollPosition])
 
+  // LOG OUT - FUNCTION
   const logUserDataOut = () => {
     axios
       .post(
@@ -50,7 +56,7 @@ const Nav = () => {
       .then((res) => {
         localStorage.removeItem('name')
         localStorage.removeItem('jwt_token')
-        setUserToken(localStorage.getItem('jwt_token'))
+        setIsLogged(localStorage.getItem('jwt_token'))
         setDownbarDisplay(true)
         setDownbarContent('Logged out')
         windowCloseAndRefresh()
@@ -61,22 +67,20 @@ const Nav = () => {
       })
   }
 
+  // CLOSE ALL ACTIVE WINDOWS / REFRESH RECOMMENDATIONS AND POST LIST
   const windowCloseAndRefresh = () => {
     setSearchedUserTrigger(false)
     setSearchedPostTrigger(false)
     setSearchedPostResult([])
-    setPostBrowserByDate('')
+    setPostBrowserValue('')
     setFollowToggler(!followToggler)
   }
 
-  /*
-   * jsx
-   */
+  // JSX
   return (
-    <nav
-      className={window.location.href.endsWith('/') ? 'nav nav-sticky' : 'nav'}
-    >
+    <nav className={navClassName}>
       <ul className="nav-list">
+        {/* HOME LINK */}
         <li className="nav-list__list-item">
           <Link
             className="list-item__link"
@@ -87,7 +91,9 @@ const Nav = () => {
             Home
           </Link>
         </li>
-        {!userToken && (
+
+        {/* SIGN UP FORM */}
+        {!isLogged && (
           <li className="nav-list__list-item">
             <Link className="list-item__link" to="/signup">
               <i className="fas fa-user-plus list-item__link-icon"></i>
@@ -95,7 +101,9 @@ const Nav = () => {
             </Link>
           </li>
         )}
-        {!userToken && (
+
+        {/* LOG IN FORM */}
+        {!isLogged && (
           <li className="nav-list__list-item">
             <Link className="list-item__link" to="/login">
               <i className="fas fa-sign-in-alt list-item__link-icon"></i>
@@ -103,7 +111,9 @@ const Nav = () => {
             </Link>
           </li>
         )}
-        {userToken && (
+
+        {/* ALL FOLLOWED LINK */}
+        {isLogged && (
           <li className="nav-list__list-item">
             <Link
               className="list-item__link"
@@ -115,7 +125,9 @@ const Nav = () => {
             </Link>
           </li>
         )}
-        {userToken && (
+
+        {/* LOG OUT */}
+        {isLogged && (
           <li className="nav-list__list-item">
             <Link className="list-item__link" to="/" onClick={logUserDataOut}>
               <i className="fas fa-sign-out-alt list-item__link-icon"></i>

@@ -1,22 +1,22 @@
 import React, { useEffect, useContext } from 'react'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../../../../tools/CreateContext'
 import axios from 'axios'
 import './SearchedPost.css'
 
 // COMPONENTS
-import Post from './components/post-list/Post'
-import DeleteIcon from './DeleteIcon'
-import ConfirmationPopup from './components/post-list/ConfirmationPopup'
+import Post from '../../../post-list/Post'
+import DeleteIcon from '../../../../utilities/DeleteIcon'
+import ConfirmationPopup from '../../../post-list/ConfirmationPopup'
 
 const SearchedPost = (props) => {
   // GLOBAL CONTEXT
   const {
-    userToken,
+    isLogged,
     headerConfigAuth,
     postId,
-    postTrigger,
-    postBrowserByDate,
-    setPostBrowserByDate,
+    postToggler,
+    postBrowserValue,
+    setPostBrowserValue,
     searchedPostTrigger,
     setSearchedPostTrigger,
     searchedPostResult,
@@ -31,14 +31,14 @@ const SearchedPost = (props) => {
 
   // SEARCHED POST RESULT EFFECT
   useEffect(() => {
-    if (postBrowserByDate === '') {
+    if (postBrowserValue === '') {
       return null
     } else {
       axios
         .post(
           'https://akademia108.pl/api/social-app/post/older-then',
           JSON.stringify({
-            date: postBrowserByDate,
+            date: postBrowserValue,
           }),
           headerConfigAuth,
         )
@@ -56,7 +56,7 @@ const SearchedPost = (props) => {
         })
     }
   }, [
-    postTrigger,
+    postToggler,
     searchedPostTrigger,
     followToggler,
     props.profileInputInfo,
@@ -88,7 +88,7 @@ const SearchedPost = (props) => {
   const searchedPostCloser = () => {
     setSearchedPostTrigger(false)
     setSearchedPostResult([])
-    setPostBrowserByDate('')
+    setPostBrowserValue('')
   }
 
   // JSX
@@ -118,7 +118,7 @@ const SearchedPost = (props) => {
                       <p className="info-box__name">{post.user.username}</p>
                       <span className="info-box__email">{post.user.email}</span>
                     </div>
-                    {userToken &&
+                    {isLogged &&
                       post.user.username !== localStorage.getItem('name') && (
                         <div
                           className="unfollow-icon"

@@ -1,15 +1,20 @@
 import React, { useContext } from 'react'
-import './FollowedList.css'
 import axios from 'axios'
-import { GlobalContext } from '../../CreateContext'
+import './FollowedList.css'
+
+import { GlobalContext } from '../../tools/CreateContext'
 
 const FollowedList = (props) => {
-  const { headerConfigAuth, setDownbarContent, setDownbarDisplay, followToggler, setFollowToggler } = useContext(
-    GlobalContext,
-  )
-  /*
-   * removes user from the array of followed users and puts it back into recommendation list
-   */
+  // GLOBAL CONTEXT
+  const {
+    headerConfigAuth,
+    setDownbarContent,
+    setDownbarDisplay,
+    followToggler,
+    setFollowToggler,
+  } = useContext(GlobalContext)
+
+  // UNFOLLOW USER - FUNCTION
   const unfollowUser = (id) => {
     axios
       .post(
@@ -23,19 +28,16 @@ const FollowedList = (props) => {
         setFollowToggler(!followToggler)
         setDownbarDisplay(true)
         setDownbarContent('Follow has been removed')
-        console.log('unfollow response: ', res)
       })
       .catch((err) => {
         console.error(err)
       })
   }
 
-  /*
-   * jsx
-   */
+  // JSX
   return (
     <ul className="all-followed__list">
-      {props.allFollowedState.map((user) => {
+      {props.allFollowed.map((user) => {
         return (
           <li className="all-followed__list-item" key={user.id}>
             <img
@@ -43,10 +45,12 @@ const FollowedList = (props) => {
               alt="user_avatar"
               className="list-item__img"
             />
+
             <div className="list-item__data">
               <p className="data__name">{user.username}</p>
               <p className="data__email">{user.email}</p>
             </div>
+
             <div
               className="unfollow-icon"
               onClick={() => {

@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import './SignupForm.css'
-import { GlobalContext } from '../../CreateContext'
+import { GlobalContext } from '../../tools/CreateContext'
 
 const SignupForm = () => {
   // states

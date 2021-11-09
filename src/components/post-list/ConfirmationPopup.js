@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import './ConfirmationPopup.css'
 import axios from 'axios'
-import { GlobalContext } from '../../CreateContext'
+import { GlobalContext } from '../../tools/CreateContext'
 
 const ConfirmationPopup = (props) => {
   // use context
@@ -9,10 +9,10 @@ const ConfirmationPopup = (props) => {
     headerConfigAuth,
     setDownbarContent,
     setDownbarDisplay,
-    postTrigger,
-    setPostTrigger,
+    postToggler,
+    setPostToggler,
     postId,
-    setConfirmationPopup,
+    setConfirmationDisplay,
   } = useContext(GlobalContext)
   /*
    * delete post
@@ -27,7 +27,7 @@ const ConfirmationPopup = (props) => {
         headerConfigAuth,
       )
       .then((res) => {
-        setPostTrigger(!postTrigger)
+        setPostToggler(!postToggler)
         setDownbarDisplay(true)
         setDownbarContent('Post has been removed')
         console.log('post delete response: ', res)
@@ -35,7 +35,7 @@ const ConfirmationPopup = (props) => {
       .catch((err) => {
         console.error(err)
       })
-    setConfirmationPopup(false)
+    setConfirmationDisplay(false)
   }
 
   /*
@@ -55,7 +55,7 @@ const ConfirmationPopup = (props) => {
         </button>
         <button
           className="confirmation-popup__btn no"
-          onClick={() => setConfirmationPopup(false)}
+          onClick={() => setConfirmationDisplay(false)}
         >
           <i className="fas fa-times confirmation-popup__btn-no"></i>
         </button>

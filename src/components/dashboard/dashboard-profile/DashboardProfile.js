@@ -1,8 +1,8 @@
 import React from 'react'
 
 // COMPONENTS
-import ProfileData from './ProfileData'
-import ProfileInput from './ProfileInput'
+import ProfileData from '../dashboard-profile/ProfileData'
+import ProfileInput from '../dashboard-profile/ProfileInput'
 
 const DashboardProfile = () => {
   // JSX

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../../tools/CreateContext'
 import axios from 'axios'
 
 const UsersRecommended = (props) => {
@@ -7,15 +7,13 @@ const UsersRecommended = (props) => {
   const [recommendedUsers, setRecommendedUsers] = useState([])
 
   // GLOBAL CONTEXT
-  const {
-    userToken,
-    headerConfigAuth,
-    followToggler,
-  } = useContext(GlobalContext)
+  const { isLogged, headerConfigAuth, followToggler } = useContext(
+    GlobalContext,
+  )
 
   // RECOMMENDED USERS EFFECT
   useEffect(() => {
-    if (userToken) {
+    if (isLogged) {
       axios
         .post(
           'https://akademia108.pl/api/social-app/follows/recommendations',
@@ -29,7 +27,7 @@ const UsersRecommended = (props) => {
           console.error(err)
         })
     }
-  }, [followToggler, userToken])
+  }, [followToggler, isLogged])
 
   // JSX
   return (

@@ -1,16 +1,16 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../tools/CreateContext'
 import './CloserLink.css'
 
 const CloserLink = () => {
   // GLOBAL CONTEXT
-  const { loginPopup, setLoginPopup } = useContext(GlobalContext)
+  const { loginDisplay, setLoginDisplay } = useContext(GlobalContext)
 
   // LOGIN POPUP CLOSER - METHOD
-  const loginPopupCloser = () => {
-    if (loginPopup) {
-      setLoginPopup(false)
+  const loginDisplayCloser = () => {
+    if (loginDisplay) {
+      setLoginDisplay(false)
     }
   }
 
@@ -20,7 +20,7 @@ const CloserLink = () => {
       <Link
         className="closer-box__closer-link"
         to="/"
-        onClick={loginPopupCloser}
+        onClick={loginDisplayCloser}
       >
         <i className="fas fa-times closer-box__closer"></i>
       </Link>

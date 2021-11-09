@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from './CreateContext'
+import { GlobalContext } from '../../../tools/CreateContext'
 import axios from 'axios'
 
-import UsersRecommended from './UsersRecommended'
-import UsersInput from './UsersInput'
+import UsersRecommended from '../UsersRecommended'
+import UsersInput from '../dashboard-users/UsersInput'
 
 const DashboardUsers = () => {
   // GLOBAL CONTEXT

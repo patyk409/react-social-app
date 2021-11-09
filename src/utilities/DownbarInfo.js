@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
-import { GlobalContext } from './CreateContext'
 import './DownbarInfo.css'
 
-const DownbarInfo = () => {
-  const [downbarContent] = useContext(GlobalContext)
+import { GlobalContext } from '../tools/CreateContext'
 
-  console.log(downbarContent)
+const DownbarInfo = () => {
+  const { downbarContent } = useContext(GlobalContext)
   return (
     <aside
       className={
