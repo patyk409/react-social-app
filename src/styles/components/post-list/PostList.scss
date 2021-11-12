@@ -1,0 +1,79 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+// POST LIST
+.post {
+  position: relative;
+
+  .post-list {
+    margin: 200px 0 0;
+    width: 100%;
+
+    .post-list-item {
+      position: relative;
+      padding: 15px 15px 7px;
+      margin: 0 auto 30px;
+      max-width: $medium;
+      list-style: none;
+      @include window-basic-props;
+
+      .post-author {
+        position: relative;
+        margin: 0 0 15px;
+        @include df-center;
+        justify-content: flex-start;
+
+        &:hover .unfollow-icon {
+          opacity: 1;
+        }
+
+        .post-author-img {
+          margin: 0 15px 0 0;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+        }
+
+        .post-author-name {
+          font-weight: bold;
+        }
+
+        .post-author-email {
+          font-size: 12px;
+        }
+
+        .unfollow-icon {
+          @include follow-unfollow-icon;
+          top: 0;
+          left: 0;
+          width: 40px;
+          height: 40px;
+          background-color: $secondary-color;
+        }
+      }
+    }
+
+    .post-list-item:last-child {
+      margin: 0 auto 200px;
+    }
+
+    .post-content {
+      padding: 8px;
+      font-size: 14px;
+      color: $white-color;
+      background-color: $primary-color;
+      border-radius: 3px;
+    }
+  }
+}
+
+// POST MEDIA
+@media screen and (min-width: $medium) {
+  .post {
+    .post-list {
+      .post-list-item {
+        border: 2px solid $primary-color;
+      }
+    }
+  }
+}

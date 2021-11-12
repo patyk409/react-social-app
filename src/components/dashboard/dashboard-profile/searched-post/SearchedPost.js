@@ -3,7 +3,7 @@ import axios from 'axios'
 import './SearchedPost.css'
 
 // COMPONENTS
-import Post from '../../../post-list/Post'
+import PostInfo from '../../../post-list/PostInfo'
 import DeleteIcon from '../../../../utilities/DeleteIcon'
 import ConfirmationPopup from '../../../post-list/ConfirmationPopup'
 
@@ -142,7 +142,7 @@ const SearchedPost = (props) => {
                   </p>
 
                   {/* POST - INFO AND LIKE BOX */}
-                  <Post post={post} />
+                  <PostInfo post={post} />
                 </li>
               )
             })

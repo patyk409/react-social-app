@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import './DeleteIcon.css'
+import '../styles/utilities/DeleteIcon.scss'
 
 import { GlobalContext } from '../tools/CreateContext'
 
@@ -15,19 +15,19 @@ const DeleteIcon = (props) => {
 
   // JSX
   return (
-    <div className="delete-box">
+    <>
       {props.post.user.username === localStorage.getItem('name') && (
         <div
-          className="delete-box__delete-icon"
+          className="delete-icon"
           onClick={() => {
             showConfirmationPopup(props.post.id)
           }}
           tabIndex="0"
         >
-          <i className="fas fa-times delete-box__delete"></i>
+          <i className="fas fa-times"></i>
         </div>
       )}
-    </div>
+    </>
   )
 }
 

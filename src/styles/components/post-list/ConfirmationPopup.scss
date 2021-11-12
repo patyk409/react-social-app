@@ -1,0 +1,73 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+// CONFIRMATION POPUP
+.confirmation-popup {
+  position: fixed;
+  padding: 25px 0;
+  @include df-center;
+  flex-direction: column;
+  max-width: $medium;
+  @include window-basic-props;
+
+  .popup-text {
+    margin: 0 0 25px;
+    width: 80%;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .popup-button-container {
+    display: flex;
+    justify-content: space-evenly;
+    width: 70%;
+
+    .popup-button {
+      padding: 8px 0;
+      margin: 0 10px;
+      width: 60px;
+      font-size: 20px;
+      color: $white-color;
+      border-radius: 3px;
+      cursor: pointer;
+      @include transition-props(color, 0.2s);
+      @include transition-props(background-color, 0.2s);
+    }
+
+    .popup-button.yes {
+      background-color: $primary-color;
+      border: 2px solid $primary-color;
+
+      &:hover {
+        background-color: $white-color;
+        color: $primary-color;
+      }
+    }
+
+    .popup-button.no {
+      background-color: $secondary-color;
+      border: 2px solid $secondary-color;
+
+      &:hover {
+        background-color: $white-color;
+        color: $secondary-color;
+      }
+    }
+  }
+}
+
+// POPUP MEDIA
+@media screen and (min-width: $small) {
+  .confirmation-popup {
+    .popup-button-container {
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (min-width: $medium) {
+  .confirmation-popup {
+    border: 2px solid $primary-color;
+  }
+}

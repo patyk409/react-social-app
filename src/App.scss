@@ -1,0 +1,64 @@
+@import './styles/mixins';
+
+// SOCIAL APP
+.social-app-container {
+  display: flex;
+  flex-direction: column;
+  @include bg-image;
+  font-family: 'Quicksand', cursive;
+  color: $black-color;
+  min-height: 100vh;
+
+  //HEADER
+  .header-container {
+    padding: 15px 0;
+    margin: 0 0 50px;
+    @include df-center;
+    background-color: $primary-bg-color;
+    border-bottom: 2px solid $primary-color;
+
+    .header {
+      margin: 0;
+      font-size: 32px;
+
+      .header-link {
+        text-decoration: none;
+        color: $black-color;
+        cursor: pointer;
+
+        .header-link-icon {
+          margin: 0 0 0 15px;
+          font-size: 30px;
+          color: $secondary-color;
+        }
+      }
+    }
+  }
+
+  // FOOTER
+  .footer-container {
+    padding: 20px 0;
+    margin-top: auto;
+    @include df-center;
+    font-weight: bold;
+    background-color: $primary-bg-color;
+    border-top: 2px solid $primary-color;
+
+    .footer-icon {
+      margin: 0 5px;
+      font-size: 20px;
+      color: $secondary-color;
+    }
+  }
+}
+
+.popup-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include df-center;
+  width: 100%;
+  height: 100%;
+  background-color: $popup-bg-color;
+  z-index: 1000;
+}

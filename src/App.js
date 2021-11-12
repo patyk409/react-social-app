@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link, Switch, Route } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 
 // COMPONENTS
 import Nav from './components/nav/Nav'
@@ -71,13 +71,13 @@ const App = () => {
 
   // JSX
   return (
-    <div className="app-social">
+    <div className="social-app-container">
       {/* HEADER */}
-      <header className="app-social__app-header">
-        <h1 className="app-header__content">
-          <Link className="app-header__link" to="/">
+      <header className="header-container">
+        <h1 className="header">
+          <Link className="header-link" to="/">
             Social Club
-            <i className="fas fa-icons app-header__link-icon"></i>
+            <i className="fas fa-icons header-link-icon"></i>
           </Link>
         </h1>
       </header>
@@ -115,15 +115,15 @@ const App = () => {
 
       {/* LOGIN POPUP */}
       {loginDisplay && (
-        <aside className="app-popup-bg">
+        <aside className="popup-background">
           <Login />
         </aside>
       )}
 
       {/* FOOTER */}
-      <footer className="app-social__app-footer" ref={setRef}>
-        <p className="app-footer__content">
-          Social Club<i className="far fa-copyright app-footer__icon"></i>2021
+      <footer className="footer-container" ref={setRef}>
+        <p>
+          Social Club<i className="far fa-copyright footer-icon"></i>2021
         </p>
       </footer>
 

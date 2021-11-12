@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import './PostList.css'
+import '../../styles/components/post-list/PostList.scss'
 
 // COMPONENTS
-import Post from './Post'
+import PostInfo from './PostInfo'
 import ConfirmationPopup from './ConfirmationPopup'
 
 import Preloader from '../../utilities/Preloader'
@@ -91,21 +91,21 @@ const PostList = (props) => {
 
   // JSX
   return (
-    <main className="post-box">
-      <ul className="post-box__post-list">
+    <main className="post">
+      <ul className="post-list">
         {latestPosts.map((post) => {
           return (
-            <li className="post-list__post-item" key={post.id}>
+            <li className="post-list-item" key={post.id}>
               <div className="post-author">
                 <img
                   src={post.user.avatar_url}
                   alt="user_avatar"
-                  className="post-author__img"
+                  className="post-author-img"
                 />
 
                 <div>
-                  <p className="post-author__name">{post.user.username}</p>
-                  <span className="post-author__email">{post.user.email}</span>
+                  <p className="post-author-name">{post.user.username}</p>
+                  <span className="post-author-email">{post.user.email}</span>
                 </div>
 
                 {isLogged &&
@@ -117,7 +117,7 @@ const PostList = (props) => {
                     }}
                     tabIndex="0"
                   >
-                    <i className="fas fa-minus post-author__unfollow-icon"></i>
+                    <i className="fas fa-minus"></i>
                   </div>
                 )}
 
@@ -125,17 +125,17 @@ const PostList = (props) => {
                 <DeleteIcon post={post} />
               </div>
 
-              <p className="post-item__content">{post.content}</p>
+              <p className="post-content">{post.content}</p>
 
               {/* POST - INFO AND LIKE BOX */}
-              <Post post={post} />
+              <PostInfo post={post} />
             </li>
           )
         })}
 
         {/* DELETE POST - CONFIRMATION POPUP */}
         {confirmationDisplay && !searchedPostTrigger && (
-          <aside className="app-popup-bg">
+          <aside className="popup-background">
             <ConfirmationPopup postId={postId} />
           </aside>
         )}

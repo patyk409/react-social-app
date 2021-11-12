@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import './DownbarInfo.css'
+import '../styles/utilities/DownbarInfo.scss'
 
 import { GlobalContext } from '../tools/CreateContext'
 
@@ -14,11 +14,11 @@ const DownbarInfo = () => {
         downbarContent.includes('added') ||
         downbarContent.includes('in') ||
         downbarContent.includes('up')
-          ? 'app-message app-message--green'
-          : 'app-message app-message--red'
+          ? 'downbar-container downbar-bg-green'
+          : 'downbar-container downbar-bg-orange'
       }
     >
-      <p className="app-message__content">{downbarContent}</p>
+      <p className="downbar-content">{downbarContent}</p>
     </aside>
   )
 }

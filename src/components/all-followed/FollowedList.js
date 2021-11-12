@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
-import './FollowedList.css'
+import '../../styles/components/all-followed/FollowedList.scss'
 
 import { GlobalContext } from '../../tools/CreateContext'
 
@@ -36,19 +36,19 @@ const FollowedList = (props) => {
 
   // JSX
   return (
-    <ul className="all-followed__list">
+    <ul className="all-followed-list">
       {props.allFollowed.map((user) => {
         return (
-          <li className="all-followed__list-item" key={user.id}>
+          <li className="followed-list-item" key={user.id}>
             <img
               src={user.avatar_url}
               alt="user_avatar"
-              className="list-item__img"
+              className="followed-user-avatar"
             />
 
-            <div className="list-item__data">
-              <p className="data__name">{user.username}</p>
-              <p className="data__email">{user.email}</p>
+            <div className="followed-user-data">
+              <p className="followed-user-name">{user.username}</p>
+              <p className="followed-user-email">{user.email}</p>
             </div>
 
             <div
@@ -58,7 +58,7 @@ const FollowedList = (props) => {
               }}
               tabIndex="0"
             >
-              <i className="fas fa-minus all-followed__unfollow-icon"></i>
+              <i className="fas fa-minus"></i>
             </div>
           </li>
         )

@@ -1,0 +1,43 @@
+@import '../mixins';
+
+// PRELOADER
+.preloader-container {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  @include df-center;
+  display: none;
+  width: 100px;
+  height: 80px;
+  border: 2px solid $primary-color;
+  background-color: $primary-bg-color;
+  @include transform-props(translateX(-50%));
+
+  .preloader {
+    width: 50px;
+    height: 50px;
+    border: {
+      top: 10px solid $primary-color;
+      bottom: 10px solid $secondary-color;
+      left: 10px solid transparent;
+      right: 10px solid transparent;
+      radius: 50%
+    }
+    animation: spin 1s linear infinite;
+    -webkit-animation: spin 1s linear infinite;
+  }
+}
+
+.preloader-active {
+  display: flex;
+}
+
+// PRELOADER ANIMATION
+@keyframes spin {
+  from {
+    @include transform-props(rotate(0deg));
+  }
+  to {
+    @include transform-props(rotate(360deg));
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import './Preloader.css'
+import '../styles/utilities/Preloader.scss'
 
 const Preloader = (props) => {
   // JSX
@@ -7,11 +7,11 @@ const Preloader = (props) => {
     <div
       className={
         props.isVisible
-          ? 'preloader-container preloader--active'
+          ? 'preloader-container preloader-active'
           : 'preloader-container'
       }
     >
-      <div className="preloader-container__preloader"></div>
+      <div className="preloader"></div>
     </div>
   )
 }

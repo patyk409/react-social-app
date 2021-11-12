@@ -1,0 +1,17 @@
+@import '../mixins';
+
+// DELETE ICON
+.delete-icon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  font-size: 20px;
+  color: $secondary-color;
+  @include transition-props(color, 0.2);
+
+  &:hover {
+    color: $primary-color;
+    cursor: pointer;
+  }
+}

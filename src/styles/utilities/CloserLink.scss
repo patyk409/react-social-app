@@ -1,0 +1,17 @@
+@import '../mixins';
+
+// CLOSER LINK
+.closer-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 15px;
+  font-size: 20px;
+  color: $secondary-color;
+  @include transition-props(color, 0.2s);
+
+  &:hover {
+    color: $primary-color;
+    cursor: pointer;
+  }
+}

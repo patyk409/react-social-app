@@ -1,0 +1,37 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+// ALL FOLLOWED
+.all-followed {
+  padding: 20px 0;
+  margin: 50px auto 200px;
+  position: relative;
+  max-width: $medium;
+  text-align: center;
+  @include window-basic-props;
+
+  .all-followed-header {
+    margin: 0 0 15px;
+    font-size: 22px;
+
+    .header-icon {
+      margin: 0 0 0 15px;
+      font-size: 24px;
+      color: $primary-color;
+    }
+  }
+
+  .all-followed-info {
+    padding: 30px 0;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+// ALL FOLLOWED MEDIA
+@media screen and (min-width: $medium) {
+  .all-followed {
+    border: 2px solid $primary-color;
+  }
+}

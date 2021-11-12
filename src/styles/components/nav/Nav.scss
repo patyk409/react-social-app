@@ -1,0 +1,51 @@
+@import '../../mixins';
+
+// NAV
+.nav {
+  @include window-basic-props;
+  z-index: 100;
+
+  .nav-list {
+    margin: 0 auto;
+    @include df-center;
+    justify-content: space-around;
+    max-width: 768px;
+
+    .nav-list-item {
+      padding: 10px;
+      list-style: none;
+      font-size: 16px;
+      font-weight: bold;
+
+      .nav-link {
+        @include df-center;
+        flex-direction: column;
+        text-decoration: none;
+        color: $black-color;
+        cursor: pointer;
+
+        &:hover .nav-link-icon {
+          color: $primary-color;
+        }
+
+        .nav-link-icon {
+          padding: 0 0 5px 0;
+          font-size: 20px;
+          color: $secondary-color;
+          @include transition-props(color, 0.2s);
+        }
+      }
+    }
+  }
+}
+
+.nav-sticky {
+  position: sticky;
+  top: -2px;
+}
+
+.nav-on-scroll {
+  background-color: $nav-on-scroll-color;
+  border-bottom: 2px solid $black-color;
+  box-shadow: 0 5px 30px 5px $black-color;
+}

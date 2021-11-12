@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import './Login.css'
+import '../../styles/components/login/Login.scss'
 
 // COMPONENTS
 import LoginForm from './LoginForm'
@@ -14,9 +14,9 @@ const Login = () => {
   // JSX
   return (
     <div className={loginDisplay ? 'login login-popup' : 'login'}>
-      <h3 className="login__header">
+      <h3 className="login-header">
         Log in
-        <i className="fas fa-sign-in-alt login__header-icon"></i>
+        <i className="fas fa-sign-in-alt login-header-icon"></i>
       </h3>
       {/* LOGIN FORM */}
       <LoginForm />

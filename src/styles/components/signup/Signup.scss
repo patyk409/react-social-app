@@ -1,0 +1,29 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+// SIGNUP
+.signup {
+  padding: 20px 0;
+  margin: 50px auto 200px;
+  position: relative;
+  max-width: $medium;
+  text-align: center;
+  @include window-basic-props;
+
+  .signup-header {
+    margin: 0 0 15px;
+    font-size: 22px;
+
+    .signup-header-icon {
+      margin: 0 0 0 15px;
+      color: $primary-color;
+    }
+  }
+}
+
+// SIGNUP MEDIA
+@media screen and (min-width: $medium) {
+  .signup {
+    border: 2px solid $primary-color;
+  }
+}

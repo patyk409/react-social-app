@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
-import './ConfirmationPopup.css'
+import '../../styles/components/post-list/ConfirmationPopup.scss'
 
 import { GlobalContext } from '../../tools/CreateContext'
 
@@ -40,23 +40,23 @@ const ConfirmationPopup = (props) => {
   // JSX
   return (
     <div className="confirmation-popup">
-      <p className="confimation-popup__text">
+      <p className="popup-text">
         Do you really want to delete this post?
       </p>
 
-      <div className="confirmation-popup__button-box">
+      <div className="popup-button-container">
         <button
-          className="confirmation-popup__btn yes"
+          className="popup-button yes"
           onClick={() => deletePost(postId)}
         >
-          <i className="fas fa-check confirmation-popup__btn-yes"></i>
+          <i className="fas fa-check"></i>
         </button>
 
         <button
-          className="confirmation-popup__btn no"
+          className="popup-button no"
           onClick={() => setConfirmationDisplay(false)}
         >
-          <i className="fas fa-times confirmation-popup__btn-no"></i>
+          <i className="fas fa-times"></i>
         </button>
       </div>
     </div>

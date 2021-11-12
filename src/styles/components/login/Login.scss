@@ -1,0 +1,34 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+// LOGIN
+.login {
+  padding: 20px 0;
+  margin: 50px auto 200px;
+  position: relative;
+  max-width: $medium;
+  text-align: center;
+  @include window-basic-props;
+
+  .login-header {
+    margin: 0 0 15px;
+    font-size: 22px;
+
+    .login-header-icon {
+      margin: 0 0 0 15px;
+      color: $primary-color;
+    }
+  }
+}
+
+.login-popup {
+  margin: 0 auto;
+  z-index: 1000;
+}
+
+// LOGIN MEDIA
+@media screen and (min-width: $medium) {
+  .login {
+    border: 2px solid $primary-color;
+  }
+}

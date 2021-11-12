@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
-import './AllFollowed.css'
+import '../../styles/components/all-followed/AllFollowed.scss'
 
 // COMPONENTS
 import FollowedList from './FollowedList'
@@ -33,19 +33,19 @@ const AllFollowed = () => {
           console.error(err)
         })
     }
-  }, [followToggler])
+  }, [isLogged, followToggler])
 
   // JSX
   return (
     <div className="all-followed">
-      <h3 className="all-followed__header">
+      <h3 className="all-followed-header">
         Followed
-        <i className="fas fa-user-friends all-followed__header-icon"></i>
+        <i className="fas fa-user-friends header-icon"></i>
       </h3>
       {/* ALL FOLLOWED LIST */}
       <FollowedList allFollowed={allFollowed} />
       {allFollowed.length === 0 && (
-        <p className="all-followed__info">
+        <p className="all-followed-info">
           Seems like you don't follow anyone...
         </p>
       )}

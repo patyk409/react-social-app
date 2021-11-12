@@ -8,11 +8,11 @@ import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <ContextProvider>
+    <ContextProvider>
+      <Router>
         <App />
-      </ContextProvider>
-    </Router>
+      </Router>
+    </ContextProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 )

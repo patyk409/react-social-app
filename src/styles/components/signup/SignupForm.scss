@@ -1,0 +1,87 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+// SIGNUP FORM
+.signup-form {
+  padding: 10px 0 0 0;
+  @include df-center;
+  flex-direction: column;
+
+  .form-label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .form-text-input {
+    padding: 0 5px;
+    margin: 10px 0;
+    width: 250px;
+    height: 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 12px;
+    color: $black-color;
+    background-color: $white-color;
+    border: 2px solid $primary-color;
+    border-radius: 3px;
+    outline: 0;
+    @include transition-props(border, 0.2s);
+  }
+
+  .form-text-input:focus,
+  .form-text-input.warning {
+    border: 2px solid $secondary-color;
+  }
+
+  .form-submit-input,
+  .form-redirection-link {
+    padding: 10px 0;
+    margin: 15px 0 0;
+    width: 100px;
+    font-size: 14px;
+    font-weight: bold;
+    color: $white-color;
+    border-radius: 3px;
+    cursor: pointer;
+    @include transition-props(color, 0.2s);
+    @include transition-props(background-color, 0.2s);
+  }
+
+  .form-submit-input {
+    font-family: 'Quicksand', sans-serif;
+    background-color: $primary-color;
+    border: 2px solid $primary-color;
+
+    &:hover {
+      color: $primary-color;
+      background-color: $white-color;
+    }
+  }
+
+  .form-redirection-link {
+    margin: 0;
+    text-decoration: none;
+    border: 2px solid $secondary-color;
+    background-color: $secondary-color;
+
+    &:hover {
+      color: $secondary-color;
+      background-color: $white-color;
+    }
+  }
+
+  .form-warning-list {
+    width: 80%;
+
+    .warning-item {
+      margin: 15px auto;
+      list-style: none;
+      font-size: 14px;
+      font-weight: bold;
+      color: $secondary-color;
+    }
+
+    .warning-item:first-child {
+      color: $black-color;
+    }
+  }
+}

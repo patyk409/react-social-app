@@ -1,0 +1,61 @@
+@import './colors';
+
+// WINDOW BASIC PROPS
+@mixin window-basic-props {
+  width: 100%;
+  background-color: $primary-bg-color;
+  border: {
+    top: 2px solid $primary-color;
+    bottom: 2px solid $primary-color;
+  }
+}
+
+// BACKGROUND IMAGE
+@mixin bg-image {
+  background-image: linear-gradient(
+      $secondary-bg-color 0%,
+      $secondary-bg-color 100%
+    ),
+    url('../images/bg.jpg');
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+// FLEX CENTER
+@mixin df-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// TRANSITION PROPS
+@mixin transition-props($value, $duration) {
+  transition: $value $duration;
+  -webkit-transition: $value $duration;
+  -moz-transition: $value $duration;
+  -ms-transition: $value $duration;
+  -o-transition: $value $duration;
+}
+
+// TRANSFORM PROPS
+@mixin transform-props($value) {
+  transform: $value;
+  -webkit-transform: $value;
+  -moz-transform: $value;
+  -ms-transform: $value;
+  -o-transform: $value;
+}
+
+// FOLLOW / UNFOLLOW ICON
+@mixin follow-unfollow-icon {
+  position: absolute;
+  @include df-center;
+  font-size: 20px;
+  color: $white-color;
+  border-radius: 50%;
+  opacity: 0;
+  cursor: pointer;
+  @include transition-props(opacity, 0.2s);
+}

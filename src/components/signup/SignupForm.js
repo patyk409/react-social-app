@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
-import './SignupForm.css'
+import '../../styles/components/signup/SignupForm.scss'
 
 import { GlobalContext } from '../../tools/CreateContext'
 
@@ -91,7 +91,7 @@ const SignupForm = () => {
   // JSX
   return (
     <form className="signup-form" onSubmit={signUserDataUp}>
-      <label className="signup-form__label" htmlFor="name">
+      <label className="form-label" htmlFor="name">
         Name:
       </label>
       <input
@@ -103,12 +103,12 @@ const SignupForm = () => {
         }}
         className={
           nameWarning
-            ? 'signup-form__text-input warning'
-            : 'signup-form__text-input'
+            ? 'form-text-input warning'
+            : 'form-text-input'
         }
       />
 
-      <label className="signup-form__label" htmlFor="email">
+      <label className="form-label" htmlFor="email">
         Email:
       </label>
       <input
@@ -120,12 +120,12 @@ const SignupForm = () => {
         }}
         className={
           emailWarning
-            ? 'signup-form__text-input warning'
-            : 'signup-form__text-input'
+            ? 'form-text-input warning'
+            : 'form-text-input'
         }
       />
 
-      <label className="signup-form__label" htmlFor="password">
+      <label className="form-label" htmlFor="password">
         Password:
       </label>
       <input
@@ -137,12 +137,12 @@ const SignupForm = () => {
         }}
         className={
           passwordWarning
-            ? 'signup-form__text-input warning'
-            : 'signup-form__text-input'
+            ? 'form-text-input warning'
+            : 'form-text-input'
         }
       />
 
-      <label className="signup-form__label" htmlFor="confirm">
+      <label className="form-label" htmlFor="confirm">
         Confirm:
       </label>
       <input
@@ -154,8 +154,8 @@ const SignupForm = () => {
         }}
         className={
           passwordWarning
-            ? 'signup-form__text-input warning'
-            : 'signup-form__text-input'
+            ? 'form-text-input warning'
+            : 'form-text-input'
         }
       />
 
@@ -163,22 +163,22 @@ const SignupForm = () => {
         type="submit"
         value="Sign up"
         onClick={formValidation}
-        className="signup-form__submit-input"
+        className="form-submit-input"
       />
 
-      <ul className="signup-form__warning-list">
-        <li className="warning-list__warning-item">
+      <ul className="form-warning-list">
+        <li className="warning-item">
           {!(nameWarning || emailWarning || passwordWarning)
             ? 'Already registered? Log in now and enjoy...'
             : null}
         </li>
-        <li className="warning-list__warning-item">{nameWarning}</li>
-        <li className="warning-list__warning-item">{emailWarning}</li>
-        <li className="warning-list__warning-item">{passwordWarning}</li>
+        <li className="warning-item">{nameWarning}</li>
+        <li className="warning-item">{emailWarning}</li>
+        <li className="warning-item">{passwordWarning}</li>
       </ul>
 
       {/* LOGIN LINK */}
-      <Link className="signup-form__redirection-link" to="/login">
+      <Link className="form-redirection-link" to="/login">
         Log in
       </Link>
     </form>

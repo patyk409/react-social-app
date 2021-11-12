@@ -1,0 +1,55 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+// FOLLOWED LIST
+.all-followed-list {
+  margin: 0 auto;
+  padding: 0;
+  width: 80%;
+  max-width: 400px;
+
+  .followed-list-item {
+    position: relative;
+    padding: 10px 0;
+    @include df-center;
+    justify-content: flex-end;
+
+    &:hover .unfollow-icon {
+      opacity: 1;
+    }
+
+    .followed-user-avatar {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      width: 40px;
+      border-radius: 50%;
+    }
+
+    .followed-user-data {
+      margin: 0 15px 0 0;
+      text-align: right;
+
+      .followed-user-name {
+        font-weight: bold;
+      }
+
+      .followed-user-email {
+        font-size: 14px;
+      }
+    }
+
+    .unfollow-icon {
+      @include follow-unfollow-icon;
+      top: 10px;
+      left: 15px;
+      width: 40px;
+      height: 40px;
+      background-color: $secondary-color;
+    }
+  }
+
+  .followed-list-item:not(:last-child) {
+    border-bottom: 2px solid $primary-color;
+  }
+}

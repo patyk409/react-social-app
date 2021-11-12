@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import './Nav.css'
+import '../../styles/components/nav/Nav.scss'
 
 import { GlobalContext } from '../../tools/CreateContext'
 
@@ -80,22 +80,18 @@ const Nav = () => {
     <nav className={navClassName}>
       <ul className="nav-list">
         {/* HOME LINK */}
-        <li className="nav-list__list-item">
-          <Link
-            className="list-item__link"
-            to="/"
-            onClick={windowCloseAndRefresh}
-          >
-            <i className="fas fa-home list-item__link-icon"></i>
+        <li className="nav-list-item">
+          <Link className="nav-link" to="/" onClick={windowCloseAndRefresh}>
+            <i className="fas fa-home nav-link-icon"></i>
             Home
           </Link>
         </li>
 
         {/* SIGNUP FORM */}
         {!isLogged && (
-          <li className="nav-list__list-item">
-            <Link className="list-item__link" to="/signup">
-              <i className="fas fa-user-plus list-item__link-icon"></i>
+          <li className="nav-list-item">
+            <Link className="nav-link" to="/signup">
+              <i className="fas fa-user-plus nav-link-icon"></i>
               Sign up
             </Link>
           </li>
@@ -103,9 +99,9 @@ const Nav = () => {
 
         {/* LOGIN FORM */}
         {!isLogged && (
-          <li className="nav-list__list-item">
-            <Link className="list-item__link" to="/login">
-              <i className="fas fa-sign-in-alt list-item__link-icon"></i>
+          <li className="nav-list-item">
+            <Link className="nav-link" to="/login">
+              <i className="fas fa-sign-in-alt nav-link-icon"></i>
               Log in
             </Link>
           </li>
@@ -113,13 +109,13 @@ const Nav = () => {
 
         {/* ALL FOLLOWED LINK */}
         {isLogged && (
-          <li className="nav-list__list-item">
+          <li className="nav-list-item">
             <Link
-              className="list-item__link"
+              className="nav-link"
               to="/followed"
               onClick={windowCloseAndRefresh}
             >
-              <i className="fas fa-user-friends list-item__link-icon"></i>
+              <i className="fas fa-user-friends nav-link-icon"></i>
               Followed
             </Link>
           </li>
@@ -127,9 +123,9 @@ const Nav = () => {
 
         {/* LOGOUT */}
         {isLogged && (
-          <li className="nav-list__list-item">
-            <Link className="list-item__link" to="/" onClick={logUserDataOut}>
-              <i className="fas fa-sign-out-alt list-item__link-icon"></i>
+          <li className="nav-list-item">
+            <Link className="nav-link" to="/" onClick={logUserDataOut}>
+              <i className="fas fa-sign-out-alt nav-link-icon"></i>
               Log out
             </Link>
           </li>

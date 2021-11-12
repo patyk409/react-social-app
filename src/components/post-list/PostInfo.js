@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import moment from 'moment'
-import './Post.css'
+import '../../styles/components/post-list/PostInfo.scss'
 
 import { GlobalContext } from '../../tools/CreateContext'
 
@@ -67,42 +67,37 @@ const Post = (props) => {
 
   // JSX
   return (
-    <div className="post">
-      <div className="post-item__post-info">
-        <span className="post-info__post-date">
-          {moment(props.post.created_at).fromNow()}
-        </span>
+    <div className="post-info">
+      <span className="post-date">
+        {moment(props.post.created_at).fromNow()}
+      </span>
 
-        <div className="like-box">
-          <span className="like-box__counter">{likeCounter.length}</span>
+      <div className="like-container">
+        <span className="like-counter">{likeCounter.length}</span>
 
-          {isLogged && (
-            <i
-              className={
-                likeCounter.filter((like) => {
-                  return like.username === localStorage.getItem('name')
-                }).length > 0
-                  ? 'far fa-heart like-box__icon--active'
-                  : 'far fa-heart like-box__icon'
-              }
-              onClick={() => {
-                likeCounter.filter((like) => {
-                  return like.username === localStorage.getItem('name')
-                }).length > 0
-                  ? postDislike(props.post.id)
-                  : postLike(props.post.id)
-              }}
-              tabIndex="0"
-            ></i>
-          )}
+        {isLogged && (
+          <i
+            className={
+              likeCounter.filter((like) => {
+                return like.username === localStorage.getItem('name')
+              }).length > 0
+                ? 'far fa-heart like-icon-active'
+                : 'far fa-heart like-icon'
+            }
+            onClick={() => {
+              likeCounter.filter((like) => {
+                return like.username === localStorage.getItem('name')
+              }).length > 0
+                ? postDislike(props.post.id)
+                : postLike(props.post.id)
+            }}
+            tabIndex="0"
+          ></i>
+        )}
 
-          {!isLogged && (
-            <i
-              className="far fa-heart like-box__icon--disabled"
-              tabIndex="0"
-            ></i>
-          )}
-        </div>
+        {!isLogged && (
+          <i className="far fa-heart like-icon-disabled" tabIndex="0"></i>
+        )}
       </div>
     </div>
   )

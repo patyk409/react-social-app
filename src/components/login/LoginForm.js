@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
-import './LoginForm.css'
+import '../../styles/components/login/LoginForm.scss'
 
 import { GlobalContext } from '../../tools/CreateContext'
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   // LOCAL STATE
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
@@ -80,34 +80,28 @@ const LoginForm = (props) => {
   // JSX
   return (
     <form className="login-form" onSubmit={logUserDataIn}>
-      <label className="login-form__label" htmlFor="Name">
+      <label className="form-label" htmlFor="name">
         Name:
       </label>
       <input
-        id="Name"
+        id="name"
         type="text"
         placeholder="Username"
         autoComplete="new-password"
         onChange={(event) => setName(event.target.value)}
-        className={
-          nameWarning
-            ? 'login-form__text-input warning'
-            : 'login-form__text-input'
-        }
+        className={nameWarning ? 'form-text-input warning' : 'form-text-input'}
       />
 
-      <label className="login-form__label" htmlFor="Password">
+      <label className="form-label" htmlFor="password">
         Password:
       </label>
       <input
-        id="Password"
+        id="password"
         type="password"
         placeholder="Password"
         onChange={(event) => setPassword(event.target.value)}
         className={
-          passwordWarning
-            ? 'login-form__text-input warning'
-            : 'login-form__text-input'
+          passwordWarning ? 'form-text-input warning' : 'form-text-input'
         }
       />
 
@@ -115,22 +109,21 @@ const LoginForm = (props) => {
         type="submit"
         value="Log in"
         onClick={formValidation}
-        className="login-form__submit-input"
+        className="form-submit-input"
       />
 
-      <ul className="login-form__warning-list">
-        <li className="warning-list__warning-item">
-          {!(nameWarning || passwordWarning)
-            ? "Don't have an account yet? Create it now and enjoy..."
-            : null}
+      <ul className="form-warning-list">
+        <li className="warning-item">
+          {!(nameWarning || passwordWarning) &&
+            "Don't have an account yet? Create it now and enjoy..."}
         </li>
-        <li className="warning-list__warning-item">{nameWarning}</li>
-        <li className="warning-list__warning-item">{passwordWarning}</li>
+        <li className="warning-item">{nameWarning}</li>
+        <li className="warning-item">{passwordWarning}</li>
       </ul>
 
       {/* SIGNUP LINK */}
       <Link
-        className="login-form__redirection-link"
+        className="form-redirection-link"
         to="/signup"
         onClick={() => setLoginDisplay(false)}
       >
