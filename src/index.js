@@ -2,8 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { ContextProvider } from './tools/CreateContext'
-import './index.css'
+import { ContextProvider } from './context/CreateContext'
+import './index.scss'
 import App from './App'
 
 ReactDOM.render(

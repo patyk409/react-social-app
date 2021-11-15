@@ -1,0 +1,20 @@
+@import '../../mixins';
+@import '../../breakpoints';
+
+//DASHBOARD
+.dashboard {
+  padding: 20px 0;
+  margin: 50px auto 0;
+  @include df-center;
+  flex-direction: column;
+  max-width: $medium;
+  @include window-basic-props;
+}
+
+// DASHBOARD MEDIA
+@media screen and (min-width: $medium) {
+  .dashboard {
+    flex-direction: row;
+    border: 2px solid $primary-color;
+  }
+}

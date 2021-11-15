@@ -1,13 +1,13 @@
 import React, { useEffect, useContext } from 'react'
 import axios from 'axios'
-import './SearchedPost.css'
+import '../../../../styles/components/dashboard/dashboard-profile/searched-post/SearchedPost.scss'
 
 // COMPONENTS
 import PostInfo from '../../../post-list/PostInfo'
 import DeleteIcon from '../../../../utilities/DeleteIcon'
 import ConfirmationPopup from '../../../post-list/ConfirmationPopup'
 
-import { GlobalContext } from '../../../../tools/CreateContext'
+import { GlobalContext } from '../../../../context/CreateContext'
 
 const SearchedPost = (props) => {
   // GLOBAL CONTEXT
@@ -28,12 +28,15 @@ const SearchedPost = (props) => {
     setFollowToggler,
     setDownbarDisplay,
     setDownbarContent,
+    profileInputInfo,
+    setProfileInputInfo,
+    searchedPostToggler,
   } = useContext(GlobalContext)
 
   // SEARCHED POST RESULT EFFECT
   useEffect(() => {
     if (postBrowserValue === '') {
-      return null
+      return setSearchedPostResult([])
     } else {
       axios
         .post(
@@ -46,7 +49,7 @@ const SearchedPost = (props) => {
         .then((res) => {
           setSearchedPostResult(res.data)
           if (res.data.length === 0) {
-            props.setProfileInputInfo(
+            setProfileInputInfo(
               `There are no older posts for the date you entered, check date again and keep looking`,
             )
           }
@@ -55,12 +58,7 @@ const SearchedPost = (props) => {
           console.error(err)
         })
     }
-  }, [
-    postToggler,
-    followToggler,
-    props.profileInputInfo,
-    props.searchedPostToggler,
-  ])
+  }, [postToggler, followToggler, profileInputInfo, searchedPostToggler])
 
   // UNFOLLOW USER - FUNCTION
   const unfollowUser = (id) => {
@@ -72,7 +70,7 @@ const SearchedPost = (props) => {
         }),
         headerConfigAuth,
       )
-      .then((res) => {
+      .then(() => {
         setFollowToggler(!followToggler)
         setDownbarDisplay(true)
         setDownbarContent('Follow has been removed')
@@ -93,28 +91,29 @@ const SearchedPost = (props) => {
   return (
     <>
       <div className="searched-post-result">
-        <ul className="searched-post-result__result-list">
+        <ul className="searched-post-list">
           {searchedPostResult.length === 0 ? (
-            <div className="result-list__info-box">
-              <p className="result-list__info">{props.profileInputInfo}</p>
+            <div className="result-list-info-container">
+              <p className="result-list-info">{profileInputInfo}</p>
             </div>
           ) : (
             searchedPostResult.map((post) => {
               return (
-                <li
-                  className="searched-post-result__result-list-item"
-                  key={post.id}
-                >
-                  <div className="result-list-item__author-box">
+                <li className="result-list-item" key={post.id}>
+                  <div className="result-list-item-author-container">
                     <img
                       src={post.user.avatar_url}
                       alt="user_avatar"
-                      className="author-box__avatar"
+                      className="author-container-user-avatar"
                     />
 
-                    <div className="author-box__info-box">
-                      <p className="info-box__name">{post.user.username}</p>
-                      <span className="info-box__email">{post.user.email}</span>
+                    <div className="author-container-user-data">
+                      <p className="author-container-user-name">
+                        {post.user.username}
+                      </p>
+                      <span className="author-container-user-email">
+                        {post.user.email}
+                      </span>
                     </div>
 
                     {isLogged &&
@@ -126,7 +125,7 @@ const SearchedPost = (props) => {
                           }}
                           tabIndex="0"
                         >
-                          <i className="fas fa-minus result-list-item__unfollow-icon"></i>
+                          <i className="fas fa-minus"></i>
                         </div>
                       )}
 
@@ -137,7 +136,7 @@ const SearchedPost = (props) => {
                     />
                   </div>
 
-                  <p className="result-list-item__post-content">
+                  <p className="result-list-item-post-content">
                     {post.content}
                   </p>
 
@@ -149,7 +148,7 @@ const SearchedPost = (props) => {
           )}
 
           {/* DELETE POST - CONFIRMATION POPUP */}
-          {confirmationPopup && searchedPostTrigger && (
+          {confirmationPopup && (
             <aside className="app-popup-bg">
               <ConfirmationPopup
                 setConfirmationPopup={setConfirmationPopup}
@@ -162,12 +161,12 @@ const SearchedPost = (props) => {
 
       {searchedPostTrigger && (
         <div
-          className="result-list__closer"
+          className="result-list-result-closer"
           onClick={() => {
             searchedPostCloser()
           }}
         >
-          <i className="fas fa-times result-list__closer-icon"></i>
+          <i className="fas fa-times"></i>
         </div>
       )}
     </>

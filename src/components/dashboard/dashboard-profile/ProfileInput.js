@@ -1,17 +1,15 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
+import '../../../styles/components/dashboard/DashboardInput.scss'
 
 // COMPONENTS
 import SearchedPost from '../dashboard-profile/searched-post/SearchedPost'
 
-import { GlobalContext } from '../../../tools/CreateContext'
+import { GlobalContext } from '../../../context/CreateContext'
 
 const ProfileInput = () => {
   // LOCAL STATE
   const [postContent, setPostContent] = useState('')
-
-  const [profileInputInfo, setProfileInputInfo] = useState('')
-  const [searchedPostToggler, setSearchedPostToggler] = useState(false)
 
   // GLOBAL CONTEXT
   const {
@@ -26,10 +24,14 @@ const ProfileInput = () => {
     setSearchedPostTrigger,
     searchedPostResult,
     setSearchedPostResult,
+    setProfileInputInfo,
+    searchedPostToggler,
+    setSearchedPostToggler,
   } = useContext(GlobalContext)
 
   // ADD POST - FUNCTION
-  const addPost = () => {
+  const addPost = (event) => {
+    event.preventDefault()
     setSearchedPostResult([])
     setSearchedPostTrigger(false)
 
@@ -64,7 +66,8 @@ const ProfileInput = () => {
   }
 
   // SEARCHED POST RESULT HANDLER
-  const searchedPostResultHandler = () => {
+  const searchedPostResultHandler = (event) => {
+    event.preventDefault()
     setSearchedPostTrigger(true)
     setSearchedPostToggler(!searchedPostToggler)
     if (postBrowserValue === '') {
@@ -77,44 +80,38 @@ const ProfileInput = () => {
   // JSX
   return (
     <>
-      <div className="profile__input-box">
+      <form className="profile-input-container" onSubmit={addPost}>
         <input
           type="text"
           placeholder="write some post"
           value={postContent}
           onChange={(event) => setPostContent(event.target.value)}
-          className="input-box__text-input"
+          className="input-container-text-input"
         />
 
-        <button className="input-box__button" onClick={addPost}>
-          <i className="fas fa-pen-alt input-box__button-icon"></i>
+        <button className="input-container-button" onClick={addPost}>
+          <i className="fas fa-pen-alt"></i>
         </button>
-      </div>
+      </form>
 
-      <div className="profile__input-box">
+      <form className="profile-input-container" onSubmit={searchedPostResultHandler}>
         <input
           type="date"
           value={postBrowserValue}
           onChange={(event) => setPostBrowserValue(event.target.value)}
-          className="input-box__text-input"
+          className="input-container-text-input"
         />
 
         <button
-          className="input-box__button"
+          className="input-container-button"
           onClick={searchedPostResultHandler}
         >
-          <i className="fas fa-search input-box__button-icon"></i>
+          <i className="fas fa-search"></i>
         </button>
 
         {/* SEARCHED POST RESULT */}
-        {searchedPostTrigger && (
-          <SearchedPost
-            profileInputInfo={profileInputInfo}
-            setProfileInputInfo={setProfileInputInfo}
-            searchedPostToggler={searchedPostToggler}
-          />
-        )}
-      </div>
+        {searchedPostTrigger && <SearchedPost />}
+      </form>
     </>
   )
 }

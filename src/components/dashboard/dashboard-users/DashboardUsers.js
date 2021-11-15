@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import axios from 'axios'
+import '../../../styles/components/dashboard/dashboard-users/DashboardUsers.scss'
 
 // COMPONENTS
-import UsersRecommended from '../UsersRecommended'
+import UsersRecommended from './UsersRecommended'
 import UsersInput from '../dashboard-users/UsersInput'
 
-import { GlobalContext } from '../../../tools/CreateContext'
+import { GlobalContext } from '../../../context/CreateContext'
 
 const DashboardUsers = () => {
   // GLOBAL CONTEXT
@@ -40,17 +41,17 @@ const DashboardUsers = () => {
   }
 
   return (
-    <div className="dashboard__recommendations">
-      <h3 className="recommendations__header">
+    <div className="dashboard-recommendations">
+      <h3 className="recommendations-header">
         You may follow
-        <i className="fas fa-users recommendations__header-icon"></i>
+        <i className="fas fa-users recommendations-header-icon"></i>
       </h3>
       {/* USERS RECOMMENDED */}
       <UsersRecommended followUser={followUser} />
 
-      <h3 className="recommendations__header">
+      <h3 className="recommendations-header">
         Social Club
-        <i className="fas fa-icons recommendations__header-icon"></i>
+        <i className="fas fa-icons recommendations-header-icon"></i>
       </h3>
       {/* USERS INPUTS */}
       <UsersInput followUser={followUser} />

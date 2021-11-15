@@ -1,0 +1,23 @@
+@import './styles/colors';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+::placeholder {
+  color: $black-color;
+  opacity: 1;
+}
+
+::selection {
+  color: $white-color;
+  background-color: $primary-color;
+}
+
+.post-content::selection,
+.result-list-item-post-content::selection {
+  background-color: $secondary-color;
+}
+

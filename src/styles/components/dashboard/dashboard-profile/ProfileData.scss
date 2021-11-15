@@ -1,0 +1,23 @@
+@import '../../../mixins';
+
+// PROFILE DATA
+.profile-data {
+  position: relative;
+  @include df-center;
+  flex-direction: column;
+
+  .profile-avatar {
+    margin: 10px 0;
+    position: relative;
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    border-radius: 50%;
+  }
+
+  .profile-name {
+    margin: 0 0 5px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+}

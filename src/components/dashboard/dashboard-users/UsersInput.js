@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
+import '../../../styles/components/dashboard/DashboardInput.scss'
 
 // COMPONENTS
 import SearchedUser from '../dashboard-users/searched-user/SearchedUser'
 
-import { GlobalContext } from '../../../tools/CreateContext'
+import { GlobalContext } from '../../../context/CreateContext'
 
 const UsersInput = (props) => {
   // LOCAL STATE
@@ -28,7 +29,9 @@ const UsersInput = (props) => {
   } = useContext(GlobalContext)
 
   // SEARCH FRIEND BY NAME
-  const searchFriendByName = () => {
+  const searchFriendByName = (event) => {
+    event.preventDefault()
+
     if (searchedUserByNameContent === '') {
       setSearchedUserTrigger(true)
       setUsersInputInfo(
@@ -59,7 +62,9 @@ const UsersInput = (props) => {
   }
 
   // SEARCH FRIEND BY E-MAIL
-  const searchFriendByEmail = () => {
+  const searchFriendByEmail = (event) => {
+    event.preventDefault()
+
     if (searchedUserByEmailContent === '') {
       setUsersInputInfo(
         'Email field cannot be empty, type correct address and find your friend',
@@ -92,21 +97,21 @@ const UsersInput = (props) => {
   // JSX
   return (
     <>
-      <div className="recommendations__input-box">
+      <form className="recommendations-input-container" onSubmit={searchFriendByName}>
         <input
           type="text"
           placeholder="search user by name"
           value={searchedUserByNameContent}
           onChange={(event) => setSearchedUserByNameContent(event.target.value)}
-          className="input-box__text-input"
+          className="input-container-text-input"
         />
 
-        <button className="input-box__button" onClick={searchFriendByName}>
-          <i className="fas fa-user-alt input-box__button-icon"></i>
+        <button className="input-container-button" onClick={searchFriendByName}>
+          <i className="fas fa-user-alt"></i>
         </button>
-      </div>
+      </form>
 
-      <div className="recommendations__input-box">
+      <form className="recommendations-input-container" onSubmit={searchFriendByEmail}>
         <input
           type="email"
           placeholder="search user by email"
@@ -114,11 +119,11 @@ const UsersInput = (props) => {
           onChange={(event) =>
             setSearchedUserByEmailContent(event.target.value)
           }
-          className="input-box__text-input"
+          className="input-container-text-input"
         />
 
-        <button className="input-box__button" onClick={searchFriendByEmail}>
-          <i className="fas fa-at input-box__button-icon"></i>
+        <button className="input-container-button" onClick={searchFriendByEmail}>
+          <i className="fas fa-at"></i>
         </button>
 
         {/* SEARCHED USER RESULT */}
@@ -132,7 +137,7 @@ const UsersInput = (props) => {
             followUser={props.followUser}
           />
         )}
-      </div>
+      </form>
     </>
   )
 }

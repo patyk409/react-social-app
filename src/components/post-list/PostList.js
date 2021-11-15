@@ -8,7 +8,7 @@ import ConfirmationPopup from './ConfirmationPopup'
 
 import Preloader from '../../utilities/Preloader'
 import DeleteIcon from '../../utilities/DeleteIcon'
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../context/CreateContext'
 
 const PostList = (props) => {
   // LOCAL STATE
@@ -23,7 +23,6 @@ const PostList = (props) => {
     confirmationDisplay,
     postId,
     postToggler,
-    searchedPostTrigger,
     followToggler,
     setFollowToggler,
   } = useContext(GlobalContext)
@@ -134,7 +133,7 @@ const PostList = (props) => {
         })}
 
         {/* DELETE POST - CONFIRMATION POPUP */}
-        {confirmationDisplay && !searchedPostTrigger && (
+        {confirmationDisplay && (
           <aside className="popup-background">
             <ConfirmationPopup postId={postId} />
           </aside>

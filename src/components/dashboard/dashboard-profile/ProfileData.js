@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
+import '../../../styles/components/dashboard/dashboard-profile/ProfileData.scss'
 
-import { GlobalContext } from '../../../tools/CreateContext'
+import { GlobalContext } from '../../../context/CreateContext'
 
 const ProfileData = () => {
   // LOCAL STATE
@@ -34,15 +35,15 @@ const ProfileData = () => {
 
   // JSX
   return (
-    <div className="profile__data">
+    <div className="profile-data">
       <img
         src={profileAvatar}
         alt="profile_avatar"
-        className="profile__data-avatar"
+        className="profile-avatar"
       />
 
-      <p className="profile__data-name">{profileName}</p>
-      <p className="profile__data-email">{profileEmail}</p>
+      <p className="profile-name">{profileName}</p>
+      <p className="profile-email">{profileEmail}</p>
     </div>
   )
 }

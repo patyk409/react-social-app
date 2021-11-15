@@ -1,0 +1,28 @@
+@import '../../../mixins';
+@import '../../../breakpoints';
+
+// DASHBOARD USERS
+.dashboard-recommendations {
+  margin: 20px auto 0;
+  width: 80%;
+
+  .recommendations-header {
+    padding: 0 0 15px;
+    @include df-center;
+    font-size: 22px;
+
+    .recommendations-header-icon {
+      margin: 0 0 0 15px;
+      font-size: 24px;
+      color: $primary-color;
+    }
+  }
+}
+
+// DASHBOARD USERS MEDIA
+@media screen and (min-width: $medium) {
+  .dashboard-recommendations {
+    margin: 0;
+    width: 50%;
+  }
+}

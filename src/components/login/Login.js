@@ -5,7 +5,7 @@ import '../../styles/components/login/Login.scss'
 import LoginForm from './LoginForm'
 
 import CloserLink from '../../utilities/CloserLink'
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../context/CreateContext'
 
 const Login = () => {
   // GLOBAL CONTEXT

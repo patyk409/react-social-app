@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import '../styles/utilities/DownbarInfo.scss'
 
-import { GlobalContext } from '../tools/CreateContext'
+import { GlobalContext } from '../context/CreateContext'
 
 const DownbarInfo = () => {
   // GLOBAL CONTEXT

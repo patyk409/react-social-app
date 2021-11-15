@@ -1,0 +1,31 @@
+@import '../../../mixins';
+@import '../../../breakpoints';
+
+// DASHBOARD PROFILE
+.dashboard-profile {
+  padding: 0 0 20px;
+  width: 80%;
+  border-bottom: 2px solid $primary-color;
+
+  .profile-header {
+    padding: 0 0 15px;
+    @include df-center;
+    font-size: 22px;
+
+    .profile-header-icon {
+      margin: 0 0 0 15px;
+      font-size: 24px;
+      color: $primary-color;
+    }
+  }
+}
+
+// DASHBOARD PROFILE MEDIA
+@media screen and (min-width: $medium) {
+  .dashboard-profile {
+    padding: 0;
+    width: 50%;
+    border-bottom: none;
+    border-right: 2px solid $primary-color;
+  }
+}

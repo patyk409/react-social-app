@@ -6,7 +6,7 @@ import '../../styles/components/all-followed/AllFollowed.scss'
 import FollowedList from './FollowedList'
 
 import CloserLink from '../../utilities/CloserLink'
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../context/CreateContext'
 
 const AllFollowed = () => {
   // LOCAL STATE

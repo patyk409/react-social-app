@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import '../../styles/components/nav/Nav.scss'
 
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../context/CreateContext'
 
 const Nav = () => {
   // LOCAL STATE

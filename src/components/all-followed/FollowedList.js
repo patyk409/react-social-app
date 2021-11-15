@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import axios from 'axios'
 import '../../styles/components/all-followed/FollowedList.scss'
 
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../context/CreateContext'
 
 const FollowedList = (props) => {
   // GLOBAL CONTEXT

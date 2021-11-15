@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
+import '../../../styles/components/dashboard/dashboard-users/UsersRecommended.scss'
 
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../../context/CreateContext'
 
 const UsersRecommended = (props) => {
   // LOCAL STATE
@@ -36,18 +37,18 @@ const UsersRecommended = (props) => {
       {recommendedUsers.map((user) => {
         return (
           <li
-            className="recommendations-list__recommendations-item"
+            className="recommendations-list-item"
             key={user.id}
           >
             <img
               src={user.avatar_url}
               alt="user_avatar"
-              className="recommendations__data-avatar"
+              className="recommended-user-avatar"
             />
 
-            <div className="recommendations-item__data">
-              <p className="recommendations__data-name">{user.username}</p>
-              <p className="recommendations__data-email">{user.email}</p>
+            <div className="recommended-user-data">
+              <p className="recommended-user-name">{user.username}</p>
+              <p className="recommended-user-email">{user.email}</p>
             </div>
 
             <div
@@ -57,7 +58,7 @@ const UsersRecommended = (props) => {
               }}
               tabIndex="0"
             >
-              <i className="fas fa-plus recommendations-list__follow-icon"></i>
+              <i className="fas fa-plus"></i>
             </div>
           </li>
         )

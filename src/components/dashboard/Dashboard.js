@@ -1,5 +1,5 @@
 import React from 'react'
-import './Dashboard.css'
+import '../../styles/components/dashboard/Dashboard.scss'
 
 // COMPONENTS
 import DashboardProfile from './dashboard-profile/DashboardProfile'

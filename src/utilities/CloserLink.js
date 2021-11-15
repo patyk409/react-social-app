@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/utilities/CloserLink.scss'
 
-import { GlobalContext } from '../tools/CreateContext'
+import { GlobalContext } from '../context/CreateContext'
 
 const CloserLink = () => {
   // GLOBAL CONTEXT

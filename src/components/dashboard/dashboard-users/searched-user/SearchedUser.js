@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import './SearchedUser.css'
+import '../../../../styles/components/dashboard/dashboard-users/searched-user/SearchedUser.scss'
 
-import { GlobalContext } from '../../../../tools/CreateContext'
+import { GlobalContext } from '../../../../context/CreateContext'
 
 const SearchedUser = (props) => {
   // GLOBAL CONTEXT
@@ -11,25 +11,25 @@ const SearchedUser = (props) => {
     <>
       <div className="searched-user-result">
         {props.usersInputInfo ? (
-          <div className="searched-user-result__info-box">
-            <p className="searched-user-result__info">
+          <div className="searched-user-info-container">
+            <p className="searched-user-info">
               {props.usersInputInfo}
             </p>
           </div>
         ) : (
-          <div className="searched-user-result__searched-user">
+          <div className="searched-user">
             <img
               src={props.searchedUserAvatar}
               alt="user_avatar"
-              className="searched-user-result__searched-user-avatar"
+              className="searched-user-avatar"
             />
 
-            <div className="searched-user-result__searched-user-data">
-              <p className="searched-user-data__name">
+            <div className="searched-user-data">
+              <p className="searched-user-data-name">
                 {props.searchedUserName}
               </p>
 
-              <p className="searched-user-data__email">
+              <p className="searched-user-data-email">
                 {props.searchedUserEmail}
               </p>
             </div>
@@ -41,19 +41,19 @@ const SearchedUser = (props) => {
               }}
               tabIndex="0"
             >
-              <i className="fas fa-plus searched-user__follow-icon"></i>
+              <i className="fas fa-plus"></i>
             </div>
           </div>
         )}
       </div>
 
       <div
-        className="searched-user-result__closer"
+        className="searched-user-result-closer"
         onClick={() => {
           setSearchedUserTrigger(false)
         }}
       >
-        <i className="fas fa-times searched-user-result__closer-icon"></i>
+        <i className="fas fa-times"></i>
       </div>
     </>
   )

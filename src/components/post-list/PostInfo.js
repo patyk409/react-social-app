@@ -3,7 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 import '../../styles/components/post-list/PostInfo.scss'
 
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../context/CreateContext'
 
 const Post = (props) => {
   // LOCAL STATE
@@ -33,7 +33,6 @@ const Post = (props) => {
         )
         setDownbarContent('Like has been added')
         setDownbarDisplay(true)
-        console.log('like response: ', res)
       })
       .catch((err) => {
         console.error(err)
@@ -58,7 +57,6 @@ const Post = (props) => {
         )
         setDownbarContent('Like has been removed')
         setDownbarDisplay(true)
-        console.log('dislike response: ', res)
       })
       .catch((err) => {
         console.error(err)

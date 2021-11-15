@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import axios from 'axios'
 import '../../styles/components/post-list/ConfirmationPopup.scss'
 
-import { GlobalContext } from '../../tools/CreateContext'
+import { GlobalContext } from '../../context/CreateContext'
 
 const ConfirmationPopup = (props) => {
   // GLOBAL CONTEXT

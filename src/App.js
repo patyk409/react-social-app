@@ -11,8 +11,8 @@ import Dashboard from './components/dashboard/Dashboard'
 import PostList from './components/post-list/PostList'
 
 import DownbarInfo from './utilities/DownbarInfo'
-import ScrollToTop from './tools/ScrollToTop'
-import { GlobalContext } from './tools/CreateContext'
+import ScrollToTop from './utilities/ScrollToTop'
+import { GlobalContext } from './context/CreateContext'
 
 // CUSTOM HOOK - USE ON SCREEN
 const useOnScreen = (options) => {

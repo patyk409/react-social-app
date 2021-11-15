@@ -7,12 +7,12 @@ export const GlobalContext = createContext(null)
 export const ContextProvider = (props) => {
   // LOCAL STATE
   const [isLogged, setIsLogged] = useState(localStorage.getItem('jwt_token'))
-  
+
   const [loginDisplay, setLoginDisplay] = useState(false)
 
   const [followToggler, setFollowToggler] = useState(false)
   const [postToggler, setPostToggler] = useState(false)
-  
+
   const [downbarDisplay, setDownbarDisplay] = useState(false)
   const [downbarContent, setDownbarContent] = useState('')
 
@@ -21,6 +21,9 @@ export const ContextProvider = (props) => {
   const [searchedPostResult, setSearchedPostResult] = useState([])
   const [searchedPostTrigger, setSearchedPostTrigger] = useState(false)
   const [searchedUserTrigger, setSearchedUserTrigger] = useState(false)
+
+  const [profileInputInfo, setProfileInputInfo] = useState('')
+  const [searchedPostToggler, setSearchedPostToggler] = useState(false)
 
   const [confirmationDisplay, setConfirmationDisplay] = useState(false)
 
@@ -72,6 +75,10 @@ export const ContextProvider = (props) => {
         setFollowToggler,
         searchedUserTrigger,
         setSearchedUserTrigger,
+        profileInputInfo,
+        setProfileInputInfo,
+        searchedPostToggler,
+        setSearchedPostToggler,
       }}
     >
       {props.children}
