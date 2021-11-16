@@ -53,7 +53,7 @@ const Nav = () => {
         JSON.stringify(),
         headerConfigAuth,
       )
-      .then((res) => {
+      .then(() => {
         localStorage.removeItem('name')
         localStorage.removeItem('jwt_token')
         setIsLogged(localStorage.getItem('jwt_token'))

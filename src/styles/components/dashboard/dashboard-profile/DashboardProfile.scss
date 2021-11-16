@@ -29,3 +29,13 @@
     border-right: 2px solid $primary-color;
   }
 }
+
+@media screen and (min-width: $large) {
+  .dashboard-profile {
+    padding: 20px;
+    width: 25%;
+    border: 2px solid $primary-color;
+    border-left: none;
+    background-color: $primary-bg-color;
+  }
+}

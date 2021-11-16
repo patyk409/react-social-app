@@ -4,7 +4,7 @@ import '../../styles/components/post-list/ConfirmationPopup.scss'
 
 import { GlobalContext } from '../../context/CreateContext'
 
-const ConfirmationPopup = (props) => {
+const ConfirmationPopup = () => {
   // GLOBAL CONTEXT
   const {
     headerConfigAuth,
@@ -26,7 +26,7 @@ const ConfirmationPopup = (props) => {
         }),
         headerConfigAuth,
       )
-      .then((res) => {
+      .then(() => {
         setPostToggler(!postToggler)
         setDownbarDisplay(true)
         setDownbarContent('Post has been removed')

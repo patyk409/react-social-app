@@ -90,8 +90,8 @@ const PostList = (props) => {
 
   // JSX
   return (
-    <main className="post">
-      <ul className="post-list">
+    <main className={isLogged ? "post post-logged" : "post"}>
+      <ul className={isLogged ? "post-list post-list-logged" : "post-list"}>
         {latestPosts.map((post) => {
           return (
             <li className="post-list-item" key={post.id}>

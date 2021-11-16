@@ -77,3 +77,14 @@
     }
   }
 }
+
+@media screen and (min-width: $large) {
+  .post.post-logged {
+    width: 45%;
+    margin: 0 auto;
+
+    .post-list.post-list-logged {
+      margin: -404px 0 0;
+    }
+  }
+}

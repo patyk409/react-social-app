@@ -1,4 +1,5 @@
 @import '../../../../mixins';
+@import '../../../../breakpoints';
 
 // SEARCHED POST RESULT
 .searched-post-result {
@@ -88,9 +89,9 @@
 }
 
 .result-list-result-closer {
-  padding: 5px 10px;
+  padding: 5px;
   position: absolute;
-  right: -30px;
+  right: -20px;
   bottom: 290px;
   font-size: 20px;
   color: $secondary-color;
@@ -99,5 +100,11 @@
 
   &:hover {
     color: $primary-color;
+  }
+}
+
+@media screen and (min-width: $large) {
+  .searched-post-result {
+    padding: 0 15px;
   }
 }

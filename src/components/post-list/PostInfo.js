@@ -27,7 +27,7 @@ const Post = (props) => {
         }),
         headerConfigAuth,
       )
-      .then((res) => {
+      .then(() => {
         setLikeCounter(
           likeCounter.concat({ username: localStorage.getItem('name') }),
         )
@@ -49,7 +49,7 @@ const Post = (props) => {
         }),
         headerConfigAuth,
       )
-      .then((res) => {
+      .then(() => {
         setLikeCounter(
           likeCounter.filter((user) => {
             return user.username !== localStorage.getItem('name')

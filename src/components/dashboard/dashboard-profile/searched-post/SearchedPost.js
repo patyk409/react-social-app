@@ -9,7 +9,7 @@ import ConfirmationPopup from '../../../post-list/ConfirmationPopup'
 
 import { GlobalContext } from '../../../../context/CreateContext'
 
-const SearchedPost = (props) => {
+const SearchedPost = () => {
   // GLOBAL CONTEXT
   const {
     isLogged,

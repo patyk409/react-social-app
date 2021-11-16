@@ -21,7 +21,7 @@
   .popup-button-container {
     display: flex;
     justify-content: space-evenly;
-    width: 70%;
+    width: 80%;
 
     .popup-button {
       padding: 8px 0;
@@ -58,16 +58,14 @@
 }
 
 // POPUP MEDIA
-@media screen and (min-width: $small) {
-  .confirmation-popup {
-    .popup-button-container {
-      width: 60%;
-    }
-  }
-}
-
 @media screen and (min-width: $medium) {
   .confirmation-popup {
     border: 2px solid $primary-color;
+  }
+}
+
+@media screen and (min-width: $large) {
+  .confirmation-popup {
+    width: 45%;
   }
 }

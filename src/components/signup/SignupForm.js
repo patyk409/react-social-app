@@ -23,32 +23,6 @@ const SignupForm = () => {
     GlobalContext,
   )
 
-  // SIGNUP - FUNCTION
-  const signUserDataUp = (event) => {
-    event.preventDefault()
-    let userData = {
-      username: name,
-      email: email,
-      password: password,
-    }
-
-    axios
-      .post(
-        'https://akademia108.pl/api/social-app/user/signup',
-        JSON.stringify(userData),
-        headerConfig,
-      )
-      .then((res) => {
-        localStorage.setItem('name', res.data.user.username)
-        setDownbarDisplay(true)
-        setDownbarContent('Signed up')
-      })
-      .catch((err) => {
-        console.error(err)
-      })
-    setRedirection(true)
-  }
-
   // SIGNUP FORM - VALIDATION
   const formValidation = (event) => {
     let nameValidation = new RegExp('^(?=.{4,})')
@@ -83,6 +57,32 @@ const SignupForm = () => {
     }
   }
 
+  // SIGNUP - FUNCTION
+  const signUserDataUp = (event) => {
+    event.preventDefault()
+    let userData = {
+      username: name,
+      email: email,
+      password: password,
+    }
+
+    axios
+      .post(
+        'https://akademia108.pl/api/social-app/user/signup',
+        JSON.stringify(userData),
+        headerConfig,
+      )
+      .then((res) => {
+        localStorage.setItem('name', res.data.user.username)
+        setDownbarDisplay(true)
+        setDownbarContent('Signed up')
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+    setRedirection(true)
+  }
+
   // REDIRECT TO LOGIN PAGE AFTER SIGNUP
   if (redirection) {
     return <Redirect to="/login" />
@@ -101,11 +101,7 @@ const SignupForm = () => {
         onChange={(event) => {
           setName(event.target.value)
         }}
-        className={
-          nameWarning
-            ? 'form-text-input warning'
-            : 'form-text-input'
-        }
+        className={nameWarning ? 'form-text-input warning' : 'form-text-input'}
       />
 
       <label className="form-label" htmlFor="email">
@@ -118,11 +114,7 @@ const SignupForm = () => {
         onChange={(event) => {
           setEmail(event.target.value)
         }}
-        className={
-          emailWarning
-            ? 'form-text-input warning'
-            : 'form-text-input'
-        }
+        className={emailWarning ? 'form-text-input warning' : 'form-text-input'}
       />
 
       <label className="form-label" htmlFor="password">
@@ -136,9 +128,7 @@ const SignupForm = () => {
           setPassword(event.target.value)
         }}
         className={
-          passwordWarning
-            ? 'form-text-input warning'
-            : 'form-text-input'
+          passwordWarning ? 'form-text-input warning' : 'form-text-input'
         }
       />
 
@@ -153,9 +143,7 @@ const SignupForm = () => {
           setConfirmPassword(event.target.value)
         }}
         className={
-          passwordWarning
-            ? 'form-text-input warning'
-            : 'form-text-input'
+          passwordWarning ? 'form-text-input warning' : 'form-text-input'
         }
       />
 

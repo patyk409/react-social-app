@@ -26,3 +26,13 @@
     width: 50%;
   }
 }
+
+@media screen and (min-width: $large) {
+  .dashboard-recommendations {
+    padding: 20px;
+    width: 25%;
+    border: 2px solid $primary-color;
+    border-right: none;
+    background-color: $primary-bg-color;
+  }
+}

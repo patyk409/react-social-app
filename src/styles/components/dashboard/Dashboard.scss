@@ -6,8 +6,10 @@
   padding: 20px 0;
   margin: 50px auto 0;
   @include df-center;
+  justify-content: space-between;
   flex-direction: column;
   max-width: $medium;
+  height: auto;
   @include window-basic-props;
 }
 
@@ -16,5 +18,16 @@
   .dashboard {
     flex-direction: row;
     border: 2px solid $primary-color;
+  }
+}
+
+@media screen and (min-width: $large) {
+  .dashboard {
+    position: sticky;
+    top: 120px;
+    padding: 0;
+    max-width: 100%;
+    background-color: transparent;
+    border: none;
   }
 }

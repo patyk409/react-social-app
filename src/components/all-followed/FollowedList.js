@@ -24,7 +24,7 @@ const FollowedList = (props) => {
         }),
         headerConfigAuth,
       )
-      .then((res) => {
+      .then(() => {
         setFollowToggler(!followToggler)
         setDownbarDisplay(true)
         setDownbarContent('Follow has been removed')
