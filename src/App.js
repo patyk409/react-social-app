@@ -75,7 +75,7 @@ const App = () => {
       {/* HEADER */}
       <header className="header-container">
         <h1 className="header">
-          <Link className="header-link" to="/">
+          <Link className="header-link" to="/react-social-app/">
             Social Club
             <i className="fas fa-icons header-link-icon"></i>
           </Link>
