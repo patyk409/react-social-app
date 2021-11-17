@@ -30,7 +30,7 @@ const Nav = () => {
     const position = window.pageYOffset
     setScrollPosition(position)
 
-    if (position > 122 && window.location.href.endsWith('react-social-app/')) {
+    if (position > 122 && window.location.href.endsWith('react-social-app/') || window.location.href.endsWith('react-social-app')) {
       setNavClassName('nav nav-sticky nav-on-scroll')
     } else {
       setNavClassName('nav')
