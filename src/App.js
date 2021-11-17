@@ -86,7 +86,7 @@ const App = () => {
 
       <Switch>
         {/* HOME PAGE */}
-        <Route exact path="/">
+        <Route exact path="/react-social-app/">
           <Nav />
           {/* DASHBOARD */}
           {isLogged && <Dashboard />}
@@ -95,19 +95,19 @@ const App = () => {
         </Route>
 
         {/* LOGIN PAGE */}
-        <Route path="/login" component={Login}>
+        <Route path="/react-social-app/login" component={Login}>
           <Nav />
           <Login />
         </Route>
 
         {/* SIGNUP PAGE */}
-        <Route path="/signup" component={Signup}>
+        <Route path="/react-social-app/signup" component={Signup}>
           <Nav />
           <Signup />
         </Route>
 
         {/* ALL FOLLOWED PAGE */}
-        <Route path="/followed" component={AllFollowed}>
+        <Route path="/react-social-app/followed" component={AllFollowed}>
           <Nav />
           <AllFollowed />
         </Route>
