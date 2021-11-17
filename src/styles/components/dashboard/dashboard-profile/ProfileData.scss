@@ -5,6 +5,7 @@
   position: relative;
   @include df-center;
   flex-direction: column;
+  min-height: 227px;
 
   .profile-avatar {
     margin: 10px 0;
