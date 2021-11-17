@@ -61,6 +61,14 @@
     opacity: 0;
     @include transition-props(opacity, 0.2s);
   }
+
+  .recommendations-info-container {
+    @include df-center;
+    min-height: 184px;
+    color: $secondary-color;
+    text-align: center;
+    font-weight: bold;
+  }
 }
 
 // RECOMMENDED USERS

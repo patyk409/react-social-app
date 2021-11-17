@@ -34,35 +34,40 @@ const UsersRecommended = (props) => {
   // JSX
   return (
     <ul className="recommendations-list">
-      {recommendedUsers.map((user) => {
-        return (
-          <li
-            className="recommendations-list-item"
-            key={user.id}
-          >
-            <img
-              src={user.avatar_url}
-              alt="user_avatar"
-              className="recommended-user-avatar"
-            />
+      {recommendedUsers.length === 0 ? (
+        <div className="recommendations-info-container">
+          <p className="recommendations-info">
+            Seems like there is no more users you may follow...
+          </p>
+        </div>
+      ) : (
+        recommendedUsers.map((user) => {
+          return (
+            <li className="recommendations-list-item" key={user.id}>
+              <img
+                src={user.avatar_url}
+                alt="user_avatar"
+                className="recommended-user-avatar"
+              />
 
-            <div className="recommended-user-data">
-              <p className="recommended-user-name">{user.username}</p>
-              <p className="recommended-user-email">{user.email}</p>
-            </div>
+              <div className="recommended-user-data">
+                <p className="recommended-user-name">{user.username}</p>
+                <p className="recommended-user-email">{user.email}</p>
+              </div>
 
-            <div
-              className="follow-icon"
-              onClick={() => {
-                props.followUser(user.id)
-              }}
-              tabIndex="0"
-            >
-              <i className="fas fa-plus"></i>
-            </div>
-          </li>
-        )
-      })}
+              <div
+                className="follow-icon"
+                onClick={() => {
+                  props.followUser(user.id)
+                }}
+                tabIndex="0"
+              >
+                <i className="fas fa-plus"></i>
+              </div>
+            </li>
+          )
+        })
+      )}
     </ul>
   )
 }
