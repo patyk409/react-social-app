@@ -85,7 +85,7 @@ const SignupForm = () => {
 
   // REDIRECT TO LOGIN PAGE AFTER SIGNUP
   if (redirection) {
-    return <Redirect to="/login" />
+    return <Redirect to="/react-social-app/login" />
   }
 
   // JSX
@@ -166,7 +166,7 @@ const SignupForm = () => {
       </ul>
 
       {/* LOGIN LINK */}
-      <Link className="form-redirection-link" to="/login">
+      <Link className="form-redirection-link" to="/react-social-app/login">
         Log in
       </Link>
     </form>

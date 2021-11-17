@@ -20,7 +20,7 @@ const CloserLink = () => {
     <>
       <Link
         className="closer-link"
-        to="/"
+        to="/react-social-app/"
         onClick={loginDisplayCloser}
       >
         <i className="fas fa-times"></i>

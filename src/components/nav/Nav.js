@@ -81,7 +81,7 @@ const Nav = () => {
       <ul className="nav-list">
         {/* HOME LINK */}
         <li className="nav-list-item">
-          <Link className="nav-link" to="/" onClick={windowCloseAndRefresh}>
+          <Link className="nav-link" to="/react-social-app/" onClick={windowCloseAndRefresh}>
             <i className="fas fa-home nav-link-icon"></i>
             Home
           </Link>
@@ -90,7 +90,7 @@ const Nav = () => {
         {/* SIGNUP FORM */}
         {!isLogged && (
           <li className="nav-list-item">
-            <Link className="nav-link" to="/signup">
+            <Link className="nav-link" to="/react-social-app/signup">
               <i className="fas fa-user-plus nav-link-icon"></i>
               Sign up
             </Link>
@@ -100,7 +100,7 @@ const Nav = () => {
         {/* LOGIN FORM */}
         {!isLogged && (
           <li className="nav-list-item">
-            <Link className="nav-link" to="/login">
+            <Link className="nav-link" to="/react-social-app/login">
               <i className="fas fa-sign-in-alt nav-link-icon"></i>
               Log in
             </Link>
@@ -112,7 +112,7 @@ const Nav = () => {
           <li className="nav-list-item">
             <Link
               className="nav-link"
-              to="/followed"
+              to="/react-social-app/followed"
               onClick={windowCloseAndRefresh}
             >
               <i className="fas fa-user-friends nav-link-icon"></i>
@@ -124,7 +124,7 @@ const Nav = () => {
         {/* LOGOUT */}
         {isLogged && (
           <li className="nav-list-item">
-            <Link className="nav-link" to="/" onClick={logUserDataOut}>
+            <Link className="nav-link" to="/react-social-app/" onClick={logUserDataOut}>
               <i className="fas fa-sign-out-alt nav-link-icon"></i>
               Log out
             </Link>
