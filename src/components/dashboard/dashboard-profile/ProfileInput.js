@@ -97,6 +97,7 @@ const ProfileInput = () => {
       <form className="profile-input-container" onSubmit={searchedPostResultHandler}>
         <input
           type="date"
+          placeholder="search posts"
           value={postBrowserValue}
           onChange={(event) => setPostBrowserValue(event.target.value)}
           className="input-container-text-input"
