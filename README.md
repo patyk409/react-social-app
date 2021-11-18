@@ -1,5 +1,5 @@
 # Social App
-Based on Axios REST API requests. Social app allows user to create account, log in / log out, add / delete posts, like them, follow / disfollow other people and check out your all followed users list. There is also post and user browser where user can find some post or friends. It also displays recommended users to follow.
+Based on Axios REST API requests. Social app allows user to create account, log in / log out, add / delete posts, like them, follow / disfollow other users and check out your all followed users list. There is also post and user browser where user can find some post or friends. It also displays recommended users to follow.
 
 ## Demo
 Working demo of the project: https://patyk409.github.io/react-social-app/
