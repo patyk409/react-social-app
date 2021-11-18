@@ -30,7 +30,12 @@ const Nav = () => {
     const position = window.pageYOffset
     setScrollPosition(position)
 
-    if (position > 122 && window.location.href.endsWith('react-social-app/') || window.location.href.endsWith('react-social-app')) {
+    if (position > 122 && window.location.href.endsWith('react-social-app/')) {
+      setNavClassName('nav nav-sticky nav-on-scroll')
+    } else if (
+      position > 122 &&
+      window.location.href.endsWith('react-social-app')
+    ) {
       setNavClassName('nav nav-sticky nav-on-scroll')
     } else {
       setNavClassName('nav')
@@ -81,7 +86,11 @@ const Nav = () => {
       <ul className="nav-list">
         {/* HOME LINK */}
         <li className="nav-list-item">
-          <Link className="nav-link" to="/react-social-app/" onClick={windowCloseAndRefresh}>
+          <Link
+            className="nav-link"
+            to="/react-social-app/"
+            onClick={windowCloseAndRefresh}
+          >
             <i className="fas fa-home nav-link-icon"></i>
             Home
           </Link>
@@ -124,7 +133,11 @@ const Nav = () => {
         {/* LOGOUT */}
         {isLogged && (
           <li className="nav-list-item">
-            <Link className="nav-link" to="/react-social-app/" onClick={logUserDataOut}>
+            <Link
+              className="nav-link"
+              to="/react-social-app/"
+              onClick={logUserDataOut}
+            >
               <i className="fas fa-sign-out-alt nav-link-icon"></i>
               Log out
             </Link>

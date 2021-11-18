@@ -52,7 +52,12 @@ const App = () => {
   // LOGIN POPUP TIMEOUT - TRIGGER
   useEffect(() => {
     const loginDisplayTimeout = setTimeout(() => {
-      if (!isLogged && window.location.href.endsWith('react-social-app/') || window.location.href.endsWith('react-social-app')) {
+      if (!isLogged && window.location.href.endsWith('react-social-app/')) {
+        setLoginDisplay(true)
+      } else if (
+        !isLogged &&
+        window.location.href.endsWith('react-social-app')
+      ) {
         setLoginDisplay(true)
       }
     }, 5000)
