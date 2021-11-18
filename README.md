@@ -21,7 +21,7 @@ Project is created with:
 ## Login data
 In case of using demo, example login and password is:
 ````
-login: adam
+login: janek
 password: 1234
 ````
 
